@@ -1,0 +1,4046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Virchi | Marketing Path Builder</title>
+  <meta name="description" content="A nine-section Virchi marketing studio website built from the provided visual references.">
+  <style>
+    :root {
+      --ink: #111722;
+      --muted: #667085;
+      --line: #d9e0ea;
+      --page: #eef2f6;
+      --white: #ffffff;
+      --blue: #1456a8;
+      --blue-soft: #e6f2ff;
+      --peach: #fff0df;
+      --green: #e6f8ef;
+      --lavender: #f0e9ff;
+      --panel: rgba(255, 255, 255, .82);
+      --radius: 6px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #ffffff;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .site-frame {
+      width: 100%;
+      margin: 0;
+      background: var(--white);
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 72px));
+      margin: 0 auto;
+    }
+
+    .top-brand {
+      position: fixed;
+      z-index: 50;
+      top: 14px;
+      left: 110px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 76px;
+      pointer-events: auto;
+      transition: gap .28s ease, transform .28s ease;
+    }
+
+    .logo-ribbon {
+      position: absolute;
+      top: 0;
+      z-index: 2;
+      height: 92px;
+      width: min(34vw, 430px);
+      pointer-events: none;
+      opacity: .12;
+      background-image: url("assets/virchi-logo.png");
+      background-repeat: repeat-x;
+      background-size: 92px auto;
+      background-position: center 14px;
+      filter: saturate(.9);
+      mix-blend-mode: multiply;
+    }
+
+    .logo-ribbon-left {
+      left: 0;
+      -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 54%, transparent 100%);
+      mask-image: linear-gradient(90deg, #000 0%, #000 54%, transparent 100%);
+    }
+
+    .logo-ribbon-right {
+      right: 0;
+      -webkit-mask-image: linear-gradient(270deg, #000 0%, #000 54%, transparent 100%);
+      mask-image: linear-gradient(270deg, #000 0%, #000 54%, transparent 100%);
+    }
+
+    .logo-stack {
+      position: relative;
+      display: block;
+      width: 152px;
+      height: 76px;
+      flex: 0 0 auto;
+      transition: width .28s ease, height .28s ease;
+    }
+
+    .top-logo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: left center;
+      transition: opacity .28s ease, transform .28s ease;
+    }
+
+    .top-logo-round {
+      opacity: 0;
+      transform: scale(.72) rotate(-8deg);
+    }
+
+    .top-brand.is-scrolled {
+      gap: 0;
+      transform: translate(-22px, -2px);
+    }
+
+    .top-brand.is-scrolled .logo-stack {
+      width: 96px;
+      height: 96px;
+    }
+
+    .top-brand.is-scrolled .top-logo-primary {
+      opacity: 0;
+      transform: scale(.78);
+    }
+
+    .top-brand.is-scrolled .top-logo-round {
+      opacity: 1;
+      transform: scale(1) rotate(0);
+    }
+
+    .top-brand.is-scrolled .brand-name {
+      opacity: 0;
+      transform: translateX(-8px);
+      pointer-events: none;
+    }
+
+    .top-brand.is-about {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .brand-name {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      color: #0b111c;
+      font-size: 15px;
+      font-weight: 850;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      cursor: default;
+      transition: opacity .22s ease, transform .22s ease;
+    }
+
+    .brand-word {
+      display: inline-block;
+      transition: color .22s ease, transform .22s ease, letter-spacing .22s ease;
+    }
+
+    .brand-name:hover .brand-word,
+    .brand-name:focus-visible .brand-word {
+      animation: brandStyleShift 1.35s steps(1, end) infinite;
+    }
+
+    .brand-name:hover .brand-word:nth-child(2),
+    .brand-name:focus-visible .brand-word:nth-child(2) {
+      animation-delay: .18s;
+    }
+
+    .brand-name:hover .brand-word:nth-child(3),
+    .brand-name:focus-visible .brand-word:nth-child(3) {
+      animation-delay: .36s;
+    }
+
+    .brand-name:hover .brand-word {
+      color: #c9322c;
+    }
+
+    .brand-name:focus-visible {
+      outline: 2px solid rgba(201, 50, 44, .28);
+      outline-offset: 5px;
+      border-radius: 4px;
+    }
+
+    .section {
+      padding: 44px 0 56px;
+      border-bottom: 1px solid #edf1f6;
+      background: var(--white);
+    }
+
+    .section.alt { background: #f4f7fb; }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    .section-head h2,
+    .about-copy h2,
+    .download-card h2 {
+      margin-bottom: 5px;
+      font-size: 26px;
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    .section-head p,
+    .about-copy p,
+    .download-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .card {
+      min-height: 116px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0 16px;
+      border: 0;
+      border-radius: 4px;
+      color: #fff;
+      background: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: clamp(720px, 76vw, 900px);
+      background: #fff;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 4;
+      min-height: clamp(720px, 76vw, 900px);
+      width: min(1180px, calc(100% - 72px));
+      margin: 0 auto;
+      padding: 118px 0 0;
+    }
+
+    .hero h1 {
+      max-width: 640px;
+      margin-bottom: 18px;
+      color: #0a0f1a;
+      font-size: clamp(44px, 5.4vw, 78px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .headline-word {
+      display: inline-block;
+      position: relative;
+      border-radius: 5px;
+      cursor: default;
+      transition: color .2s ease, transform .2s ease, letter-spacing .2s ease, text-shadow .2s ease;
+    }
+
+    .headline-word:focus-visible {
+      outline: 3px solid rgba(201, 50, 44, .22);
+      outline-offset: 5px;
+    }
+
+    .headline-find:hover,
+    .headline-find:focus-visible {
+      color: #1456a8;
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 700;
+      transform: rotate(-2deg) translateY(-4px);
+      text-shadow: 8px 8px 0 rgba(20, 86, 168, .12);
+    }
+
+    .headline-marketing:hover,
+    .headline-marketing:focus-visible {
+      color: #0f766e;
+      font-family: "Arial Narrow", Impact, Haettenschweiler, sans-serif;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      transform: skewX(-7deg) translateY(-2px);
+      text-shadow: -7px 7px 0 rgba(15, 118, 110, .12);
+    }
+
+    .headline-business:hover,
+    .headline-business:focus-visible {
+      color: #7c3aed;
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 900;
+      transform: translateY(-5px) scale(1.04);
+      text-shadow: 0 14px 24px rgba(124, 58, 237, .18);
+    }
+
+    .headline-needs,
+    .headline-needs.headline-red {
+      color: #fff;
+      background: #c9322c;
+      padding: 0 .08em .05em;
+      font-family: Impact, Haettenschweiler, "Arial Narrow", sans-serif;
+      font-weight: 900;
+      line-height: .95;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      box-shadow: 10px 10px 0 rgba(201, 50, 44, .18);
+    }
+
+    .headline-needs:hover,
+    .headline-needs:focus-visible {
+      transform: rotate(1.5deg) translateY(-4px);
+      box-shadow: 12px 12px 0 rgba(201, 50, 44, .22);
+    }
+
+    .headline-red {
+      color: #c9322c;
+    }
+
+    .hero-collage {
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: clamp(320px, 32vw, 560px);
+      overflow: hidden;
+      perspective: 1200px;
+      background: #fff;
+    }
+
+    .hero-collage::before {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, .9)),
+        linear-gradient(180deg, rgba(255, 255, 255, .32), rgba(255, 255, 255, 0) 30%);
+      pointer-events: none;
+    }
+
+    .hero-collage-track {
+      display: flex;
+      width: max-content;
+      height: 100%;
+      animation: cylinderLoop 34s linear infinite;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .hero-collage-track img {
+      flex: 0 0 auto;
+      width: 100vw;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    .choice-panel {
+      position: absolute;
+      z-index: 5;
+      top: 104px;
+      right: 0;
+      width: min(430px, 38vw);
+      padding: 24px 26px 26px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 18px;
+      color: rgba(255, 255, 255, .92);
+      background:
+        linear-gradient(145deg, rgba(12, 18, 30, .86), rgba(24, 36, 58, .66)),
+        rgba(15, 23, 42, .72);
+      box-shadow: 0 28px 80px rgba(8, 13, 24, .34);
+      backdrop-filter: blur(18px);
+      transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    }
+
+    .choice-panel::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(120deg, rgba(255,255,255,.24), transparent 34%, rgba(255,255,255,.12) 68%, transparent);
+      opacity: .55;
+      pointer-events: none;
+    }
+
+    .choice-panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .choice-panel:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, .42);
+      box-shadow: 0 34px 90px rgba(8, 13, 24, .42);
+    }
+
+    .choice-panel:focus-within {
+      border-color: rgba(255, 255, 255, .52);
+      box-shadow: 0 34px 90px rgba(8, 13, 24, .42), 0 0 0 4px rgba(20, 86, 168, .18);
+    }
+
+    .choice-panel h2 {
+      margin-bottom: 16px;
+      color: #fff;
+      font-size: 21px;
+      line-height: 1.15;
+    }
+
+    .choice-step { margin-bottom: 10px; }
+
+    .choice-step label {
+      display: block;
+      margin-bottom: 7px;
+      color: rgba(255, 255, 255, .72);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .choice-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .choice-options span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 76px;
+      min-height: 26px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      background: rgba(255, 255, 255, .9);
+      color: #111827;
+      font-size: 10px;
+      font-weight: 800;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+      cursor: default;
+    }
+
+    .choice-options span:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, .72);
+      background: #fff;
+    }
+
+    .choice-options .active {
+      color: #fff;
+      background: var(--blue);
+      border-color: rgba(255, 255, 255, .38);
+      box-shadow: 0 10px 22px rgba(20, 86, 168, .34);
+    }
+
+    .choice-panel .button {
+      position: relative;
+      z-index: 1;
+      margin-top: 4px;
+      background: #fff;
+      color: #0f172a;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, .24);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .choice-panel .button:hover,
+    .choice-panel .button:focus-visible {
+      transform: translateY(-2px);
+      background: #f8fafc;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, .3);
+      outline: none;
+    }
+
+    .motion-section {
+      overflow: hidden;
+      padding: 88px 0 78px;
+      background: #f8fafc;
+    }
+
+    .motion-head {
+      display: grid;
+      grid-template-columns: minmax(0, .78fr) minmax(360px, 1.1fr);
+      gap: 56px;
+      align-items: start;
+      margin-bottom: 42px;
+    }
+
+    .motion-head h2 {
+      margin-bottom: 18px;
+      font-size: clamp(34px, 4.3vw, 64px);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+
+    .motion-kicker {
+      max-width: 520px;
+      margin-bottom: 0;
+      color: #344054;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .motion-quote {
+      margin: 8px 0 0;
+      padding: 0 0 0 24px;
+      border-left: 3px solid #111827;
+      color: #263241;
+      font-size: clamp(17px, 1.8vw, 23px);
+      line-height: 1.5;
+    }
+
+    .motion-quote strong {
+      color: #0b111c;
+      font-weight: 850;
+    }
+
+    .motion-window {
+      overflow: hidden;
+      width: 100vw;
+      margin-left: calc((100vw - 100%) / -2);
+      perspective: 1400px;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+
+    .motion-track {
+      display: flex;
+      width: max-content;
+      gap: 0;
+      padding: 0 8vw;
+      animation: cylinderLoop 30s linear infinite reverse;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .motion-window:hover .motion-track,
+    .hero-collage:hover .hero-collage-track {
+      animation-play-state: paused;
+    }
+
+    .motion-card {
+      position: relative;
+      overflow: hidden;
+      width: min(58vw, 760px);
+      min-width: 520px;
+      height: 380px;
+      margin: 0 24px 0 0;
+      border-radius: 0;
+      background: #f5f5f5;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, .12);
+    }
+
+    .motion-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes cylinderLoop {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes brandStyleShift {
+      0%, 100% {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-style: normal;
+        font-weight: 900;
+        letter-spacing: .01em;
+        transform: translateY(0);
+      }
+      33% {
+        font-family: Georgia, "Times New Roman", serif;
+        font-style: italic;
+        font-weight: 700;
+        letter-spacing: .02em;
+        transform: translateY(-1px);
+      }
+      66% {
+        font-family: "Arial Narrow", Impact, Haettenschweiler, sans-serif;
+        font-style: normal;
+        font-weight: 900;
+        letter-spacing: .08em;
+        transform: translateY(1px);
+      }
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .outcomes {
+      --outcome-right-push: clamp(235px, 22vw, 330px);
+      position: relative;
+      overflow: hidden;
+      padding: 32px 0 44px;
+      background: #fff;
+    }
+
+    .outcomes::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 68% 38%, rgba(255, 224, 113, .3), transparent 34%);
+      pointer-events: none;
+    }
+
+    .outcomes-layout {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
+      grid-template-areas:
+        "proof poster"
+        "phrases poster"
+        "cards poster";
+      gap: 4px 18px;
+      min-height: 0;
+      padding: 0 8px;
+    }
+
+    .outcomes-proof {
+      position: relative;
+      z-index: 3;
+      grid-area: proof;
+      width: min(720px, calc(100% + 72px));
+      max-width: none;
+      margin: 0 0 0 calc((100vw - min(1180px, calc(100vw - 72px))) / -2);
+      padding-left: max(28px, calc((100vw - min(1180px, calc(100vw - 72px))) / 2));
+      padding-top: 10px;
+      padding-bottom: 0;
+      background: linear-gradient(110deg, #f5f7fb 0%, #f5f7fb 78%, rgba(245,247,251,0) 100%);
+      color: #070b12;
+      font-size: clamp(23px, 2.8vw, 34px);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .outcomes-proof .blue {
+      color: #4775c5;
+    }
+
+    .outcomes-proof .red {
+      color: #f10000;
+    }
+
+    .outcomes-phrase-window {
+      position: relative;
+      z-index: 4;
+      grid-area: phrases;
+      width: calc(100% + max(28px, calc((100vw - min(1180px, calc(100vw - 72px))) / 2)) + var(--outcome-right-push));
+      max-width: none;
+      margin: -42px 0 0 calc((100vw - min(1180px, calc(100vw - 72px))) / -2);
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    }
+
+    .outcomes-phrase-track {
+      display: flex;
+      width: max-content;
+      animation: cylinderLoop 26s linear infinite;
+      will-change: transform;
+    }
+
+    .outcomes-phrase-window:hover .outcomes-phrase-track {
+      animation-play-state: paused;
+    }
+
+    .outcomes-phrases {
+      flex: 0 0 auto;
+      width: 700px;
+      filter: drop-shadow(0 16px 20px rgba(15, 23, 42, .12));
+    }
+
+    .outcomes-poster {
+      position: relative;
+      z-index: 2;
+      grid-area: poster;
+      align-self: start;
+      justify-self: end;
+      width: min(52vw, 720px);
+      height: auto;
+      max-height: none;
+      min-width: 0;
+      margin: -36px calc((100vw - min(1180px, calc(100vw - 72px))) / -2) 0 0;
+      object-fit: contain;
+      object-position: right center;
+      filter: drop-shadow(-18px 24px 28px rgba(15, 23, 42, .16));
+      pointer-events: none;
+    }
+
+    .outcomes-card-row {
+      position: relative;
+      z-index: 5;
+      grid-area: cards;
+      width: calc(100% + 18px + var(--outcome-right-push));
+      margin: -4px 0 0;
+    }
+
+    .outcomes-handnote {
+      position: absolute;
+      z-index: 0;
+      left: calc(-1 * max(70px, calc((100vw - min(1180px, calc(100vw - 72px))) / 2 - 38px)));
+      top: -18px;
+      width: clamp(170px, 17vw, 245px);
+      height: auto;
+      transform: rotate(-4deg);
+      pointer-events: none;
+    }
+
+    .outcomes-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      width: 100%;
+      margin: 0;
+    }
+
+    .outcomes-grid .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      padding: 14px 14px 44px;
+      overflow: hidden;
+      border: 1px solid rgba(17, 24, 39, .2);
+      border-radius: 3px;
+      box-shadow: 0 6px 10px rgba(15, 23, 42, .2);
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+
+    .outcomes-grid .card::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(255, 255, 255, .36);
+      pointer-events: none;
+    }
+
+    .outcomes-grid .card::after {
+      content: attr(data-card);
+      position: absolute;
+      left: 14px;
+      bottom: 6px;
+      color: rgba(255, 255, 255, .42);
+      font-size: 46px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .outcomes-grid .card:hover {
+      transform: translateY(-5px);
+      filter: saturate(1.08);
+      box-shadow: 0 15px 22px rgba(15, 23, 42, .24);
+    }
+
+    .outcomes-grid .card h3 {
+      position: relative;
+      z-index: 1;
+      max-width: 92%;
+      margin: 0 0 8px;
+      color: #111827;
+      font-size: 13px;
+      line-height: 1.08;
+      text-transform: uppercase;
+      letter-spacing: .035em;
+    }
+
+    .outcomes-grid .card h3::after {
+      content: "";
+      display: block;
+      width: 34px;
+      height: 2px;
+      margin-top: 8px;
+      background: rgba(17, 24, 39, .42);
+    }
+
+    .outcomes-grid .card p {
+      position: relative;
+      z-index: 1;
+      color: rgba(17, 24, 39, .82);
+      font-size: 10px;
+      font-weight: 750;
+      line-height: 1.38;
+      margin: 0;
+    }
+
+    .outcomes-grid .card:nth-child(1) { background: #ffd72e; }
+    .outcomes-grid .card:nth-child(2) { background: #5da394; }
+    .outcomes-grid .card:nth-child(3), .style-grid .card:nth-child(6) { background: #53b5b6; }
+    .outcomes-grid .card:nth-child(4), .style-grid .card:nth-child(3) { background: #4877c6; }
+    .style-grid .card:nth-child(4) { background: var(--lavender); }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .capability-heading {
+      margin-bottom: 18px;
+      color: #070b12;
+      font-size: clamp(23px, 2.8vw, 34px);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .capability-heading .capability-red {
+      color: #e74b25;
+    }
+
+    .capability-card {
+      position: relative;
+      min-height: 520px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      perspective: 1400px;
+      transition: transform .24s ease;
+    }
+
+    .capability-card.is-flipped {
+      z-index: 8;
+      transform: scale(1.045);
+    }
+
+    .capability-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      transform-style: preserve-3d;
+      transition: transform .45s ease;
+    }
+
+    .capability-card:not(.is-flipped) .capability-card-inner {
+      animation: capabilitySpinCue 12s ease-in-out infinite;
+    }
+
+    .capability-card:nth-child(2) .capability-card-inner { animation-delay: 1.4s; }
+    .capability-card:nth-child(3) .capability-card-inner { animation-delay: 2.8s; }
+    .capability-card:nth-child(4) .capability-card-inner { animation-delay: 4.2s; }
+    .capability-card:nth-child(5) .capability-card-inner { animation-delay: 5.6s; }
+
+    .capability-card:hover .capability-card-inner,
+    .capability-card:focus-within .capability-card-inner {
+      animation-play-state: paused;
+    }
+
+    .capability-card.is-flipped .capability-card-inner {
+      animation: none;
+      transform: rotateY(180deg);
+    }
+
+    .capability-face {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #f7f1e9;
+      box-shadow: 0 16px 34px rgba(15, 23, 42, .08);
+      backface-visibility: hidden;
+    }
+
+    .capability-front {
+      transform: rotateY(0);
+    }
+
+    .capability-back {
+      padding: 18px;
+      transform: rotateY(180deg);
+      background:
+        radial-gradient(circle at 92% 8%, rgba(252, 211, 54, .2), transparent 28%),
+        #fffaf4;
+    }
+
+    .capability-front img {
+      width: 100%;
+      aspect-ratio: 1 / 1.04;
+      object-fit: cover;
+    }
+
+    .capability-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 14px 14px 18px;
+    }
+
+    .capability-card h3 {
+      margin: 0 0 8px;
+      color: #05070a;
+      font-size: clamp(18px, 1.7vw, 25px);
+      line-height: 1.02;
+      letter-spacing: -.02em;
+    }
+
+    .capability-card p {
+      margin: 0;
+      color: #263241;
+      font-size: 10.5px;
+      line-height: 1.35;
+      padding-bottom: 18px;
+    }
+
+    .capability-detail {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 34px;
+      margin-top: auto;
+      margin-bottom: 2px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      background: #d94a3f;
+      font-size: 10px;
+      font-weight: 900;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease;
+    }
+
+    .capability-detail::after {
+      content: "→";
+      margin-left: 10px;
+      font-size: 13px;
+    }
+
+    .capability-card:hover .capability-detail,
+    .capability-detail:focus-visible {
+      transform: translateX(3px);
+      background: #101827;
+    }
+
+    .capability-back h3 {
+      margin-bottom: 4px;
+      font-size: 22px;
+      line-height: 1.05;
+    }
+
+    .capability-back p {
+      margin: 0 0 12px;
+      padding: 0;
+      color: #6b7280;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .capability-list {
+      display: grid;
+      gap: 7px;
+      margin: 0 0 16px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .capability-list li {
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+      color: #172033;
+      font-size: 11px;
+      font-weight: 760;
+      line-height: 1.2;
+    }
+
+    .service-icon {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border: 1px solid rgba(17, 24, 39, .16);
+      border-radius: 7px;
+      color: #101827;
+      background: rgba(255, 255, 255, .72);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .capability-back .capability-detail {
+      margin-top: auto;
+      background: #101827;
+    }
+
+    .capability-back .capability-detail::after {
+      content: "↺";
+    }
+
+    @keyframes capabilitySpinCue {
+      0%, 58%, 100% { transform: rotateY(0) scale(1); }
+      66% { transform: rotateY(180deg) scale(1.025); }
+      74% { transform: rotateY(360deg) scale(1); }
+    }
+
+    .framework {
+      padding: 24px 0 30px;
+      background:
+        radial-gradient(circle at 6% 8%, rgba(247, 241, 201, .58), transparent 26%),
+        radial-gradient(circle at 78% 10%, rgba(241, 164, 46, .12), transparent 30%),
+        linear-gradient(180deg, #fffaf0 0%, #f7f1e9 100%);
+    }
+
+    .framework-label {
+      display: grid;
+      grid-template-columns: auto minmax(160px, 1fr);
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+      color: #071f3d;
+      font-size: clamp(23px, 2.8vw, 34px);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: 0;
+      text-shadow: 0 12px 30px rgba(7, 31, 61, .08);
+    }
+
+    .framework-label::after {
+      content: "";
+      height: 2px;
+      background: rgba(7, 31, 61, .62);
+      transform: translateY(3px);
+    }
+
+    .framework-label .offerings-red {
+      color: #e74b25;
+      text-shadow: 0 10px 22px rgba(231, 75, 37, .18);
+    }
+
+    .framework-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .framework-card {
+      position: relative;
+      min-height: 184px;
+      padding: clamp(18px, 1.55vw, 24px);
+      overflow: hidden;
+      border: 1px solid rgba(7, 31, 61, .07);
+      border-radius: 0 14px 14px 0;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .72), rgba(247, 241, 201, .34)),
+        #fff2df;
+      box-shadow: 0 18px 44px rgba(7, 31, 61, .08);
+      isolation: isolate;
+    }
+
+    .framework-card::before,
+    .framework-card::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .framework-card::before {
+      width: 168px;
+      height: 168px;
+      right: -38px;
+      top: -58px;
+      border-radius: 0 0 0 100%;
+      background:
+        radial-gradient(circle at 45% 42%, rgba(255, 255, 255, .06) 0 1px, transparent 1px 4px),
+        #071f3d;
+      opacity: .98;
+    }
+
+    .framework-card::after {
+      width: 166px;
+      height: 166px;
+      right: -60px;
+      bottom: -82px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 52% 48%, rgba(255, 255, 255, .1) 0 1px, transparent 1px 5px),
+        #f7c9a2;
+      opacity: .92;
+    }
+
+    .framework-card:nth-child(1)::before {
+      width: 184px;
+      height: 138px;
+      right: 0;
+      top: 0;
+      border-radius: 0 0 0 100%;
+    }
+
+    .framework-card:nth-child(1)::after {
+      width: 194px;
+      height: 194px;
+      right: -76px;
+      bottom: -102px;
+      box-shadow: -82px -54px 0 -32px #e74b25;
+    }
+
+    .framework-card:nth-child(2)::before {
+      width: 154px;
+      height: 154px;
+      right: -12px;
+      top: -52px;
+      border-radius: 0 0 50% 50%;
+      background:
+        radial-gradient(circle at 45% 42%, rgba(255, 255, 255, .12) 0 1px, transparent 1px 4px),
+        #f1a42e;
+    }
+
+    .framework-card:nth-child(2)::after {
+      width: 170px;
+      height: 170px;
+      right: -78px;
+      bottom: 6px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 49% 45%, rgba(255, 255, 255, .08) 0 1px, transparent 1px 5px),
+        #071f3d;
+      box-shadow: -56px -8px 0 0 #e74b25;
+      opacity: .98;
+    }
+
+    .framework-card:nth-child(3)::before {
+      width: 188px;
+      height: 188px;
+      right: -54px;
+      top: -68px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 46% 46%, rgba(255, 255, 255, .1) 0 1px, transparent 1px 5px),
+        #e74b25;
+    }
+
+    .framework-card:nth-child(3)::after {
+      width: 176px;
+      height: 176px;
+      right: -68px;
+      bottom: -78px;
+      border-radius: 50%;
+      background: #f7c9a2;
+      box-shadow: -52px -42px 0 -14px #071f3d;
+    }
+
+    .framework-number {
+      display: block;
+      margin-bottom: 18px;
+      color: #475467;
+      font-family: "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1;
+      letter-spacing: .24em;
+    }
+
+    .framework-card h3 {
+      max-width: 340px;
+      margin-bottom: 10px;
+      color: #12202e;
+      font-size: clamp(20px, 1.75vw, 28px);
+      font-weight: 300;
+      line-height: 1.06;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+    }
+
+    .framework-card h3 strong {
+      display: inline-block;
+      margin-top: 3px;
+      color: #071f3d;
+      font-weight: 950;
+      letter-spacing: .18em;
+    }
+
+    .framework-rule {
+      display: block;
+      width: 46px;
+      height: 2px;
+      margin-bottom: 10px;
+      background: rgba(7, 31, 61, .68);
+    }
+
+    .framework-card p {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+      margin: 0;
+      color: #405160;
+      font-family: "Courier New", monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: .01em;
+    }
+
+    .industries-loop-section {
+      overflow: hidden;
+      padding: 8px 0 10px;
+      background: #fffaf4;
+    }
+
+    .industries-loop-window {
+      overflow: hidden;
+      width: 100vw;
+      margin-left: calc((100vw - 100%) / -2);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    }
+
+    .industries-loop-track {
+      display: flex;
+      width: max-content;
+      gap: 0;
+      animation: cylinderLoop 28s linear infinite reverse;
+      will-change: transform;
+    }
+
+    .industries-loop-window:hover .industries-loop-track {
+      animation-play-state: paused;
+    }
+
+    .industries-loop-strip {
+      flex: 0 0 auto;
+      width: 1180px;
+      max-width: none;
+      height: auto;
+    }
+
+    .style-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .style-card {
+      position: relative;
+      min-height: 178px;
+      height: 178px;
+      overflow: hidden;
+      padding: 0;
+      border: 1px solid rgba(17, 24, 39, .08);
+      background: #fffaf0;
+    }
+
+    .style-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s ease, filter .35s ease;
+    }
+
+    .style-card:hover img {
+      transform: scale(1.045);
+      filter: saturate(1.05) contrast(1.03);
+    }
+
+    .style-card .style-copy {
+      position: absolute;
+      left: 12px;
+      right: 64px;
+      bottom: 12px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 10px;
+      border: 1px solid rgba(255, 255, 255, .52);
+      border-radius: 6px;
+      background: rgba(255, 250, 244, .86);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, .14);
+      backdrop-filter: blur(8px);
+    }
+
+    .style-brochure-button {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      min-height: 38px;
+      padding: 0 10px;
+      border: 1px solid rgba(255, 255, 255, .58);
+      border-radius: 6px;
+      color: #fff;
+      background: #c9322c;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, .16);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .style-brochure-button:hover,
+    .style-brochure-button:focus-visible {
+      background: #101827;
+      border-color: rgba(255, 255, 255, .78);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .style-card h3 {
+      margin: 0;
+      color: #071f3d;
+      font-size: 13px;
+      line-height: 1.15;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .style-card p {
+      display: none;
+    }
+
+    .style-heading {
+      margin-bottom: 18px;
+      color: #070b12;
+      font-size: clamp(23px, 2.8vw, 34px);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .style-heading .style-red {
+      color: #e74b25;
+    }
+
+    .checkered {
+      background-color: #fff;
+      background-image:
+        linear-gradient(45deg, #ececec 25%, transparent 25%),
+        linear-gradient(-45deg, #ececec 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ececec 75%),
+        linear-gradient(-45deg, transparent 75%, #ececec 75%);
+      background-position: 0 0, 0 11px, 11px -11px, -11px 0;
+      background-size: 22px 22px;
+    }
+
+    .about-section {
+      position: relative;
+      overflow: hidden;
+      min-height: 540px;
+      padding: 72px 0 44px;
+      background-color: #f3f6fb;
+      border-top: 1px solid #e8edf4;
+    }
+
+    .about-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: url("assets/about-lips-background.png");
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: .52;
+      pointer-events: none;
+    }
+
+    .about-section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(90deg, rgba(243, 246, 251, .78) 0%, rgba(243, 246, 251, .18) 14%, rgba(243, 246, 251, .1) 84%, rgba(243, 246, 251, .72) 100%),
+        radial-gradient(circle at 52% 38%, rgba(255, 255, 255, .42), rgba(255, 255, 255, 0) 46%);
+      pointer-events: none;
+    }
+
+    .about-pattern {
+      display: none;
+    }
+
+    .about-print {
+      position: absolute;
+      width: var(--size, 74px);
+      opacity: .2;
+      mix-blend-mode: multiply;
+      filter: saturate(.95) contrast(.98);
+      transform: rotate(var(--rotate, 0deg));
+    }
+
+    .about-print:nth-child(1) { --size: 86px; --rotate: -10deg; left: 3%; top: 8%; }
+    .about-print:nth-child(2) { --size: 58px; --rotate: 12deg; left: 16%; top: 24%; }
+    .about-print:nth-child(3) { --size: 70px; --rotate: -18deg; left: 29%; top: 5%; }
+    .about-print:nth-child(4) { --size: 62px; --rotate: 18deg; left: 45%; top: 18%; }
+    .about-print:nth-child(5) { --size: 54px; --rotate: -8deg; left: 60%; top: 7%; }
+    .about-print:nth-child(6) { --size: 76px; --rotate: 10deg; left: 74%; top: 22%; }
+    .about-print:nth-child(7) { --size: 66px; --rotate: -16deg; left: 88%; top: 8%; }
+    .about-print:nth-child(8) { --size: 52px; --rotate: 22deg; left: 7%; top: 56%; }
+    .about-print:nth-child(9) { --size: 80px; --rotate: -6deg; left: 22%; top: 70%; }
+    .about-print:nth-child(10) { --size: 58px; --rotate: 15deg; left: 39%; top: 58%; }
+    .about-print:nth-child(11) { --size: 72px; --rotate: -20deg; left: 55%; top: 76%; }
+    .about-print:nth-child(12) { --size: 62px; --rotate: 8deg; left: 70%; top: 62%; }
+    .about-print:nth-child(13) { --size: 90px; --rotate: -9deg; left: 86%; top: 74%; }
+    .about-print:nth-child(14) { --size: 50px; --rotate: 17deg; left: 51%; top: 39%; }
+    .about-print:nth-child(15) { --size: 60px; --rotate: -14deg; left: 94%; top: 42%; }
+
+    .about-layout {
+      position: relative;
+      z-index: 2;
+      width: min(1220px, calc(100% - 72px));
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(306px, 356px);
+      gap: 32px;
+      align-items: start;
+      margin: 0 auto;
+    }
+
+    .about-copy {
+      display: grid;
+      gap: 20px;
+    }
+
+    .about-copy > .eyebrow,
+    .why-card .eyebrow {
+      min-height: 24px;
+      padding: 0 13px;
+      border-color: #d8e0ea;
+      background: rgba(255, 255, 255, .86);
+      font-size: 11px;
+      letter-spacing: .14em;
+    }
+
+    .about-copy h2 {
+      max-width: 720px;
+      margin-bottom: 0;
+      color: #101827;
+      font-size: clamp(30px, 3.1vw, 36px);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 24px;
+      align-items: center;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #475569;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .founders {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .founder-card {
+      display: grid;
+      grid-template-columns: minmax(116px, 30%) minmax(0, 1fr);
+      gap: 18px;
+      align-items: stretch;
+      min-height: 224px;
+      padding: 0;
+      overflow: hidden;
+      border-color: #dce4ef;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .94);
+      box-shadow: 0 1px 0 rgba(15, 23, 42, .03);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .founder-card:hover {
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+      box-shadow: 0 16px 34px rgba(15, 23, 42, .08);
+    }
+
+    .founder-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 224px;
+      object-fit: cover;
+      filter: grayscale(1);
+      background: #eef2f6;
+    }
+
+    .founder-card:nth-child(1) .founder-photo {
+      object-position: 50% 8%;
+    }
+
+    .founder-card:nth-child(2) .founder-photo {
+      object-position: 50% 10%;
+    }
+
+    .founder-details {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 24px 20px 20px 0;
+    }
+
+    .founder-links {
+      justify-content: flex-end;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    .founder-social {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: #475569;
+      border: 1px solid #d7e0ea;
+      border-radius: 8px;
+      background: #fff;
+      transition: color .18s ease, border-color .18s ease, background .18s ease, transform .18s ease;
+    }
+
+    .founder-social svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+    }
+
+    .founder-social.instagram {
+      background: #fff;
+    }
+
+    .founder-social.linkedin {
+      background: #fff;
+    }
+
+    .founder-social:hover,
+    .founder-social:focus-visible {
+      color: #c9322c;
+      border-color: rgba(201, 50, 44, .46);
+      background: #fff7f6;
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .founder-role {
+      display: block;
+      margin-bottom: 12px;
+      color: #c9322c;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .founder-details h3 {
+      margin-bottom: 11px;
+      color: #101827;
+      font-size: 18px;
+      line-height: 1.15;
+    }
+
+    .founder-details p {
+      max-width: 290px;
+      margin-bottom: 0;
+      color: #526071;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .why-card {
+      min-height: 176px;
+      padding: 24px;
+      border-color: #dce4ef;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .94);
+      box-shadow: 0 1px 0 rgba(15, 23, 42, .03);
+    }
+
+    .why-card p {
+      max-width: 780px;
+      margin: 17px 0 0;
+      color: #526071;
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    .why-contact-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+      color: #c9322c;
+      font-size: 13px;
+      font-weight: 900;
+      word-break: break-word;
+    }
+
+    .mail-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      color: #fff;
+      background: #c9322c;
+      box-shadow: 0 8px 18px rgba(201, 50, 44, .2);
+    }
+
+    .mail-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+    }
+
+    .why-contact-row:hover,
+    .why-contact-row:focus-visible {
+      color: #071f3d;
+      outline: 2px solid rgba(201, 50, 44, .18);
+      outline-offset: 4px;
+    }
+
+    .download-card {
+      width: 100%;
+      max-width: 356px;
+      min-height: 0;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .97);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, .12);
+    }
+
+    .download-card h2 {
+      margin-bottom: 10px;
+      color: #101827;
+      font-size: 28px;
+      line-height: 1.04;
+    }
+
+    .download-card p {
+      color: #667085;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .contact-email {
+      margin-top: 12px;
+      color: #1f2937;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .contact-email a {
+      color: #c9322c;
+      font-weight: 900;
+      border-bottom: 1px solid rgba(201, 50, 44, .4);
+    }
+
+    .contact-email a:hover,
+    .contact-email a:focus-visible {
+      color: #071f3d;
+      border-color: #071f3d;
+      outline: none;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 7px;
+      margin-top: 18px;
+    }
+
+    .form-field label {
+      color: #293449;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      min-height: 45px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 13px;
+      transition: border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: rgba(201, 50, 44, .72);
+      box-shadow: 0 0 0 3px rgba(201, 50, 44, .1);
+      outline: none;
+    }
+
+    .form-field textarea {
+      min-height: 88px;
+      padding-top: 12px;
+      resize: vertical;
+    }
+
+    .download-card .button {
+      width: 100%;
+      min-height: 46px;
+      margin-top: 20px;
+      background: #101827;
+      border-radius: 8px;
+      font-size: 13px;
+      transition: background .18s ease, transform .18s ease;
+    }
+
+    .download-card .button:hover,
+    .download-card .button:focus-visible {
+      background: #c9322c;
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .fine-print {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      background: rgba(15, 23, 42, .54);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .22s ease, visibility .22s ease;
+    }
+
+    .modal-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-overlay:target {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .brochure-target:target {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .brochure-modal {
+      position: relative;
+      width: min(980px, calc(100vw - 56px));
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: #fffaf4;
+      box-shadow: 0 32px 90px rgba(0, 0, 0, .28);
+      transform: translateY(12px) scale(.98);
+      transition: transform .22s ease;
+    }
+
+    .modal-overlay.is-open .brochure-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .brochure-target:target .brochure-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .brochure-art {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brochure-modal .modal-close {
+      top: 14px;
+      right: 14px;
+      color: #111827;
+      background: rgba(255, 255, 255, .86);
+    }
+
+    .brochure-actions {
+      position: absolute;
+      right: clamp(22px, 3.2vw, 48px);
+      bottom: clamp(18px, 2.6vw, 40px);
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .brochure-request-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: clamp(42px, 4.1vw, 68px);
+      padding: 0 clamp(18px, 2.8vw, 34px);
+      border: 0;
+      border-radius: 9px;
+      color: #fff;
+      background: #ce641c;
+      box-shadow: 0 10px 24px rgba(42, 18, 8, .18);
+      font-size: clamp(11px, 1.2vw, 17px);
+      font-weight: 900;
+      letter-spacing: .01em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .18s ease, transform .18s ease;
+    }
+
+    .brochure-request-button:hover,
+    .brochure-request-button:focus-visible {
+      background: #101827;
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .brochure-close-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0;
+      border: 0;
+      color: #fff;
+      background: transparent;
+      font-size: clamp(13px, 1.7vw, 24px);
+      font-weight: 500;
+      letter-spacing: .08em;
+      cursor: pointer;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, .26);
+    }
+
+    .brochure-close-link:hover,
+    .brochure-close-link:focus-visible {
+      color: #ffe7d3;
+      outline: none;
+    }
+
+    .brochure-modal.is-all-styles .brochure-actions {
+      right: clamp(34px, 3.8vw, 70px);
+      bottom: clamp(24px, 3.3vw, 50px);
+    }
+
+    .brochure-modal.is-all-styles .brochure-close-link {
+      display: none;
+    }
+
+    #contact-form {
+      scroll-margin-top: 110px;
+    }
+
+    .contact-modal {
+      position: relative;
+      width: min(940px, 100%);
+      max-height: min(86vh, 820px);
+      overflow: auto;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, .42);
+      border-radius: 14px;
+      background: #fffaf4;
+      box-shadow: 0 32px 90px rgba(0, 0, 0, .26);
+      transform: translateY(12px) scale(.98);
+      transition: transform .22s ease;
+    }
+
+    .modal-overlay.is-open .contact-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-overlay:target .contact-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fff;
+      color: #101827;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .modal-head {
+      max-width: 640px;
+      margin-bottom: 22px;
+    }
+
+    .modal-head h2 {
+      margin-bottom: 6px;
+      color: #101827;
+      font-size: clamp(28px, 3.1vw, 42px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .modal-head p {
+      margin: 0;
+      color: #4b5563;
+      font-size: 13px;
+    }
+
+    .modal-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .modal-field-full {
+      grid-column: 1 / -1;
+    }
+
+    .modal-section-title {
+      grid-column: 1 / -1;
+      margin: 8px 0 -4px;
+      color: #111827;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .modal-form-grid .form-field {
+      margin-top: 0;
+    }
+
+    .modal-form-grid .form-field label {
+      font-size: 11px;
+    }
+
+    .modal-form-grid .form-field input,
+    .modal-form-grid .form-field select,
+    .modal-form-grid .form-field textarea {
+      min-height: 40px;
+      font-size: 12px;
+    }
+
+    .modal-choice-grid {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .modal-choice {
+      position: relative;
+      min-height: 132px;
+      padding: 14px;
+      border: 1px solid rgba(17, 24, 39, .15);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .modal-choice input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .modal-choice strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #111827;
+      font-size: 13px;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    .modal-choice span {
+      color: #5b6470;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .modal-choice:has(input:checked) {
+      border-color: #e74b25;
+      background: #fff2df;
+      box-shadow: inset 0 0 0 2px rgba(231, 75, 37, .18), 0 10px 22px rgba(15, 23, 42, .08);
+      transform: translateY(-2px);
+    }
+
+    .modal-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .modal-actions .button {
+      min-width: 150px;
+      background: #101827;
+    }
+
+    .modal-note {
+      margin: 0;
+      color: #667085;
+      font-size: 10px;
+    }
+
+    .admin-signin {
+      position: fixed;
+      z-index: 90;
+      right: 18px;
+      bottom: 18px;
+      min-height: 34px;
+      padding: 0 14px;
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(16, 24, 39, .86);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, .22);
+      backdrop-filter: blur(12px);
+      font-size: 11px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .admin-modal {
+      position: fixed;
+      z-index: 110;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(15, 23, 42, .54);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .2s ease, visibility .2s ease;
+    }
+
+    .admin-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .admin-login-card {
+      width: min(380px, 100%);
+      padding: 24px;
+      border-radius: 14px;
+      background: #fffaf4;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .28);
+    }
+
+    .admin-login-card h2 {
+      margin-bottom: 8px;
+      font-size: 24px;
+      line-height: 1.05;
+    }
+
+    .admin-error {
+      min-height: 16px;
+      margin: 10px 0 0;
+      color: #b42318;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .admin-toolbar {
+      position: fixed;
+      z-index: 95;
+      left: 50%;
+      bottom: 16px;
+      display: none;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: min(980px, calc(100% - 28px));
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 14px;
+      color: #fff;
+      background: rgba(16, 24, 39, .92);
+      box-shadow: 0 20px 60px rgba(15, 23, 42, .28);
+      backdrop-filter: blur(14px);
+      transform: translateX(-50%);
+    }
+
+    .admin-tool-group {
+      display: inline-flex;
+      gap: 5px;
+      align-items: center;
+      padding-left: 7px;
+      border-left: 1px solid rgba(255, 255, 255, .15);
+    }
+
+    body.editor-mode .admin-toolbar {
+      display: flex;
+    }
+
+    body.editor-mode .admin-signin {
+      display: none;
+    }
+
+    .admin-toolbar button {
+      min-height: 30px;
+      padding: 0 10px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(255, 255, 255, .1);
+      font-size: 10px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .admin-toolbar .icon-tool {
+      width: 30px;
+      padding: 0;
+      font-size: 13px;
+    }
+
+    .admin-toolbar input[type="color"] {
+      width: 30px;
+      height: 30px;
+      padding: 2px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .1);
+      cursor: pointer;
+    }
+
+    .admin-toolbar label {
+      color: #f7c9bd;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .admin-toolbar button:hover,
+    .admin-toolbar button:focus-visible,
+    .admin-toolbar button.is-active {
+      background: #e74b25;
+      outline: none;
+    }
+
+    .admin-selection {
+      max-width: 170px;
+      overflow: hidden;
+      color: #f7c9bd;
+      font-size: 10px;
+      font-weight: 900;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+
+    body.editor-mode main section {
+      position: relative;
+    }
+
+    body.editor-mode [contenteditable="true"] {
+      outline: 1px dashed rgba(231, 75, 37, .55);
+      outline-offset: 3px;
+      cursor: text;
+    }
+
+    .editor-selected {
+      outline: 3px solid rgba(231, 75, 37, .75) !important;
+      outline-offset: 4px;
+    }
+
+    body.editor-selector-mode main :where(img, h1, h2, h3, p, label, a, button, .card, .capability-card, .style-card, .download-card, .choice-panel, .about-layout, .founders, .style-grid, .capability-grid, .framework-card, .outcomes-proof, .outcomes-card-row, .editor-photo-layer) {
+      cursor: grab;
+    }
+
+    body.editor-selector-mode main .editor-selected {
+      cursor: grabbing;
+    }
+
+    .editor-photo-layer {
+      position: absolute;
+      z-index: 6;
+      top: 18%;
+      left: 12%;
+      width: 220px;
+      max-width: 38vw;
+      height: auto;
+      cursor: move;
+      filter: drop-shadow(0 16px 24px rgba(15, 23, 42, .18));
+      user-select: none;
+    }
+
+    .footer {
+      overflow: hidden;
+      padding: 0;
+      color: #fff;
+      background: #c9322c;
+      border-top: 1px solid rgba(120, 10, 8, .18);
+      font-size: 11px;
+    }
+
+    .footer-row {
+      width: max-content;
+      min-width: 200%;
+      margin: 0;
+      display: flex;
+      gap: 34px;
+      align-items: center;
+      padding: 13px 0;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      animation: footerRibbon 24s linear infinite;
+    }
+
+    .footer-row span {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .footer-row span::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      margin-left: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .72);
+    }
+
+    @keyframes footerRibbon {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 900px) {
+      .top-brand {
+        position: fixed;
+        top: 12px;
+        left: 56px;
+        margin: 0;
+      }
+
+      .logo-ribbon {
+        height: 74px;
+        width: 42vw;
+        background-size: 72px auto;
+        opacity: .08;
+      }
+
+      .logo-stack {
+        width: 136px;
+        height: 68px;
+      }
+
+      .top-brand.is-scrolled .logo-stack {
+        width: 82px;
+        height: 82px;
+      }
+
+      .hero-inner {
+        padding: 32px;
+      }
+
+      .hero {
+        min-height: 760px;
+      }
+
+      .hero-inner {
+        min-height: 760px;
+      }
+
+      .choice-panel {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: auto;
+        margin-top: 20px;
+      }
+
+      .hero-collage {
+        opacity: .78;
+      }
+
+      .motion-head {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .motion-card {
+        width: 78vw;
+        min-width: 360px;
+      }
+
+      .grid-4,
+      .grid-5,
+      .grid-3,
+      .style-grid,
+      .capability-grid,
+      .framework-grid,
+      .founders {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        width: min(760px, calc(100% - 48px));
+      }
+
+      .download-card {
+        width: 100%;
+        max-width: none;
+        min-height: auto;
+      }
+
+      .framework-card {
+        min-height: 178px;
+        padding: 18px 18px 17px;
+      }
+
+      .framework-card:nth-child(3) {
+        grid-column: 1 / -1;
+      }
+
+      .outcomes-layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "proof"
+          "phrases"
+          "poster"
+          "cards";
+        min-height: auto;
+      }
+
+      .outcomes-proof,
+      .outcomes-card-row {
+        width: 100%;
+        margin-left: 0;
+        padding-left: 0;
+      }
+
+      .outcomes-proof {
+        padding: 16px;
+      }
+
+      .outcomes-poster {
+        justify-self: center;
+        width: min(480px, 100%);
+        height: auto;
+        max-height: none;
+        margin: 20px auto 0;
+      }
+
+      .outcomes-phrase-window,
+      .outcomes-card-row,
+      .outcomes-grid {
+        width: 100%;
+      }
+
+      .outcomes-phrases {
+        width: 680px;
+      }
+
+      .outcomes-handnote {
+        position: static;
+        width: min(230px, 58vw);
+        margin: 0 0 10px 4px;
+        transform: rotate(-4deg);
+      }
+
+      .outcomes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+    @media (max-width: 760px) {
+      .founders {
+        grid-template-columns: 1fr;
+      }
+
+      .founder-card {
+        grid-template-columns: minmax(138px, 30%) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, 980px);
+      }
+
+      .hero h1 {
+        font-size: 31px;
+      }
+
+      .motion-section {
+        padding: 54px 0;
+      }
+
+      .motion-track {
+        padding: 0 24px;
+      }
+
+      .motion-card {
+        min-width: 280px;
+        height: 280px;
+        margin-right: 16px;
+      }
+
+      .grid-4,
+      .grid-5,
+      .grid-3,
+      .style-grid,
+      .capability-grid,
+      .framework-grid,
+      .outcomes-grid,
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .about-section {
+        min-height: 0;
+        padding: 48px 0 28px;
+        background-position: center top;
+      }
+
+      .about-section::before {
+        background-size: auto 82%;
+        opacity: .26;
+      }
+
+      .about-section::after {
+        background: rgba(243, 246, 251, .72);
+      }
+
+      .founder-card {
+        grid-template-columns: minmax(126px, 34%) minmax(0, 1fr);
+        min-height: 220px;
+      }
+
+      .founder-details {
+        padding: 22px 18px 18px 0;
+      }
+
+      .download-card h2 {
+        font-size: 25px;
+      }
+
+      .framework-label {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        font-size: clamp(23px, 8vw, 34px);
+      }
+
+      .framework-card,
+      .framework-card:nth-child(3) {
+        grid-column: auto;
+      }
+
+      .framework-card h3 {
+        font-size: 21px;
+        letter-spacing: .24em;
+      }
+
+      .framework-card h3 strong {
+        letter-spacing: .15em;
+      }
+
+      .framework-card p {
+        font-size: 11.5px;
+      }
+
+      .framework-card::before {
+        transform: scale(.72);
+        transform-origin: top right;
+      }
+
+      .framework-card::after {
+        transform: scale(.72);
+        transform-origin: bottom right;
+      }
+
+      .industries-loop-strip {
+        width: 760px;
+      }
+
+      .outcomes {
+        padding: 36px 0 42px;
+      }
+
+      .outcomes-proof {
+        font-size: 22px;
+      }
+
+      .outcomes-handnote {
+        margin-left: 2px;
+        width: min(210px, 72vw);
+      }
+
+      .outcomes-grid .card {
+        min-height: 150px;
+        grid-template-columns: 1fr;
+      }
+
+      .outcomes-grid .card p {
+        grid-column: 1;
+      }
+
+      .style-image {
+        grid-template-columns: 1fr;
+      }
+
+      .style-card {
+        height: 190px;
+      }
+
+      .modal-overlay {
+        padding: 14px;
+      }
+
+      .brochure-modal {
+        width: min(100vw - 28px, 760px);
+      }
+
+      .brochure-actions {
+        right: 16px;
+        bottom: 14px;
+        gap: 10px;
+      }
+
+      .brochure-request-button {
+        min-height: 36px;
+        padding: 0 12px;
+        font-size: 10px;
+      }
+
+      .brochure-close-link {
+        min-height: 36px;
+        font-size: 12px;
+        letter-spacing: .04em;
+      }
+
+      .contact-modal {
+        padding: 22px 16px;
+      }
+
+      .modal-form-grid,
+      .modal-choice-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-row {
+        animation-duration: 20s;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .about-layout {
+        width: min(100% - 40px, 480px);
+      }
+
+      .about-copy {
+        gap: 16px;
+      }
+
+      .about-copy h2 {
+        font-size: 30px;
+      }
+
+      .founder-card {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .founder-photo {
+        width: 100%;
+        height: 230px;
+        min-height: 230px;
+      }
+
+      .founder-details {
+        padding: 20px;
+      }
+
+      .why-card,
+      .download-card {
+        padding: 22px;
+      }
+
+      .why-contact-row {
+        align-items: flex-start;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-frame">
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="logo-ribbon logo-ribbon-left" aria-hidden="true"></div>
+        <div class="logo-ribbon logo-ribbon-right" aria-hidden="true"></div>
+        <div class="top-brand">
+          <span class="logo-stack" aria-hidden="true">
+            <img class="top-logo top-logo-primary" src="assets/virchi-logo.png" alt="">
+            <img class="top-logo top-logo-round" src="assets/virchi-round-logo.png" alt="">
+          </span>
+          <div class="brand-name" tabindex="0" aria-label="Mirchi Marketing Studio">
+            <span class="brand-word">Mirchi</span>
+            <span class="brand-word">Marketing</span>
+            <span class="brand-word">Studio</span>
+          </div>
+        </div>
+        <div class="hero-inner">
+          <h1 id="hero-title"><span class="headline-word headline-find" tabindex="0">Find</span> the <span class="headline-word headline-marketing" tabindex="0">marketing</span> path your <span class="headline-word headline-business" tabindex="0">business</span> actually <span class="headline-word headline-needs" tabindex="0">NEED</span>.</h1>
+          <aside class="choice-panel" aria-label="Quick marketing choices">
+            <h2>Start with three quick choices</h2>
+            <div class="choice-step">
+              <label>1. What kind of business are you?</label>
+              <div class="choice-options">
+                <span class="active">B2C</span>
+                <span>B2B</span>
+                <span>B2B2C</span>
+              </div>
+            </div>
+            <div class="choice-step">
+              <label>2. What are you marketing?</label>
+              <div class="choice-options">
+                <span class="active">Product</span>
+                <span>Marketplace</span>
+                <span>Service</span>
+                <span>Tech service</span>
+              </div>
+            </div>
+            <div class="choice-step">
+              <label>3. What outcome do you want first?</label>
+              <div class="choice-options">
+                <span class="active">Brand trust</span>
+                <span>Quick sales</span>
+                <span>Niche USP</span>
+                <span>Community</span>
+              </div>
+            </div>
+            <button class="button" type="button" id="openPlanModal">Build my marketing plan</button>
+          </aside>
+        </div>
+        <div class="hero-collage" aria-hidden="true">
+          <div class="hero-collage-track">
+            <img src="assets/visual-history-collage.png" alt="">
+            <img src="assets/visual-history-collage.png" alt="">
+          </div>
+        </div>
+      </section>
+
+      <section class="motion-section" id="motion" aria-labelledby="motion-title">
+        <div class="container">
+          <div class="motion-head">
+            <div>
+              <h2 id="motion-title">Design has evolved. The outcome it serves has not.</h2>
+              <p class="motion-kicker">From storefronts to scrolls, marketing now lives everywhere. We build cohesive brand experiences across identity, web, social, paid campaigns and physical collaterals, designed to move businesses forward.</p>
+            </div>
+            <p class="motion-quote">From German satirical posters designed to rally political opposition to modern B2B campaigns built to attract industry partners, marketing has always pursued the same fundamental goal: <strong>to influence action, generate commercial outcomes, expand networks, and build communities around a shared idea.</strong> The mediums change. The aesthetics change. The audience changes. But effective marketing has always been measured by what it moves: <strong>people, conversations, relationships, and ultimately, business.</strong></p>
+          </div>
+        </div>
+        <div class="motion-window" aria-label="Scrolling marketing story">
+          <div class="motion-track">
+            <figure class="motion-card">
+              <img src="assets/marketing-rooftop-source.png" alt="Hand-drawn marketing illustration with a person using a megaphone">
+            </figure>
+            <figure class="motion-card">
+              <img src="assets/goals-smarter-source.png" alt="Hand-drawn illustration about today's goals working smarter">
+            </figure>
+            <figure class="motion-card" aria-hidden="true">
+              <img src="assets/marketing-rooftop-source.png" alt="">
+            </figure>
+            <figure class="motion-card" aria-hidden="true">
+              <img src="assets/goals-smarter-source.png" alt="">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt outcomes" id="outcomes" aria-label="Outcome paths">
+        <div class="container outcomes-layout">
+          <p class="outcomes-proof">Not every business needs <span class="blue">more content.</span><br>Not every brand needs <span class="red">more ads.</span></p>
+          <div class="outcomes-phrase-window" aria-label="Outcome needs banner">
+            <div class="outcomes-phrase-track">
+              <img class="outcomes-phrases" src="assets/outcome-phrase-strips.png" alt="Some need to look established, sell now, make their difference obvious, and build a community that stays">
+              <img class="outcomes-phrases" src="assets/outcome-phrase-strips.png" alt="" aria-hidden="true">
+            </div>
+          </div>
+          <img class="outcomes-poster" src="assets/marketing-job-cutout.png" alt="Marketing with a job to do poster cutout">
+          <div class="outcomes-card-row">
+            <img class="outcomes-handnote" src="assets/tell-us-your-needs-calligraphy.png" alt="Tell us your needs">
+            <div class="outcomes-grid">
+              <article class="card" data-card="01"><h3>Quality Establishment</h3><p>Build the proof layer: identity, web presence, startup story, pitch collateral, and credibility signals that make the business feel ready before the first conversation.</p></article>
+              <article class="card" data-card="02"><h3>Quick B2C Sales Catch</h3><p>Move attention into action with offer pages, paid ad creatives, product posters, social launch assets, and campaign hooks built for near-term response.</p></article>
+              <article class="card" data-card="03"><h3>USP Proposition</h3><p>Make the difference unmistakable through positioning, message architecture, explainer content, data-led proof, and B2B partnership communication.</p></article>
+              <article class="card" data-card="04"><h3>Community Footmark</h3><p>Create repeatable visibility with social systems, content calendars, participation prompts, templates, and brand rituals people can gather around.</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section framework" id="framework" aria-labelledby="framework-title">
+        <div class="container">
+          <div class="framework-label" id="framework-title">
+            <span><span>Our</span> <span class="offerings-red">Offerings</span></span>
+          </div>
+          <div class="framework-grid">
+            <article class="framework-card">
+              <span class="framework-number">01</span>
+              <h3>What<br>We<br><strong>Serve</strong></h3>
+              <span class="framework-rule"></span>
+              <p>B2C · B2B · B2B2C<br>Startups · Products<br>Marketplaces · Services<br>Tech · Specialists</p>
+            </article>
+            <article class="framework-card">
+              <span class="framework-number">02</span>
+              <h3>What<br>We<br><strong>Drive</strong></h3>
+              <span class="framework-rule"></span>
+              <p>Attention · Positioning<br>Visibility · Understanding<br>Trust · Connection<br>Recall · Engagement</p>
+            </article>
+            <article class="framework-card">
+              <span class="framework-number">03</span>
+              <h3>What<br>We Help<br><strong>You Achieve</strong></h3>
+              <span class="framework-rule"></span>
+              <p>More enquiries · More sales<br>Stronger recall · Better conversations<br>Partner interest · Customer trust<br>Community growth</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="capabilities" aria-labelledby="capabilities-title">
+        <div class="container">
+          <h2 class="capability-heading" id="capabilities-title"><span class="capability-red">Capability</span> Map</h2>
+          <div class="capability-grid">
+            <article class="capability-card">
+              <div class="capability-card-inner">
+                <div class="capability-face capability-front">
+                  <img src="assets/capability-brand-identity.png" alt="Brand and identity geometric icon">
+                  <div class="capability-body">
+                    <h3>Brand And Identity</h3>
+                    <p>Logo Design · Brand Identity · Colour & Typography Systems · Brand Guidelines · Startup Positioning · Stickers · Packaging · Merchandise · Visual Systems</p>
+                    <button class="capability-detail" type="button">See in more details</button>
+                  </div>
+                </div>
+                <div class="capability-face capability-back">
+                  <h3>Brand And Identity</h3>
+                  <p>What we make for you</p>
+                  <ul class="capability-list">
+                    <li><span class="service-icon">✒</span>Logo Design</li>
+                    <li><span class="service-icon">◆</span>Brand Identity</li>
+                    <li><span class="service-icon">Aa</span>Colour & Typography Systems</li>
+                    <li><span class="service-icon">▤</span>Brand Guidelines</li>
+                    <li><span class="service-icon">⚑</span>Startup Positioning</li>
+                    <li><span class="service-icon">●</span>Stickers</li>
+                    <li><span class="service-icon">▣</span>Packaging</li>
+                    <li><span class="service-icon">T</span>Merchandise</li>
+                    <li><span class="service-icon">▦</span>Visual Systems</li>
+                  </ul>
+                  <button class="capability-detail" type="button">Back to card</button>
+                </div>
+              </div>
+            </article>
+            <article class="capability-card">
+              <div class="capability-card-inner">
+                <div class="capability-face capability-front">
+                  <img src="assets/capability-web-content.png" alt="Web and content geometric icon">
+                  <div class="capability-body">
+                    <h3>Web And Content</h3>
+                    <p>Websites · Landing Pages · Product Pages · Web Banners · Content Architecture · Data Visualisation · Interactive Sections · Business Copy · Campaign Microsites</p>
+                    <button class="capability-detail" type="button">See in more details</button>
+                  </div>
+                </div>
+                <div class="capability-face capability-back">
+                  <h3>Web And Content</h3>
+                  <p>What we make for you</p>
+                  <ul class="capability-list">
+                    <li><span class="service-icon">▥</span>Websites</li>
+                    <li><span class="service-icon">↖</span>Landing Pages</li>
+                    <li><span class="service-icon">▣</span>Product Pages</li>
+                    <li><span class="service-icon">▭</span>Web Banners</li>
+                    <li><span class="service-icon">⌬</span>Content Architecture</li>
+                    <li><span class="service-icon">⌁</span>Data Visualisation</li>
+                    <li><span class="service-icon">⌖</span>Interactive Sections</li>
+                    <li><span class="service-icon">¶</span>Business Copy</li>
+                    <li><span class="service-icon">✦</span>Campaign Microsites</li>
+                  </ul>
+                  <button class="capability-detail" type="button">Back to card</button>
+                </div>
+              </div>
+            </article>
+            <article class="capability-card">
+              <div class="capability-card-inner">
+                <div class="capability-face capability-front">
+                  <img src="assets/capability-social-growth.png" alt="Social and growth geometric icon">
+                  <div class="capability-body">
+                    <h3>Social And Growth</h3>
+                    <p>Social Media Creatives · Reels · Carousels · Paid Ad Creatives · Product Campaigns · Launch Campaigns · Content Calendars · Community Campaigns</p>
+                    <button class="capability-detail" type="button">See in more details</button>
+                  </div>
+                </div>
+                <div class="capability-face capability-back">
+                  <h3>Social And Growth</h3>
+                  <p>What we make for you</p>
+                  <ul class="capability-list">
+                    <li><span class="service-icon">▣</span>Social Media Creatives</li>
+                    <li><span class="service-icon">▶</span>Reels</li>
+                    <li><span class="service-icon">▱</span>Carousels</li>
+                    <li><span class="service-icon">◉</span>Paid Ad Creatives</li>
+                    <li><span class="service-icon">▣</span>Product Campaigns</li>
+                    <li><span class="service-icon">↗</span>Launch Campaigns</li>
+                    <li><span class="service-icon">□</span>Content Calendars</li>
+                    <li><span class="service-icon">☷</span>Community Campaigns</li>
+                  </ul>
+                  <button class="capability-detail" type="button">Back to card</button>
+                </div>
+              </div>
+            </article>
+            <article class="capability-card">
+              <div class="capability-card-inner">
+                <div class="capability-face capability-front">
+                  <img src="assets/capability-physical-product.png" alt="Physical and product geometric icon">
+                  <div class="capability-body">
+                    <h3>Physical And Product</h3>
+                    <p>Posters · Brochures · Flyers · Stickers · Merchandise · Product Graphics · Event Collaterals · Standees · Packaging · Pottery & Custom Objects · Outdoor Creatives</p>
+                    <button class="capability-detail" type="button">See in more details</button>
+                  </div>
+                </div>
+                <div class="capability-face capability-back">
+                  <h3>Physical And Product</h3>
+                  <p>What we make for you</p>
+                  <ul class="capability-list">
+                    <li><span class="service-icon">▥</span>Posters</li>
+                    <li><span class="service-icon">▤</span>Brochures</li>
+                    <li><span class="service-icon">▧</span>Flyers</li>
+                    <li><span class="service-icon">●</span>Stickers</li>
+                    <li><span class="service-icon">T</span>Merchandise</li>
+                    <li><span class="service-icon">✒</span>Product Graphics</li>
+                    <li><span class="service-icon">⌑</span>Event Collaterals</li>
+                    <li><span class="service-icon">▯</span>Standees</li>
+                    <li><span class="service-icon">▣</span>Packaging</li>
+                    <li><span class="service-icon">◡</span>Pottery & Custom Objects</li>
+                    <li><span class="service-icon">▰</span>Outdoor Creatives</li>
+                  </ul>
+                  <button class="capability-detail" type="button">Back to card</button>
+                </div>
+              </div>
+            </article>
+            <article class="capability-card">
+              <div class="capability-card-inner">
+                <div class="capability-face capability-front">
+                  <img src="assets/capability-strategic-communication.png" alt="Strategic communication geometric icon">
+                  <div class="capability-body">
+                    <h3>Strategic Communication</h3>
+                    <p>USP & Value Proposition · Decks · Pitch Material · Business Cards · Video Stories · Research-backed Campaigns · Data Stories · Surveys</p>
+                    <button class="capability-detail" type="button">See in more details</button>
+                  </div>
+                </div>
+                <div class="capability-face capability-back">
+                  <h3>Strategic Communication</h3>
+                  <p>What we make for you</p>
+                  <ul class="capability-list">
+                    <li><span class="service-icon">✓</span>USP & Value Proposition</li>
+                    <li><span class="service-icon">▤</span>Decks</li>
+                    <li><span class="service-icon">↗</span>Pitch Material</li>
+                    <li><span class="service-icon">▣</span>Business Cards</li>
+                    <li><span class="service-icon">▷</span>Video Stories</li>
+                    <li><span class="service-icon">⌕</span>Research-backed Campaigns</li>
+                    <li><span class="service-icon">▥</span>Data Stories</li>
+                    <li><span class="service-icon">☑</span>Surveys</li>
+                  </ul>
+                  <button class="capability-detail" type="button">Back to card</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="style" aria-labelledby="style-title">
+        <div class="container">
+          <h2 class="style-heading" id="style-title"><span class="style-red">Style</span> Range Showcase</h2>
+          <div class="style-grid">
+            <article class="card style-card">
+              <img src="assets/style-minimalist-stairs.png" alt="Minimalist staircase line artwork">
+              <div class="style-copy"><h3>Clean Minimalist</h3></div>
+              <a class="style-brochure-button" href="#brochure-minimalist" aria-label="View brochure sample for Clean Minimalist style">View</a>
+            </article>
+            <article class="card style-card">
+              <img src="assets/style-bauhaus-brutalist-curves.png" alt="Bauhaus and brutalist curved line pattern">
+              <div class="style-copy"><h3>Bauhaus &amp; Brutalism</h3></div>
+              <a class="style-brochure-button" href="#brochure-all-styles" aria-label="View brochure sample for Bauhaus and Brutalism style">View</a>
+            </article>
+            <article class="card style-card">
+              <img src="assets/style-retro-art-deco.png" alt="Retro art deco woman with buildings">
+              <div class="style-copy"><h3>Retro - Art Deco</h3></div>
+              <a class="style-brochure-button" href="#brochure-all-styles" aria-label="View brochure sample for Retro Art Deco style">View</a>
+            </article>
+            <article class="card style-card">
+              <img src="assets/style-local-traditionalist-tiger.png" alt="Traditional local art of woman with tiger">
+              <div class="style-copy"><h3>Local Traditionalist</h3></div>
+              <a class="style-brochure-button" href="#brochure-all-styles" aria-label="View brochure sample for Local Traditionalist style">View</a>
+            </article>
+            <article class="card style-card">
+              <img src="assets/style-art-nouveau-fruits.png" alt="Vintage women carrying fruit baskets">
+              <div class="style-copy"><h3>Art Nouveau &amp; Maximalism</h3></div>
+              <a class="style-brochure-button" href="#brochure-all-styles" aria-label="View brochure sample for Art Nouveau and Maximalism style">View</a>
+            </article>
+            <article class="card style-card">
+              <img src="assets/style-custom-noodles.png" alt="Illustrator creating noodle artwork on laptop">
+              <div class="style-copy"><h3>Custom Fit</h3></div>
+              <a class="style-brochure-button" href="#brochure-all-styles" aria-label="View brochure sample for Custom Fit style">View</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section industries-loop-section" id="industries" aria-label="Industries we understand">
+        <div class="container">
+          <div class="industries-loop-window" aria-label="Industries loop">
+            <div class="industries-loop-track">
+              <img class="industries-loop-strip" src="assets/industries-loop-strip.png" alt="Fintech and insurtech, fashion and lifestyle, product and shops, events, and merchandise">
+              <img class="industries-loop-strip" src="assets/industries-loop-strip.png" alt="" aria-hidden="true">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section" id="about" aria-labelledby="about-title">
+        <div class="container about-layout">
+          <div class="about-copy">
+            <span class="eyebrow">Who we are</span>
+            <h2 id="about-title">Design, based on your data.</h2>
+            <div class="founders">
+              <article class="card founder-card">
+                <img class="founder-photo" src="assets/mihika-pramanik.png" alt="Mihika Pramanik portrait">
+                <div class="founder-details">
+                  <span class="founder-role">Design systems</span>
+                  <h3>Mihika Pramanik</h3>
+                  <p>NID graduate designer with a focus on systems, clarity, and brand collateral that performs.</p>
+                  <div class="founder-links">
+                    <a class="founder-social linkedin" href="https://www.linkedin.com/in/mihikapramanik" target="_blank" rel="noopener noreferrer" aria-label="Mihika Pramanik on LinkedIn">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="none">
+                        <path d="M6.94 8.86H3.98V20h2.96V8.86ZM5.46 7.34c.95 0 1.72-.78 1.72-1.72 0-.95-.77-1.72-1.72-1.72S3.74 4.67 3.74 5.62c0 .94.77 1.72 1.72 1.72ZM20.26 20v-6.1c0-2.99-1.6-4.38-3.73-4.38-1.72 0-2.49.94-2.92 1.6V8.86h-2.84V20h2.96v-5.51c0-1.45.27-2.86 2.08-2.86 1.78 0 1.8 1.67 1.8 2.95V20h2.65Z"></path>
+                      </svg>
+                    </a>
+                    <a class="founder-social instagram" href="https://www.instagram.com/mihika_00_art?utm_source=ig_web_button_share_sheet&amp;stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Mihika Pramanik on Instagram">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+              <article class="card founder-card">
+                <img class="founder-photo" src="assets/archita-munshi.png" alt="Archita Munshi portrait">
+                <div class="founder-details">
+                  <span class="founder-role">Data strategy</span>
+                  <h3>Archita Munshi</h3>
+                  <p>Data scientist who translates signals into practical recommendations for marketing and product teams.</p>
+                  <div class="founder-links">
+                    <a class="founder-social linkedin" href="https://www.linkedin.com/in/archita-munshi-datanalyst-economics04" target="_blank" rel="noopener noreferrer" aria-label="Archita Munshi on LinkedIn">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="none">
+                        <path d="M6.94 8.86H3.98V20h2.96V8.86ZM5.46 7.34c.95 0 1.72-.78 1.72-1.72 0-.95-.77-1.72-1.72-1.72S3.74 4.67 3.74 5.62c0 .94.77 1.72 1.72 1.72ZM20.26 20v-6.1c0-2.99-1.6-4.38-3.73-4.38-1.72 0-2.49.94-2.92 1.6V8.86h-2.84V20h2.96v-5.51c0-1.45.27-2.86 2.08-2.86 1.78 0 1.8 1.67 1.8 2.95V20h2.65Z"></path>
+                      </svg>
+                    </a>
+                    <a class="founder-social instagram" href="https://www.instagram.com/_archita_illustrations_?stkn=MTF4NXh4eWZtdnd3eQ==" target="_blank" rel="noopener noreferrer" aria-label="Archita Munshi on Instagram">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <article class="card why-card">
+              <span class="eyebrow">Why we started</span>
+              <p>We started this studio because industry collateral often falls short of a high professional standard. Clients end up carrying the benchmarking and revision burden instead of focusing on their business. Our promise is simple: let us take the benchmarking effort and revisions off your hands, then tailor every output so your brand shows up consistently and with confidence.</p>
+              <a class="why-contact-row" href="mailto:mirchidesignstudio@gmail.com">
+                <span class="mail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                    <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+                    <path d="m4 7 8 6 8-6"></path>
+                  </svg>
+                </span>
+                mirchidesignstudio@gmail.com
+              </a>
+            </article>
+          </div>
+          <aside class="download-card" id="contact-form" aria-label="Collaboration contact">
+            <h2>Contact for collaboration</h2>
+            <p>Share a few details and we will shape the right starting point for your marketing need.</p>
+            <form>
+              <div class="form-field">
+                <label for="quick-contact-name">Name</label>
+                <input id="quick-contact-name" name="name" placeholder="Your full name">
+              </div>
+              <div class="form-field">
+                <label for="quick-contact-email">Email</label>
+                <input id="quick-contact-email" name="email" type="email" placeholder="you@company.com">
+              </div>
+              <div class="form-field">
+                <label for="quick-contact-need">What do you need help with?</label>
+                <textarea id="quick-contact-need" name="need" placeholder="Tell us briefly"></textarea>
+              </div>
+              <button class="button" type="button" id="openContactModal">Contact us</button>
+            </form>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-row" aria-label="Copyright ribbon">
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+        <span>Copyrights of Munshi &amp; Pramanik</span>
+      </div>
+    </footer>
+  </div>
+  <div class="modal-overlay brochure-target" id="brochure-minimalist" aria-hidden="true">
+    <section class="brochure-modal is-minimalist" role="dialog" aria-modal="true" aria-labelledby="brochure-minimalist-title">
+      <a class="modal-close" href="#style" aria-label="Close brochure sample">×</a>
+      <h2 id="brochure-minimalist-title" class="sr-only">Minimalist style brochure preview.</h2>
+      <img class="brochure-art" src="assets/style-popup-minimalist.png" alt="Minimal and modern style brochure preview">
+      <div class="brochure-actions">
+        <a class="brochure-request-button" href="#collaborationModal">Request full design brochure</a>
+      </div>
+    </section>
+  </div>
+  <div class="modal-overlay brochure-target" id="brochure-all-styles" aria-hidden="true">
+    <section class="brochure-modal is-all-styles" role="dialog" aria-modal="true" aria-labelledby="brochure-all-styles-title">
+      <a class="modal-close" href="#style" aria-label="Close brochure sample">×</a>
+      <h2 id="brochure-all-styles-title" class="sr-only">All styles brochure preview.</h2>
+      <img class="brochure-art" src="assets/style-popup-all-styles.png" alt="All styles design brochure preview">
+      <div class="brochure-actions">
+        <a class="brochure-request-button" href="#collaborationModal">Request full design brochure</a>
+      </div>
+    </section>
+  </div>
+  <div class="modal-overlay" id="collaborationModal" aria-hidden="true">
+    <section class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <a class="modal-close" href="#style" id="closeCollaborationModal" aria-label="Close contact form">×</a>
+      <div class="modal-head">
+        <h2 id="modal-title">Tell us what needs moving.</h2>
+        <p>Send us the context. We will reply with a practical starting route for your brand, campaign, collateral, or partnership need.</p>
+      </div>
+      <form id="collaborationForm" class="modal-form-grid" action="https://formsubmit.co/mirchidesignstudio@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Collaboration enquiry from Virchi website">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display: none;">
+        <div class="form-field">
+          <label for="modal-name">Name</label>
+          <input id="modal-name" name="name" autocomplete="name" required placeholder="Your full name">
+        </div>
+        <div class="form-field">
+          <label for="modal-email">Email ID</label>
+          <input id="modal-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+        </div>
+        <div class="form-field">
+          <label for="modal-mobile">Mobile number optional</label>
+          <input id="modal-mobile" name="mobile" autocomplete="tel" placeholder="+91">
+        </div>
+        <div class="form-field">
+          <label for="modal-business-need">What business do you need marketing for?</label>
+          <input id="modal-business-need" name="businessNeed" placeholder="Industry, product, service, or company name">
+        </div>
+
+        <p class="modal-section-title">Quick marketing choices</p>
+        <div class="form-field">
+          <label for="modal-business-type">What kind of business are you?</label>
+          <select id="modal-business-type" name="businessType">
+            <option value="">Select one</option>
+            <option>B2C</option>
+            <option>B2B</option>
+            <option>B2B2C</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="modal-marketing-type">What are you marketing?</label>
+          <select id="modal-marketing-type" name="marketingType">
+            <option value="">Select one</option>
+            <option>Product</option>
+            <option>Marketplace</option>
+            <option>Service</option>
+            <option>Tech service</option>
+          </select>
+        </div>
+        <div class="form-field modal-field-full">
+          <label for="modal-outcome-type">What outcome do you want first?</label>
+          <select id="modal-outcome-type" name="outcomeType">
+            <option value="">Select one</option>
+            <option>Brand trust</option>
+            <option>Quick sales</option>
+            <option>Niche USP</option>
+            <option>Community</option>
+          </select>
+        </div>
+
+        <p class="modal-section-title">What are you interested in for collaboration?</p>
+        <div class="modal-choice-grid">
+          <label class="modal-choice">
+            <input type="radio" name="collaboration" value="Single Collateral">
+            <strong>Single Collateral</strong>
+            <span>One focused asset: poster, logo, website, brochure, landing page, deck, or social creative.</span>
+          </label>
+          <label class="modal-choice">
+            <input type="radio" name="collaboration" value="Focused Sprint">
+            <strong>Focused Sprint</strong>
+            <span>One defined outcome: launch kit, paid ad starter, social starter, or brand refresh.</span>
+          </label>
+          <label class="modal-choice">
+            <input type="radio" name="collaboration" value="Growth Basket">
+            <strong>Growth Basket</strong>
+            <span>Connected assets across website, content, campaigns, ads, and social calendar.</span>
+          </label>
+          <label class="modal-choice">
+            <input type="radio" name="collaboration" value="Full Marketing Partnership">
+            <strong>Full Marketing Partnership</strong>
+            <span>Ongoing strategy, execution, advisory connection, content, ads, social, web, and collateral design.</span>
+          </label>
+        </div>
+
+        <div class="form-field modal-field-full">
+          <label for="modal-need">Write your need</label>
+          <textarea id="modal-need" name="need" placeholder="Tell us what you are trying to launch, fix, explain, sell, or build."></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button class="button" type="submit">Submit</button>
+          <p class="modal-note">Submitting sends the filled brief to mirchidesignstudio@gmail.com.</p>
+        </div>
+      </form>
+    </section>
+  </div>
+  <button class="admin-signin" type="button" id="adminSignIn">Studio sign in</button>
+  <div class="admin-modal" id="adminLoginModal" aria-hidden="true">
+    <form class="admin-login-card" id="adminLoginForm" autocomplete="off">
+      <h2>Studio sign in</h2>
+      <p class="modal-note">Private front-end editor for page text, images, and local layout adjustments.</p>
+      <div class="form-field">
+        <label for="admin-email">Email</label>
+        <input id="admin-email" type="email" autocomplete="off" required placeholder="studio@email.com">
+      </div>
+      <div class="form-field">
+        <label for="admin-password">Password</label>
+        <input id="admin-password" type="password" autocomplete="new-password" required placeholder="Password">
+      </div>
+      <div class="modal-actions">
+        <button class="button" type="submit">Sign in</button>
+        <button class="button" type="button" id="adminCancel">Cancel</button>
+      </div>
+      <p class="admin-error" id="adminError" aria-live="polite"></p>
+    </form>
+  </div>
+  <div class="admin-toolbar" id="adminToolbar" aria-label="Studio editor toolbar">
+    <span class="admin-selection" id="adminSelection">Nothing selected</span>
+    <button type="button" id="adminUploadReplace">Upload / replace image</button>
+    <button type="button" id="adminAddPhoto">Add photo to section</button>
+    <button type="button" id="adminBringFront">Bring front</button>
+    <button type="button" id="adminSendBack">Send back</button>
+    <button type="button" id="adminSelectorTool">Selector off</button>
+    <button type="button" id="adminDeleteSelected">Delete selected</button>
+    <button type="button" id="adminToggleText">Edit text on/off</button>
+    <span class="admin-tool-group" aria-label="Move selected element">
+      <button class="icon-tool" type="button" id="adminMoveLeft" title="Move left">←</button>
+      <button class="icon-tool" type="button" id="adminMoveUp" title="Move up">↑</button>
+      <button class="icon-tool" type="button" id="adminMoveDown" title="Move down">↓</button>
+      <button class="icon-tool" type="button" id="adminMoveRight" title="Move right">→</button>
+    </span>
+    <span class="admin-tool-group" aria-label="Transform selected element">
+      <button class="icon-tool" type="button" id="adminScaleDown" title="Smaller">−</button>
+      <button class="icon-tool" type="button" id="adminScaleUp" title="Bigger">+</button>
+      <button class="icon-tool" type="button" id="adminRotateLeft" title="Rotate left">↺</button>
+      <button class="icon-tool" type="button" id="adminRotateRight" title="Rotate right">↻</button>
+    </span>
+    <span class="admin-tool-group" aria-label="Text styling">
+      <button class="icon-tool" type="button" id="adminFontDown" title="Font smaller">A−</button>
+      <button class="icon-tool" type="button" id="adminFontUp" title="Font bigger">A+</button>
+      <button class="icon-tool" type="button" id="adminBold" title="Bold">B</button>
+      <button class="icon-tool" type="button" id="adminItalic" title="Italic"><i>I</i></button>
+      <button class="icon-tool" type="button" id="adminAlignLeft" title="Align left">≡</button>
+      <button class="icon-tool" type="button" id="adminAlignCenter" title="Align center">≣</button>
+      <button class="icon-tool" type="button" id="adminAlignRight" title="Align right">≡</button>
+    </span>
+    <span class="admin-tool-group" aria-label="Color styling">
+      <label for="adminTextColor">Text</label>
+      <input id="adminTextColor" type="color" value="#111722" title="Text color">
+      <label for="adminBgColor">Bg</label>
+      <input id="adminBgColor" type="color" value="#ffffff" title="Background color">
+    </span>
+    <button type="button" id="adminResetSelected">Reset selected</button>
+    <button type="button" id="adminSave">Save browser edits</button>
+    <button type="button" id="adminReset">Reset edits</button>
+    <button type="button" id="adminExport">Export HTML</button>
+    <button type="button" id="adminSignOut">Sign out</button>
+  </div>
+  <input id="adminImageInput" type="file" accept="image/*" hidden>
+  <script>
+    const fixedBrand = document.querySelector(".top-brand");
+    const aboutSection = document.querySelector("#about");
+    const updateBrandLogo = () => {
+      fixedBrand?.classList.toggle("is-scrolled", window.scrollY > 90);
+      const aboutBounds = aboutSection?.getBoundingClientRect();
+      const isAboutVisible = aboutBounds ? aboutBounds.top < 120 && aboutBounds.bottom > 80 : false;
+      fixedBrand?.classList.toggle("is-about", isAboutVisible);
+    };
+
+    updateBrandLogo();
+    window.addEventListener("scroll", updateBrandLogo, { passive: true });
+
+    const heroChoiceGroups = Array.from(document.querySelectorAll(".choice-panel .choice-options"));
+    heroChoiceGroups.forEach((group) => {
+      group.querySelectorAll("span").forEach((option) => {
+        option.tabIndex = 0;
+        option.setAttribute("role", "button");
+        option.addEventListener("click", () => {
+          group.querySelectorAll("span").forEach((item) => item.classList.remove("active"));
+          option.classList.add("active");
+        });
+        option.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            option.click();
+          }
+        });
+      });
+    });
+
+    document.querySelectorAll(".capability-card .capability-detail").forEach((button) => {
+      button.addEventListener("click", () => {
+        button.closest(".capability-card")?.classList.toggle("is-flipped");
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      const capabilityResetObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            entry.target.classList.remove("is-flipped");
+          }
+        });
+      }, { threshold: 0.28 });
+
+      document.querySelectorAll(".capability-card").forEach((card) => {
+        capabilityResetObserver.observe(card);
+      });
+    }
+
+    const collaborationModal = document.querySelector("#collaborationModal");
+    const collaborationForm = document.querySelector("#collaborationForm");
+    const brochureModal = document.querySelector("#brochureModal");
+    const brochureArt = document.querySelector("#brochureArt");
+    const closeBrochureModal = document.querySelector("#closeBrochureModal");
+    const dismissBrochureModal = document.querySelector("#dismissBrochureModal");
+    const requestBrochureContact = document.querySelector("#requestBrochureContact");
+    const modalName = document.querySelector("#modal-name");
+    const modalEmail = document.querySelector("#modal-email");
+    const modalBusinessType = document.querySelector("#modal-business-type");
+    const modalMarketingType = document.querySelector("#modal-marketing-type");
+    const modalOutcomeType = document.querySelector("#modal-outcome-type");
+    const modalNeed = document.querySelector("#modal-need");
+    const modalMobile = document.querySelector("#modal-mobile");
+    const modalBusinessNeed = document.querySelector("#modal-business-need");
+    const quickContactName = document.querySelector("#quick-contact-name");
+    const quickContactEmail = document.querySelector("#quick-contact-email");
+    const quickContactNeed = document.querySelector("#quick-contact-need");
+    const openPlanModal = document.querySelector("#openPlanModal");
+    const openContactModal = document.querySelector("#openContactModal");
+    const closeCollaborationModal = document.querySelector("#closeCollaborationModal");
+
+    const setSelectValue = (select, value) => {
+      if (!select) return;
+      const match = Array.from(select.options).find((option) => option.textContent.trim() === value);
+      select.value = match ? match.value : "";
+    };
+
+    const selectedHeroChoices = () => heroChoiceGroups.map((group) => {
+      const active = group.querySelector(".active") || group.querySelector("span");
+      return active?.textContent.trim() || "";
+    });
+
+    let selectedBrochureStyle = "";
+
+    const openModal = ({ fromHero = false, prefillNeed = "" } = {}) => {
+      if (!collaborationModal) return;
+      collaborationModal.classList.add("is-open");
+      collaborationModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      if (fromHero) {
+        const [businessType, marketingType, outcomeType] = selectedHeroChoices();
+        setSelectValue(modalBusinessType, businessType);
+        setSelectValue(modalMarketingType, marketingType);
+        setSelectValue(modalOutcomeType, outcomeType);
+      } else {
+        if (modalBusinessType) modalBusinessType.value = "";
+        if (modalMarketingType) modalMarketingType.value = "";
+        if (modalOutcomeType) modalOutcomeType.value = "";
+        if (modalMobile) modalMobile.value = "";
+        if (modalBusinessNeed) modalBusinessNeed.value = "";
+        if (modalNeed) modalNeed.value = "";
+        collaborationForm?.querySelectorAll('input[name="collaboration"]').forEach((input) => {
+          input.checked = false;
+        });
+        if (modalName && quickContactName) modalName.value = quickContactName.value;
+        if (modalEmail && quickContactEmail) modalEmail.value = quickContactEmail.value;
+        if (modalNeed && quickContactNeed) modalNeed.value = quickContactNeed.value;
+      }
+
+      if (modalNeed && prefillNeed) modalNeed.value = prefillNeed;
+
+      window.setTimeout(() => modalName?.focus(), 80);
+    };
+
+    const closeModal = () => {
+      if (!collaborationModal) return;
+      collaborationModal.classList.remove("is-open");
+      collaborationModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
+
+    const brochureAssets = {
+      minimalist: {
+        src: "assets/style-popup-minimalist.png",
+        alt: "Minimal and modern style brochure preview"
+      },
+      "all-styles": {
+        src: "assets/style-popup-all-styles.png",
+        alt: "All styles design brochure preview"
+      }
+    };
+
+    const openBrochureModal = (styleName = "", variant = "all-styles") => {
+      if (!brochureModal) return;
+      selectedBrochureStyle = styleName;
+      const selectedAsset = brochureAssets[variant] || brochureAssets["all-styles"];
+      brochureModal.classList.toggle("is-minimalist", variant === "minimalist");
+      brochureModal.classList.toggle("is-all-styles", variant !== "minimalist");
+      if (brochureArt) {
+        brochureArt.src = selectedAsset.src;
+        brochureArt.alt = selectedAsset.alt;
+      }
+      brochureModal.classList.add("is-open");
+      brochureModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      window.setTimeout(() => requestBrochureContact?.focus(), 80);
+    };
+
+    const closeBrochure = ({ restoreScroll = true } = {}) => {
+      if (!brochureModal) return;
+      brochureModal.classList.remove("is-open");
+      brochureModal.setAttribute("aria-hidden", "true");
+      if (restoreScroll) document.body.style.overflow = "";
+    };
+
+    window.openStyleBrochure = openBrochureModal;
+    window.closeStyleBrochure = closeBrochure;
+
+    openPlanModal?.addEventListener("click", () => openModal({ fromHero: true }));
+    openContactModal?.addEventListener("click", () => openModal({ fromHero: false }));
+    document.addEventListener("click", (event) => {
+      const eventTarget = event.target instanceof Element ? event.target : null;
+      const brochureButton = eventTarget?.closest(".style-brochure-button");
+      if (!brochureButton) return;
+      openBrochureModal(brochureButton.dataset.styleName || "", brochureButton.dataset.popupVariant || "all-styles");
+    });
+    document.querySelectorAll(".style-brochure-button").forEach((button) => {
+      button.addEventListener("click", () => openBrochureModal(button.dataset.styleName || "", button.dataset.popupVariant || "all-styles"));
+    });
+    closeBrochureModal?.addEventListener("click", () => closeBrochure());
+    dismissBrochureModal?.addEventListener("click", () => closeBrochure());
+    requestBrochureContact?.addEventListener("click", () => {
+      const styleLine = selectedBrochureStyle ? ` Preferred style sample: ${selectedBrochureStyle}.` : "";
+      closeBrochure({ restoreScroll: false });
+      openModal({
+        fromHero: false,
+        prefillNeed: `Request a full design brochure of all styles.${styleLine}`
+      });
+    });
+    closeCollaborationModal?.addEventListener("click", closeModal);
+    brochureModal?.addEventListener("click", (event) => {
+      if (event.target === brochureModal) closeBrochure();
+    });
+    collaborationModal?.addEventListener("click", (event) => {
+      if (event.target === collaborationModal) closeModal();
+    });
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && brochureModal?.classList.contains("is-open")) {
+        closeBrochure();
+      }
+      if (event.key === "Escape" && collaborationModal?.classList.contains("is-open")) {
+        closeModal();
+      }
+    });
+
+    const ADMIN_EMAIL = "mirchidesignstudio@gmail.com";
+    const ADMIN_PASSWORD_HASH = "ec9eb72904c0832652696a12866a2c927fd4f2aad732a36a30ee0587df5b8344";
+    const EDITOR_STORAGE_KEY = "virchiLocalEditorState";
+    let editorSelected = null;
+    let editorMode = false;
+    let textEditing = false;
+    let selectorMode = false;
+    let addPhotoMode = false;
+    let dragState = null;
+
+    const adminSignIn = document.querySelector("#adminSignIn");
+    const adminLoginModal = document.querySelector("#adminLoginModal");
+    const adminLoginForm = document.querySelector("#adminLoginForm");
+    const adminCancel = document.querySelector("#adminCancel");
+    const adminError = document.querySelector("#adminError");
+    const adminImageInput = document.querySelector("#adminImageInput");
+    const adminSelection = document.querySelector("#adminSelection");
+    const adminUploadReplace = document.querySelector("#adminUploadReplace");
+    const adminAddPhoto = document.querySelector("#adminAddPhoto");
+    const adminBringFront = document.querySelector("#adminBringFront");
+    const adminSendBack = document.querySelector("#adminSendBack");
+    const adminSelectorTool = document.querySelector("#adminSelectorTool");
+    const adminDeleteSelected = document.querySelector("#adminDeleteSelected");
+    const adminToggleText = document.querySelector("#adminToggleText");
+    const adminMoveLeft = document.querySelector("#adminMoveLeft");
+    const adminMoveRight = document.querySelector("#adminMoveRight");
+    const adminMoveUp = document.querySelector("#adminMoveUp");
+    const adminMoveDown = document.querySelector("#adminMoveDown");
+    const adminScaleDown = document.querySelector("#adminScaleDown");
+    const adminScaleUp = document.querySelector("#adminScaleUp");
+    const adminRotateLeft = document.querySelector("#adminRotateLeft");
+    const adminRotateRight = document.querySelector("#adminRotateRight");
+    const adminFontDown = document.querySelector("#adminFontDown");
+    const adminFontUp = document.querySelector("#adminFontUp");
+    const adminBold = document.querySelector("#adminBold");
+    const adminItalic = document.querySelector("#adminItalic");
+    const adminAlignLeft = document.querySelector("#adminAlignLeft");
+    const adminAlignCenter = document.querySelector("#adminAlignCenter");
+    const adminAlignRight = document.querySelector("#adminAlignRight");
+    const adminTextColor = document.querySelector("#adminTextColor");
+    const adminBgColor = document.querySelector("#adminBgColor");
+    const adminResetSelected = document.querySelector("#adminResetSelected");
+    const adminSave = document.querySelector("#adminSave");
+    const adminReset = document.querySelector("#adminReset");
+    const adminExport = document.querySelector("#adminExport");
+    const adminSignOut = document.querySelector("#adminSignOut");
+
+    const hashText = async (value) => {
+      const buffer = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+      return Array.from(new Uint8Array(buffer)).map((byte) => byte.toString(16).padStart(2, "0")).join("");
+    };
+
+    const editableTextSelector = "main h1, main h2, main h3, main p, main label, main .eyebrow, main .brand-word, main .choice-options span, main .founder-role";
+    const editableImageSelector = "main img";
+    const editableLayoutSelector = "main .card, main .capability-card, main .style-card, main .download-card, main .choice-panel, main .about-layout, main .founders, main .style-grid, main .capability-grid, main .framework-card, main .outcomes-proof, main .outcomes-card-row";
+    const selectableObjectSelector = `.editor-photo-layer, ${editableImageSelector}, ${editableTextSelector}, main a, main button, ${editableLayoutSelector}`;
+
+    const assignEditorIds = () => {
+      document.querySelectorAll(editableTextSelector).forEach((element, index) => {
+        element.dataset.editId ||= `text-${index}`;
+      });
+      document.querySelectorAll(editableImageSelector).forEach((element, index) => {
+        element.dataset.editId ||= `image-${index}`;
+      });
+      document.querySelectorAll(editableLayoutSelector).forEach((element, index) => {
+        element.dataset.editId ||= `layout-${index}`;
+      });
+      document.querySelectorAll("main section").forEach((element, index) => {
+        element.dataset.editSection ||= `section-${index}`;
+        element.dataset.editId ||= `section-${index}`;
+      });
+    };
+
+    assignEditorIds();
+
+    const openAdminLogin = () => {
+      adminLoginModal?.classList.add("is-open");
+      adminLoginModal?.setAttribute("aria-hidden", "false");
+      window.setTimeout(() => document.querySelector("#admin-email")?.focus(), 80);
+    };
+
+    const closeAdminLogin = () => {
+      adminLoginModal?.classList.remove("is-open");
+      adminLoginModal?.setAttribute("aria-hidden", "true");
+      adminLoginForm?.reset();
+      if (adminError) adminError.textContent = "";
+    };
+
+    const selectedLabel = (element) => {
+      if (!element) return "Nothing selected";
+      if (element.matches("img")) return "Image selected";
+      if (element.classList.contains("editor-photo-layer")) return "Photo layer selected";
+      if (element.matches("section")) return `Section selected`;
+      if (element.matches(editableLayoutSelector)) return "Layout selected";
+      if (element.matches("h1, h2, h3, p, label, .eyebrow, .brand-word, .choice-options span, .founder-role, a, button")) return "Text selected";
+      return "Element selected";
+    };
+
+    const selectEditorTarget = (element) => {
+      editorSelected?.classList.remove("editor-selected");
+      editorSelected = element;
+      editorSelected?.classList.add("editor-selected");
+      if (adminSelection) adminSelection.textContent = selectedLabel(editorSelected);
+      if (editorSelected && adminTextColor) {
+        adminTextColor.value = rgbToHex(getComputedStyle(editorSelected).color) || adminTextColor.value;
+      }
+      if (editorSelected && adminBgColor) {
+        adminBgColor.value = rgbToHex(getComputedStyle(editorSelected).backgroundColor) || adminBgColor.value;
+      }
+    };
+
+    const rgbToHex = (color) => {
+      const match = color?.match(/\d+(\.\d+)?/g);
+      if (!match || match.length < 3) return "";
+      const [r, g, b] = match.slice(0, 3).map((value) => Math.max(0, Math.min(255, Math.round(Number(value)))));
+      return `#${[r, g, b].map((value) => value.toString(16).padStart(2, "0")).join("")}`;
+    };
+
+    const setTextEditing = (enabled) => {
+      textEditing = enabled;
+      if (enabled && selectorMode) setSelectorMode(false);
+      document.querySelectorAll(editableTextSelector).forEach((element) => {
+        element.contentEditable = enabled ? "true" : "false";
+        element.spellcheck = false;
+      });
+      if (adminToggleText) {
+        adminToggleText.textContent = enabled ? "Text editing on" : "Text editing off";
+      }
+    };
+
+    const setSelectorMode = (enabled) => {
+      selectorMode = enabled;
+      document.body.classList.toggle("editor-selector-mode", enabled);
+      adminSelectorTool?.classList.toggle("is-active", enabled);
+      if (adminSelectorTool) {
+        adminSelectorTool.textContent = enabled ? "Selector on" : "Selector off";
+      }
+      if (enabled && textEditing) {
+        textEditing = false;
+        document.querySelectorAll(editableTextSelector).forEach((element) => {
+          element.contentEditable = "false";
+        });
+        if (adminToggleText) adminToggleText.textContent = "Text editing off";
+      }
+    };
+
+    const setEditorMode = (enabled) => {
+      editorMode = enabled;
+      document.body.classList.toggle("editor-mode", enabled);
+      setTextEditing(enabled);
+      if (!enabled) {
+        selectEditorTarget(null);
+        setSelectorMode(false);
+        addPhotoMode = false;
+      }
+    };
+
+    const readImageFile = (file) => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+
+    const addLayerToSection = (section, src) => {
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = "Uploaded editable layer";
+      image.className = "editor-photo-layer";
+      image.dataset.editLayer = `layer-${Date.now()}-${Math.round(Math.random() * 1000)}`;
+      section.appendChild(image);
+      selectEditorTarget(image);
+    };
+
+    const currentSection = () => {
+      if (editorSelected?.matches("section")) return editorSelected;
+      return editorSelected?.closest?.("section") || document.querySelector("main section");
+    };
+
+    const setLayerDepth = (direction) => {
+      if (!editorSelected) return;
+      const current = Number(getComputedStyle(editorSelected).zIndex);
+      const fallback = editorSelected.classList.contains("editor-photo-layer") ? 6 : 1;
+      const next = Number.isFinite(current) ? current : fallback;
+      editorSelected.style.position ||= editorSelected.classList.contains("editor-photo-layer") ? "absolute" : "relative";
+      editorSelected.style.zIndex = String(Math.max(0, next + direction));
+    };
+
+    const canDeleteSelected = () => (
+      editorSelected &&
+      !editorSelected.matches("main, body, html, main section") &&
+      !editorSelected.closest(".admin-toolbar, .admin-modal, .modal-overlay")
+    );
+
+    const deleteSelected = () => {
+      if (!canDeleteSelected()) {
+        if (adminSelection) adminSelection.textContent = "Select an object to delete";
+        return;
+      }
+      const nextSelection = editorSelected.parentElement?.closest(selectableObjectSelector) || editorSelected.closest("section");
+      editorSelected.remove();
+      selectEditorTarget(nextSelection?.matches("main section") ? nextSelection : null);
+    };
+
+    const editableTransformTarget = () => {
+      if (!editorSelected) return null;
+      if (editorSelected.matches("main, body, html")) return null;
+      return editorSelected;
+    };
+
+    const transformState = (element) => ({
+      x: Number(element.dataset.editorX || 0),
+      y: Number(element.dataset.editorY || 0),
+      scale: Number(element.dataset.editorScale || 1),
+      rotate: Number(element.dataset.editorRotate || 0)
+    });
+
+    const applyTransformState = (element) => {
+      const state = transformState(element);
+      element.style.transform = `translate(${state.x}px, ${state.y}px) rotate(${state.rotate}deg) scale(${state.scale})`;
+      element.style.transformOrigin ||= "center center";
+      element.style.position ||= element.classList.contains("editor-photo-layer") ? "absolute" : "relative";
+      element.style.zIndex ||= element.classList.contains("editor-photo-layer") ? "6" : "1";
+    };
+
+    const nudgeSelected = (dx, dy) => {
+      const element = editableTransformTarget();
+      if (!element) return;
+      const state = transformState(element);
+      element.dataset.editorX = String(state.x + dx);
+      element.dataset.editorY = String(state.y + dy);
+      applyTransformState(element);
+    };
+
+    const scaleSelected = (delta) => {
+      const element = editableTransformTarget();
+      if (!element) return;
+      const state = transformState(element);
+      element.dataset.editorScale = String(Math.max(.25, Math.min(3, state.scale + delta)));
+      applyTransformState(element);
+    };
+
+    const rotateSelected = (delta) => {
+      const element = editableTransformTarget();
+      if (!element) return;
+      const state = transformState(element);
+      element.dataset.editorRotate = String(state.rotate + delta);
+      applyTransformState(element);
+    };
+
+    const changeFontSize = (delta) => {
+      if (!editorSelected) return;
+      const current = parseFloat(getComputedStyle(editorSelected).fontSize);
+      if (!Number.isFinite(current)) return;
+      editorSelected.style.fontSize = `${Math.max(8, current + delta)}px`;
+    };
+
+    const setTextAlign = (align) => {
+      if (!editorSelected) return;
+      editorSelected.style.textAlign = align;
+    };
+
+    const setSelectedColor = (property, value) => {
+      if (!editorSelected || !value) return;
+      editorSelected.style[property] = value;
+    };
+
+    const toggleStyleValue = (property, activeValue, inactiveValue = "") => {
+      if (!editorSelected) return;
+      const current = editorSelected.style[property] || getComputedStyle(editorSelected)[property];
+      editorSelected.style[property] = current === activeValue ? inactiveValue : activeValue;
+    };
+
+    const resetSelectedStyles = () => {
+      if (!editorSelected) return;
+      ["editorX", "editorY", "editorScale", "editorRotate"].forEach((key) => delete editorSelected.dataset[key]);
+      ["transform", "transformOrigin", "zIndex", "fontSize", "color", "backgroundColor", "fontWeight", "fontStyle", "textAlign"].forEach((property) => {
+        editorSelected.style[property] = "";
+      });
+      if (!editorSelected.classList.contains("editor-photo-layer")) {
+        editorSelected.style.position = "";
+      }
+    };
+
+    const saveEditorState = () => {
+      const state = {
+        texts: Array.from(document.querySelectorAll("[data-edit-id^='text-']")).map((element) => ({
+          id: element.dataset.editId,
+          html: element.innerHTML,
+          style: element.getAttribute("style") || "",
+          transform: {
+            x: element.dataset.editorX || "",
+            y: element.dataset.editorY || "",
+            scale: element.dataset.editorScale || "",
+            rotate: element.dataset.editorRotate || ""
+          }
+        })),
+        images: Array.from(document.querySelectorAll("img[data-edit-id^='image-']")).map((element) => ({
+          id: element.dataset.editId,
+          src: element.getAttribute("src"),
+          style: element.getAttribute("style") || "",
+          transform: {
+            x: element.dataset.editorX || "",
+            y: element.dataset.editorY || "",
+            scale: element.dataset.editorScale || "",
+            rotate: element.dataset.editorRotate || ""
+          }
+        })),
+        layouts: Array.from(document.querySelectorAll("[data-edit-id^='layout-'], [data-edit-id^='section-']")).map((element) => ({
+          id: element.dataset.editId,
+          style: element.getAttribute("style") || "",
+          transform: {
+            x: element.dataset.editorX || "",
+            y: element.dataset.editorY || "",
+            scale: element.dataset.editorScale || "",
+            rotate: element.dataset.editorRotate || ""
+          }
+        })),
+        layers: Array.from(document.querySelectorAll(".editor-photo-layer")).map((element) => ({
+          section: element.closest("section")?.dataset.editSection,
+          src: element.getAttribute("src"),
+          style: element.getAttribute("style") || "",
+          id: element.dataset.editLayer,
+          transform: {
+            x: element.dataset.editorX || "",
+            y: element.dataset.editorY || "",
+            scale: element.dataset.editorScale || "",
+            rotate: element.dataset.editorRotate || ""
+          }
+        }))
+      };
+      localStorage.setItem(EDITOR_STORAGE_KEY, JSON.stringify(state));
+    };
+
+    const applyEditorState = () => {
+      const raw = localStorage.getItem(EDITOR_STORAGE_KEY);
+      if (!raw) return;
+      try {
+        const state = JSON.parse(raw);
+        state.texts?.forEach((item) => {
+          const element = document.querySelector(`[data-edit-id="${item.id}"]`);
+          if (element) {
+            element.innerHTML = item.html;
+            element.setAttribute("style", item.style || "");
+            Object.entries(item.transform || {}).forEach(([key, value]) => {
+              if (value !== "") element.dataset[`editor${key[0].toUpperCase()}${key.slice(1)}`] = value;
+            });
+          }
+        });
+        state.images?.forEach((item) => {
+          const element = document.querySelector(`img[data-edit-id="${item.id}"]`);
+          if (element) {
+            element.src = item.src;
+            element.setAttribute("style", item.style || "");
+            Object.entries(item.transform || {}).forEach(([key, value]) => {
+              if (value !== "") element.dataset[`editor${key[0].toUpperCase()}${key.slice(1)}`] = value;
+            });
+          }
+        });
+        state.layouts?.forEach((item) => {
+          const element = document.querySelector(`[data-edit-id="${item.id}"]`);
+          if (element) {
+            element.setAttribute("style", item.style || "");
+            Object.entries(item.transform || {}).forEach(([key, value]) => {
+              if (value !== "") element.dataset[`editor${key[0].toUpperCase()}${key.slice(1)}`] = value;
+            });
+          }
+        });
+        state.layers?.forEach((item) => {
+          const section = document.querySelector(`[data-edit-section="${item.section}"]`);
+          if (!section || !item.src) return;
+          const image = document.createElement("img");
+          image.src = item.src;
+          image.alt = "Uploaded editable layer";
+          image.className = "editor-photo-layer";
+          image.dataset.editLayer = item.id || `layer-${Date.now()}`;
+          image.setAttribute("style", item.style || "");
+          Object.entries(item.transform || {}).forEach(([key, value]) => {
+            if (value !== "") image.dataset[`editor${key[0].toUpperCase()}${key.slice(1)}`] = value;
+          });
+          section.appendChild(image);
+        });
+      } catch {
+        localStorage.removeItem(EDITOR_STORAGE_KEY);
+      }
+    };
+
+    applyEditorState();
+
+    adminSignIn?.addEventListener("click", openAdminLogin);
+    adminCancel?.addEventListener("click", closeAdminLogin);
+    adminLoginModal?.addEventListener("click", (event) => {
+      if (event.target === adminLoginModal) closeAdminLogin();
+    });
+
+    adminLoginForm?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const email = document.querySelector("#admin-email")?.value.trim().toLowerCase();
+      const password = document.querySelector("#admin-password")?.value || "";
+      const passwordHash = await hashText(password);
+      if (email === ADMIN_EMAIL && passwordHash === ADMIN_PASSWORD_HASH) {
+        closeAdminLogin();
+        setEditorMode(true);
+      } else if (adminError) {
+        adminError.textContent = "Email or password is incorrect.";
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!editorMode) return;
+      if (event.target.closest(".admin-toolbar, .admin-modal")) return;
+      const target = event.target.closest(`${selectableObjectSelector}, main section`);
+      if (!target) return;
+      if (target.closest(".modal-overlay")) return;
+      selectEditorTarget(target);
+      if (addPhotoMode && target.closest("section")) {
+        adminImageInput.dataset.mode = "add";
+        adminImageInput.click();
+        addPhotoMode = false;
+      }
+    }, true);
+
+    adminUploadReplace?.addEventListener("click", () => {
+      adminImageInput.dataset.mode = "replace";
+      adminImageInput.click();
+    });
+
+    adminAddPhoto?.addEventListener("click", () => {
+      addPhotoMode = true;
+      if (adminSelection) adminSelection.textContent = "Click a section";
+    });
+
+    adminImageInput?.addEventListener("change", async () => {
+      const file = adminImageInput.files?.[0];
+      if (!file) return;
+      const src = await readImageFile(file);
+      if (adminImageInput.dataset.mode === "add") {
+        addLayerToSection(currentSection(), src);
+      } else if (editorSelected?.matches("img")) {
+        editorSelected.src = src;
+      } else {
+        addLayerToSection(currentSection(), src);
+      }
+      adminImageInput.value = "";
+    });
+
+    adminBringFront?.addEventListener("click", () => setLayerDepth(1));
+    adminSendBack?.addEventListener("click", () => setLayerDepth(-1));
+    adminSelectorTool?.addEventListener("click", () => setSelectorMode(!selectorMode));
+    adminDeleteSelected?.addEventListener("click", deleteSelected);
+    adminToggleText?.addEventListener("click", () => setTextEditing(!textEditing));
+    adminMoveLeft?.addEventListener("click", () => nudgeSelected(-10, 0));
+    adminMoveRight?.addEventListener("click", () => nudgeSelected(10, 0));
+    adminMoveUp?.addEventListener("click", () => nudgeSelected(0, -10));
+    adminMoveDown?.addEventListener("click", () => nudgeSelected(0, 10));
+    adminScaleDown?.addEventListener("click", () => scaleSelected(-.05));
+    adminScaleUp?.addEventListener("click", () => scaleSelected(.05));
+    adminRotateLeft?.addEventListener("click", () => rotateSelected(-5));
+    adminRotateRight?.addEventListener("click", () => rotateSelected(5));
+    adminFontDown?.addEventListener("click", () => changeFontSize(-2));
+    adminFontUp?.addEventListener("click", () => changeFontSize(2));
+    adminBold?.addEventListener("click", () => toggleStyleValue("fontWeight", "900", ""));
+    adminItalic?.addEventListener("click", () => toggleStyleValue("fontStyle", "italic", ""));
+    adminAlignLeft?.addEventListener("click", () => setTextAlign("left"));
+    adminAlignCenter?.addEventListener("click", () => setTextAlign("center"));
+    adminAlignRight?.addEventListener("click", () => setTextAlign("right"));
+    adminTextColor?.addEventListener("input", (event) => setSelectedColor("color", event.target.value));
+    adminBgColor?.addEventListener("input", (event) => setSelectedColor("backgroundColor", event.target.value));
+    adminResetSelected?.addEventListener("click", resetSelectedStyles);
+    adminSave?.addEventListener("click", saveEditorState);
+    adminReset?.addEventListener("click", () => {
+      localStorage.removeItem(EDITOR_STORAGE_KEY);
+      window.location.reload();
+    });
+    adminSignOut?.addEventListener("click", () => {
+      setEditorMode(false);
+    });
+
+    window.addEventListener("pagehide", () => {
+      setEditorMode(false);
+    });
+
+    adminExport?.addEventListener("click", () => {
+      const clone = document.documentElement.cloneNode(true);
+      clone.querySelectorAll(".admin-signin, .admin-modal, .admin-toolbar, #adminImageInput").forEach((element) => element.remove());
+      clone.querySelectorAll("[contenteditable]").forEach((element) => element.removeAttribute("contenteditable"));
+      clone.querySelectorAll(".editor-selected").forEach((element) => element.classList.remove("editor-selected"));
+      const blob = new Blob(["<!doctype html>\n" + clone.outerHTML], { type: "text/html" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "virchi-edited.html";
+      link.click();
+      URL.revokeObjectURL(link.href);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!editorMode || !editorSelected) return;
+      if (event.target.closest?.(".admin-toolbar, .admin-modal")) return;
+      if (selectorMode && (event.key === "Delete" || event.key === "Backspace")) {
+        event.preventDefault();
+        deleteSelected();
+        return;
+      }
+      const step = event.shiftKey ? 10 : 2;
+      const keyMap = {
+        ArrowLeft: [-step, 0],
+        ArrowRight: [step, 0],
+        ArrowUp: [0, -step],
+        ArrowDown: [0, step]
+      };
+      const delta = keyMap[event.key];
+      if (!delta) return;
+      event.preventDefault();
+      nudgeSelected(delta[0], delta[1]);
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+      if (!editorMode || !selectorMode) return;
+      if (event.button !== 0 || event.target.closest(".admin-toolbar, .admin-modal, .modal-overlay")) return;
+      const target = event.target.closest(selectableObjectSelector);
+      if (!target) return;
+      selectEditorTarget(target);
+      const state = transformState(target);
+      dragState = {
+        element: target,
+        startClientX: event.clientX,
+        startClientY: event.clientY,
+        startX: state.x,
+        startY: state.y
+      };
+      target.setPointerCapture?.(event.pointerId);
+      event.preventDefault();
+    });
+
+    document.addEventListener("pointermove", (event) => {
+      if (!dragState) return;
+      dragState.element.dataset.editorX = String(dragState.startX + event.clientX - dragState.startClientX);
+      dragState.element.dataset.editorY = String(dragState.startY + event.clientY - dragState.startClientY);
+      applyTransformState(dragState.element);
+    });
+
+    document.addEventListener("pointerup", () => {
+      dragState = null;
+    });
+  </script>
+</body>
+</html>
