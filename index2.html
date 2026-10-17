@@ -1,0 +1,2855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Data makes Design. A new library of practical data assets from Mirchi Marketing Studio.">
+  <title>Our Data Assets | Mirchi Marketing Studio</title>
+  <style>
+    :root {
+      --red: #ec1b24;
+      --ink: #1b1011;
+      --paper: #fffdfb;
+      --cream: #f7f3ec;
+      --yellow: #ffd400;
+      --violet: #c21bff;
+      --leaf: #5fae62;
+      --mute: #5a3b3d;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      min-width: 0;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body.modal-open { overflow: hidden; }
+
+    /* ---------- hero (same as before, countdown removed) ---------- */
+    .launch-page {
+      position: relative;
+      display: grid;
+      min-height: 100svh;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .launch-page::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      background: url("asset2/data-assets-launch-background.png") center / cover no-repeat;
+    }
+
+    .launch-page::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255, 253, 251, .97) 0%, rgba(255, 253, 251, .78) 33%, rgba(255, 253, 251, .1) 72%, rgba(255, 253, 251, .03) 100%);
+      pointer-events: none;
+    }
+
+    .site-header,
+    .launch-content,
+    .launch-footer,
+    .wrap {
+      width: min(100% - 48px, 1360px);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 28px 0 0;
+    }
+
+    /* round logo stays pinned top-left while scrolling and always links home.
+       Same size + spot as the pinned round logo on index.html: 96px at (88, 12);
+       82px at (34, 10) up to 900px wide; 56px at (12, 12) on phones. */
+    .site-header { padding-left: max(72px, calc(200px - max(24px, (100vw - 1360px) / 2))); }
+
+    .home-logo {
+      position: fixed;
+      z-index: 2147483647; /* top-most layer: above popups, the archive and the hand overlay */
+      top: 12px;
+      left: 88px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .25s ease;
+    }
+
+    .home-logo.is-scrolled { box-shadow: 0 10px 24px rgba(27, 16, 17, .22); }
+
+    @media (max-width: 900px) {
+      .home-logo { top: 10px; left: 34px; width: 82px; height: 82px; }
+      .site-header { padding-left: 112px; }
+    }
+
+    /* ---------- footer ribbon (same as home page) ---------- */
+    .footer {
+      display: block;
+      overflow: hidden;
+      padding: 0;
+      color: #fff;
+      background: #c9322c;
+      border-top: 1px solid rgba(120, 10, 8, .18);
+      font-size: 11px;
+      text-decoration: none;
+    }
+
+    .footer-row {
+      width: max-content;
+      min-width: 200%;
+      margin: 0;
+      display: flex;
+      gap: 34px;
+      align-items: center;
+      padding: 13px 0;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      animation: footerRibbon 24s linear infinite;
+    }
+
+    .footer:hover .footer-row,
+    .footer:focus-visible .footer-row { animation-play-state: paused; }
+
+    .footer:focus-visible { outline: 3px solid var(--ink); outline-offset: -3px; }
+
+    .footer-row span {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .footer-row span::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      margin-left: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .72);
+    }
+
+    @keyframes footerRibbon {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .home-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .home-logo:hover,
+    .home-logo:focus-visible {
+      transform: rotate(-5deg) scale(1.05);
+      outline: none;
+    }
+
+    .home-logo:focus-visible {
+      outline: 3px solid rgba(236, 27, 36, .36);
+      outline-offset: 4px;
+      border-radius: 50%;
+    }
+
+    .studio-mark {
+      color: var(--red);
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .header-links { display: flex; gap: 22px; }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      border-bottom: 2px solid var(--red);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .home-link:hover,
+    .home-link:focus-visible {
+      color: var(--red);
+      transform: translateX(-3px);
+      outline: none;
+    }
+
+    .launch-content {
+      display: grid;
+      align-content: center;
+      justify-items: start;
+      padding: 78px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 16px;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .signal {
+      position: relative;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .signal::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      animation: ping 1.6s ease-out infinite;
+    }
+
+    @keyframes ping {
+      from { transform: scale(.4); opacity: 1; }
+      to { transform: scale(1.6); opacity: 0; }
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: clamp(40px, 5.8vw, 96px);
+      font-weight: 900;
+      line-height: .88;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    h1 .word {
+      display: inline-block;
+      transition: transform .25s cubic-bezier(.3, 1.6, .5, 1), color .2s;
+    }
+
+    h1 .word:hover { transform: translateY(-6px) rotate(-2deg); color: var(--red); }
+
+    /* keep the comma tight to "Design" and clear of the red line below */
+    h1 .comma { display: inline-block; margin-left: -.06em; }
+
+    h1 span.shine {
+      position: relative;
+      display: block;
+      margin-top: .26em;
+      color: var(--red);
+      -webkit-text-stroke: 1px var(--red);
+      text-shadow: 5px 5px 0 rgba(236, 27, 36, .16);
+      background: linear-gradient(100deg, var(--red) 40%, #ffd1d3 50%, var(--red) 60%) 0 0 / 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 4.5s ease-in-out infinite;
+    }
+
+    @keyframes shine {
+      0%, 55% { background-position: 100% 0; }
+      100% { background-position: 0 0; }
+    }
+
+    .launch-copy {
+      max-width: 480px;
+      margin: 28px 0 0;
+      font-size: clamp(15px, 1.5vw, 19px);
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    /* the old countdown row becomes a row of live widget "signals" */
+    .signals {
+      display: grid;
+      width: min(100%, 700px);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 38px;
+    }
+
+    .signal-unit {
+      min-width: 0;
+      padding: 12px 10px 10px;
+      border: 0;
+      border-top: 4px solid var(--red);
+      background: rgba(255, 253, 251, .86);
+      box-shadow: 0 8px 0 rgba(236, 27, 36, .12);
+      color: var(--ink);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s;
+    }
+
+    .signal-unit:hover,
+    .signal-unit:focus-visible {
+      transform: translateY(-5px);
+      box-shadow: 0 13px 0 rgba(236, 27, 36, .2);
+      background: #fff;
+      outline: none;
+    }
+
+    .signal-num {
+      display: block;
+      color: var(--red);
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: .85;
+    }
+
+    .signal-name {
+      display: block;
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .signal-state {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 6px;
+      color: var(--mute);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .signal-state::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #18b25c;
+    }
+
+    .signal-state.soon::before { background: var(--yellow); animation: blink 1s steps(2) infinite; }
+    .signal-state.play::before { background: var(--violet); }
+
+    @keyframes blink { 50% { opacity: .2; } }
+
+    .launch-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 0 26px;
+      color: var(--mute);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .launch-date { display: inline-flex; align-items: center; gap: 8px; color: var(--red); }
+
+    .loading-dot {
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--red);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: turn .8s linear infinite;
+    }
+
+    @keyframes turn { to { transform: rotate(360deg); } }
+
+    .launch-date .dots::after {
+      content: "";
+      display: inline-block;
+      width: 1.6em;
+      text-align: left;
+      animation: dots 1.4s steps(4) infinite;
+    }
+
+    @keyframes dots {
+      0% { content: ""; }
+      25% { content: "."; }
+      50% { content: ".."; }
+      75% { content: "..."; }
+    }
+
+    /* dots sit above the hero photo + wash, below the text */
+    .launch-page .hero-dots { z-index: 0; }
+    .launch-page > :not(canvas) { position: relative; z-index: 1; }
+
+    /* ---------- booking form: copies the "Contact for collaboration" form on index.html ---------- */
+    #modal-book {
+      padding: 28px;
+      background: rgba(15, 23, 42, .54);
+      backdrop-filter: blur(10px);
+    }
+
+    .contact-modal {
+      position: relative;
+      width: min(940px, 100%);
+      max-height: min(86vh, 820px);
+      overflow: auto;
+      overscroll-behavior: contain;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, .42);
+      border-radius: 14px;
+      background: #fffaf4;
+      box-shadow: 0 32px 90px rgba(0, 0, 0, .26);
+      color: #111722;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+      transform: translateY(12px) scale(.98);
+      transition: transform .22s ease;
+    }
+
+    .modal.in .contact-modal { transform: translateY(0) scale(1); }
+
+    .cm-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      border: 1px solid #d9e0ea;
+      border-radius: 50%;
+      background: #fff;
+      color: #101827;
+      font: 400 22px/1 Inter, ui-sans-serif, system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .cm-close:hover,
+    .cm-close:focus-visible { border-color: rgba(201, 50, 44, .72); outline: none; }
+
+    .cm-head { max-width: 640px; margin-bottom: 22px; padding-right: 40px; }
+
+    .cm-head h2 {
+      margin: 0 0 6px;
+      color: #101827;
+      font-size: clamp(28px, 3.1vw, 42px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .cm-head p { margin: 0; color: #4b5563; font-size: 13px; }
+
+    .cm-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .cm-full { grid-column: 1 / -1; }
+
+    .cm-section-title {
+      grid-column: 1 / -1;
+      margin: 8px 0 -4px;
+      color: #111827;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .cm-field { display: grid; gap: 7px; }
+
+    .cm-field label { color: #293449; font-size: 11px; font-weight: 800; }
+
+    .cm-field input,
+    .cm-field select,
+    .cm-field textarea {
+      width: 100%;
+      min-height: 40px;
+      padding: 0 12px;
+      border: 1px solid #d9e0ea;
+      border-radius: 8px;
+      background: #fff;
+      color: #111722;
+      font: 400 12px/1.4 Inter, ui-sans-serif, system-ui, sans-serif;
+      transition: border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .cm-field input:focus,
+    .cm-field select:focus,
+    .cm-field textarea:focus {
+      border-color: rgba(201, 50, 44, .72);
+      box-shadow: 0 0 0 3px rgba(201, 50, 44, .1);
+      outline: none;
+    }
+
+    .cm-field textarea { min-height: 88px; padding-top: 12px; resize: vertical; }
+
+    .cm-choice-grid {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .cm-choice {
+      position: relative;
+      min-height: 132px;
+      padding: 14px;
+      border: 1px solid rgba(17, 24, 39, .15);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .cm-choice input { position: absolute; opacity: 0; pointer-events: none; }
+
+    .cm-choice strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #111827;
+      font-size: 13px;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    .cm-choice span { color: #5b6470; font-size: 11px; line-height: 1.35; }
+
+    .cm-choice:has(input:checked) {
+      border-color: #e74b25;
+      background: #fff2df;
+      box-shadow: inset 0 0 0 2px rgba(231, 75, 37, .18), 0 10px 22px rgba(15, 23, 42, .08);
+      transform: translateY(-2px);
+    }
+
+    .cm-choice:has(input:focus-visible) { outline: 3px solid rgba(201, 50, 44, .38); outline-offset: 2px; }
+
+    .cm-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .cm-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 150px;
+      min-height: 34px;
+      padding: 0 16px;
+      border: 0;
+      border-radius: 4px;
+      color: #fff;
+      background: #101827;
+      font: 800 12px/1 Inter, ui-sans-serif, system-ui, sans-serif;
+      cursor: pointer;
+      transition: background .18s ease, transform .18s ease;
+    }
+
+    .cm-button:hover,
+    .cm-button:focus-visible { background: #c9322c; transform: translateY(-1px); outline: none; }
+
+    .cm-button[disabled] { opacity: .6; cursor: progress; transform: none; }
+
+    .cm-note { margin: 0; color: #667085; font-size: 10px; }
+
+    .contact-modal .form-error { margin: 0; color: #c9322c; font-size: 12px; font-weight: 700; }
+
+    .book-done[hidden],
+    .book-form-wrap[hidden] { display: none; }
+
+    .book-done {
+      display: grid;
+      place-items: center;
+      gap: 10px;
+      padding: 48px 24px 52px;
+      text-align: center;
+    }
+
+    .book-done .tick {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #101827;
+      color: #fff;
+      font-size: 30px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, .18);
+      animation: pop .45s cubic-bezier(.3, 1.6, .5, 1);
+    }
+
+    @keyframes pop { from { transform: scale(.3); } }
+
+    .book-done h3 { margin: 6px 0 0; color: #101827; font-size: clamp(26px, 3vw, 36px); font-weight: 700; line-height: 1.05; }
+
+    .book-done p { margin: 0; color: #4b5563; font-size: 13px; }
+
+    .return-bar { width: 180px; height: 4px; margin-top: 6px; border-radius: 4px; background: rgba(15, 23, 42, .1); overflow: hidden; }
+    .return-bar i { display: block; height: 100%; background: #c9322c; width: 0; }
+    .return-bar.go i { width: 100%; transition: width 3s linear; }
+
+    @media (max-width: 760px) {
+      #modal-book { padding: 14px; }
+      .contact-modal { padding: 22px 16px; }
+      .cm-grid, .cm-choice-grid { grid-template-columns: 1fr; }
+      .cm-choice { min-height: 0; }
+    }
+
+    .scroll-cue {
+      color: inherit;
+      text-decoration: none;
+      animation: bob 1.8s ease-in-out infinite;
+    }
+
+    @keyframes bob { 50% { transform: translateY(5px); } }
+
+    /* ---------- widgets section ---------- */
+    .widgets {
+      position: relative;
+      padding: 110px 0 120px;
+      background: var(--cream);
+      isolation: isolate;
+    }
+
+    .dotfield {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 44px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: clamp(36px, 5.2vw, 78px);
+      font-weight: 900;
+      line-height: .9;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .section-head h2 em { color: var(--red); font-style: normal; }
+
+    .section-head p {
+      max-width: 340px;
+      margin: 0;
+      color: var(--mute);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .hint-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border: 1px dashed var(--ink);
+      background: rgba(255, 253, 251, .8);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      --rx: 0deg;
+      --ry: 0deg;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      text-align: left;
+      font: inherit;
+      padding: 0;
+      cursor: pointer;
+      transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));
+      transition: transform .18s ease-out, box-shadow .2s ease;
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      box-shadow: 14px 14px 0 var(--red);
+      outline: none;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .45), transparent 45%);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .card:hover::after { opacity: 1; }
+
+    .card-1 { grid-column: span 7; grid-row: span 2; }
+    .card-2 { grid-column: span 5; }
+    .card-3 { grid-column: span 5; }
+    .card-4 { grid-column: 1 / -1; }
+
+    .cover {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 2px solid var(--ink);
+      background: var(--cream);
+    }
+
+    .card-1 .cover { aspect-ratio: 1 / 1; flex: 1; }
+    .card-2 .cover,
+    .card-3 .cover { aspect-ratio: 16 / 10; }
+
+    .cover img,
+    .cover video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+    }
+
+    .card:hover .cover img,
+    .card:hover .cover video { transform: scale(1.04); }
+
+    .tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .tag i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #3ddc84;
+    }
+
+    .tag.soon i { background: var(--yellow); animation: blink 1s steps(2) infinite; }
+
+    .free-flag {
+      position: absolute;
+      right: -2px;
+      bottom: 22px;
+      z-index: 2;
+      padding: 10px 14px;
+      background: var(--red);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transform: rotate(-3deg);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .card-body {
+      display: grid;
+      gap: 8px;
+      padding: 20px 22px 22px;
+    }
+
+    .card-kicker {
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: clamp(23px, 2.3vw, 34px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--mute);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .card-cta b {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      transition: transform .25s;
+    }
+
+    .card:hover .card-cta b { transform: rotate(-45deg); }
+
+    /* archive cover: a little stack of flipping "pages" */
+    .zine {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle, rgba(27, 16, 17, .16) 1.3px, transparent 1.6px) 0 0 / 14px 14px,
+        #efe6d6;
+    }
+
+    .page {
+      position: absolute;
+      width: 34%;
+      aspect-ratio: 3 / 4;
+      border: 2px solid var(--ink);
+      box-shadow: 5px 5px 0 rgba(27, 16, 17, .8);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8px;
+      color: #fff;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: clamp(13px, 1.4vw, 19px);
+      line-height: .95;
+      text-transform: uppercase;
+      transition: transform .5s cubic-bezier(.3, 1.4, .5, 1);
+    }
+
+    .page small {
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      opacity: .85;
+    }
+
+    .page.p1 { background: conic-gradient(from 180deg at 50% 100%, #e7b54a, #b03a2e, #e7b54a, #1d3557, #e7b54a); transform: translateX(-62%) rotate(-10deg); }
+    .page.p2 { background: linear-gradient(#ec1b24 0 40%, #111 40% 48%, #f4e3c3 48%); color: #111; transform: rotate(2deg); z-index: 2; }
+    .page.p3 { background: radial-gradient(circle at 70% 30%, #ffd400 0 22%, transparent 23%), linear-gradient(135deg, #1d4ed8, #0b1d4f); transform: translateX(62%) rotate(9deg); }
+
+    .card:hover .page.p1 { transform: translateX(-80%) rotate(-16deg); }
+    .card:hover .page.p2 { transform: translateY(-8px) rotate(-2deg) scale(1.05); }
+    .card:hover .page.p3 { transform: translateX(80%) rotate(15deg); }
+
+    /* upcoming loader */
+    .loader {
+      display: grid;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .loader-bar {
+      height: 12px;
+      border: 2px solid var(--ink);
+      background:
+        repeating-linear-gradient(90deg, transparent 0 10px, rgba(27, 16, 17, .08) 10px 12px),
+        var(--paper);
+      overflow: hidden;
+    }
+
+    .loader-bar i {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: repeating-linear-gradient(-45deg, var(--red) 0 8px, #ff5a60 8px 16px);
+      background-size: 22px 22px;
+      animation: stripes .6s linear infinite;
+      transition: width .5s ease;
+    }
+
+    @keyframes stripes { to { background-position: 22px 0; } }
+
+    .loader-msg.speaks {
+      display: inline-block;
+      color: var(--red);
+      font-weight: 900;
+      animation: speak .5s cubic-bezier(.3, 1.6, .5, 1);
+    }
+
+    @keyframes speak { from { transform: scale(.6); opacity: 0; } }
+
+    .loader-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 11px;
+      color: var(--mute);
+    }
+
+    .play-badge {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, rgba(27, 16, 17, 0), rgba(27, 16, 17, .35));
+    }
+
+    .play-badge span {
+      display: grid;
+      place-items: center;
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      font-size: 22px;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform .25s;
+    }
+
+    .card:hover .play-badge span { transform: scale(1.12); }
+
+    /* ---------- playground card ---------- */
+    .card-4 {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      overflow: hidden;
+      background: var(--ink);
+      color: var(--paper);
+      cursor: default;
+    }
+
+    .card-4:hover { box-shadow: 14px 14px 0 var(--violet); }
+
+    .card-4 .card-body {
+      align-content: center;
+      padding: clamp(26px, 4vw, 56px);
+    }
+
+    .card-4 h3 {
+      font-size: clamp(36px, 5.2vw, 82px);
+      line-height: .9;
+    }
+
+    .card-4 h3 .wiggle {
+      display: inline-block;
+      color: var(--yellow);
+      animation: wiggle 2.4s ease-in-out infinite;
+      transform-origin: 70% 80%;
+    }
+
+    @keyframes wiggle {
+      0%, 60%, 100% { transform: rotate(0); }
+      65% { transform: rotate(-14deg); }
+      72% { transform: rotate(12deg); }
+      79% { transform: rotate(-8deg); }
+      86% { transform: rotate(6deg); }
+    }
+
+    .card-4 p { color: rgba(255, 253, 251, .72); max-width: 460px; }
+
+    .card-4 .card-kicker { color: var(--yellow); }
+
+    .mini-guide {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 6px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .mini-guide li {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px 7px 7px;
+      border: 1px solid rgba(255, 253, 251, .3);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .mini-guide b {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      background: rgba(255, 253, 251, .1);
+      font-size: 13px;
+    }
+
+    .play-zone {
+      position: relative;
+      min-height: 240px;
+      margin-top: 14px;
+    }
+
+    .runaway {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 22px;
+      border: 2px solid var(--paper);
+      background: var(--red);
+      color: #fff;
+      font: 900 14px/1 Arial, Helvetica, sans-serif;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 5px 5px 0 var(--yellow);
+      transition: left .32s cubic-bezier(.3, 1.5, .5, 1), top .32s cubic-bezier(.3, 1.5, .5, 1), background .2s;
+    }
+
+    .runaway.caught { background: var(--violet); }
+
+    .runaway:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+    .play-score {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 11px;
+      color: rgba(255, 253, 251, .6);
+    }
+
+    .play-score b { color: var(--yellow); }
+
+    .globe-peek {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 360px;
+      background:
+        radial-gradient(circle at 50% 45%, #1c1c22 0, #050506 70%);
+      overflow: hidden;
+    }
+
+    .globe-peek::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, .09) 1px, transparent 1.6px);
+      background-size: 8px 8px;
+    }
+
+    .orb {
+      position: relative;
+      width: min(70%, 320px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        repeating-linear-gradient(90deg, rgba(64, 224, 255, .9) 0 2px, transparent 2px 22px),
+        radial-gradient(circle at 35% 30%, #2a2a33, #050506 70%);
+      box-shadow: 0 0 80px rgba(255, 46, 166, .35), inset -30px -30px 60px rgba(0, 0, 0, .7);
+      animation: spin 9s linear infinite;
+      background-size: 200% 100%, 100% 100%;
+    }
+
+    .orb::after {
+      content: "DATA · DATA · DATA · DATA · ";
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      top: 46%;
+      padding: 4px 0;
+      background: #ff2ea6;
+      color: #0a0a0c;
+      font: 700 11px/1 ui-monospace, Menlo, Consolas, monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      transform: rotate(-12deg);
+    }
+
+    @keyframes spin { to { background-position: -200% 0, 0 0; } }
+
+    .peek-label {
+      position: absolute;
+      bottom: 16px;
+      left: 0;
+      right: 0;
+      color: #e8e8ee;
+      font: 700 11px ui-monospace, Menlo, Consolas, monospace;
+      letter-spacing: .14em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    /* ---------- footer strip ---------- */
+    .closing {
+      padding: 70px 0;
+      background: var(--red);
+      color: #fff;
+    }
+
+    .closing .wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .closing h2 {
+      margin: 0;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: clamp(30px, 4.4vw, 62px);
+      line-height: .94;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    /* email + socials: same pieces as index.html's "Why we started" card,
+       with the email set in white so it reads on the red strip */
+    .why-contact-actions {
+      flex: 1 1 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, .28);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .why-contact-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    .why-contact-row:hover,
+    .why-contact-row:focus-visible {
+      color: #fff;
+      outline: 2px solid rgba(255, 255, 255, .45);
+      outline-offset: 4px;
+    }
+
+    .mail-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      color: #c9322c;
+      background: #fff;
+      box-shadow: 0 8px 18px rgba(27, 16, 17, .2);
+    }
+
+    .mail-icon svg,
+    .why-social-link svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+    }
+
+    .why-social-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 6px 9px 6px 11px;
+      border: 1px solid #d7e0ea;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, .92);
+    }
+
+    .why-social-label {
+      color: #071f3d;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .why-social-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .why-social-link {
+      display: inline-grid;
+      width: 27px;
+      height: 27px;
+      place-items: center;
+      border-radius: 50%;
+      color: #c9322c;
+      background: #fff;
+      box-shadow: 0 3px 9px rgba(7, 31, 61, .1);
+      transition: color .2s ease, background .2s ease, transform .2s ease;
+    }
+
+    .why-social-link:hover,
+    .why-social-link:focus-visible {
+      color: #fff;
+      background: #c9322c;
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    @media (max-width: 700px) {
+      .why-contact-row { align-items: flex-start; font-size: 12px; }
+      .why-contact-actions { align-items: stretch; gap: 12px; }
+      .why-social-card { width: 100%; justify-content: space-between; }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 22px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-decoration: none;
+      text-transform: uppercase;
+      box-shadow: 5px 5px 0 var(--ink);
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    .btn:hover,
+    .btn:focus-visible { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); outline: none; }
+
+    .btn.red { background: var(--red); color: #fff; }
+
+    /* ---------- popups ---------- */
+    .modal {
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      background: rgba(27, 16, 17, .66);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+
+    .modal[hidden] { display: none; }
+
+    .modal.in { opacity: 1; }
+
+    .modal-panel {
+      display: flex;
+      flex-direction: column;
+      width: min(1280px, 100%);
+      max-height: 100%;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      box-shadow: 10px 10px 0 var(--red);
+      transform: translateY(16px) scale(.98);
+      transition: transform .25s cubic-bezier(.2, .8, .3, 1);
+      overflow: hidden;
+    }
+
+    .modal.in .modal-panel { transform: none; }
+
+    .modal-panel.tall { height: 100%; }
+    .modal-panel.video { width: min(1100px, 100%); background: var(--ink); }
+    .modal-panel.globe { --g: min(600px, calc(100svh - 110px)); width: min(calc(var(--g) + 330px), 100%); background: #050506; box-shadow: 10px 10px 0 var(--violet); }
+
+    .modal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 10px 10px 16px;
+      border-bottom: 2px solid var(--ink);
+      background: var(--paper);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .modal-bar span { color: var(--red); }
+
+    .modal-x {
+      flex: none;
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .modal-x:hover,
+    .modal-x:focus-visible { background: var(--ink); color: #fff; outline: none; }
+
+    .modal-body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+
+    .unlock-banner {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 18px;
+      padding: 12px 16px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .unlock-banner b { color: var(--yellow); }
+
+    .unlock-banner .btn { padding: 10px 14px; font-size: 11px; box-shadow: 3px 3px 0 var(--red); }
+
+    .palette-slot { padding: 14px; }
+
+    .modal video {
+      display: block;
+      width: 100%;
+      max-height: calc(100svh - 190px);
+      background: #000;
+    }
+
+    .video-note {
+      padding: 14px 16px;
+      color: rgba(255, 253, 251, .78);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .video-note b { color: var(--yellow); }
+
+    .globe-layout { display: grid; grid-template-columns: minmax(0, var(--g)) minmax(0, 1fr); }
+
+    .globe-stage { min-width: 0; }
+
+    .globe-stage .dgw { border-radius: 0; }
+
+    .globe-guide {
+      padding: 20px 20px 22px;
+      background: var(--ink);
+      color: rgba(255, 253, 251, .82);
+      font-size: 13px;
+      line-height: 1.5;
+      overflow: auto;
+      max-height: var(--g);
+    }
+
+    .globe-guide h3 {
+      margin: 0 0 14px;
+      color: var(--yellow);
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: 34px;
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    .globe-guide h4 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 16px 0 8px;
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .globe-guide h4 span { padding: 2px 6px; background: var(--violet); color: #fff; }
+
+    .globe-guide ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+
+    .globe-guide b { color: #fff; }
+
+    .globe-guide kbd {
+      padding: 0 5px;
+      border: 1px solid rgba(255, 255, 255, .5);
+      font: 700 11px ui-monospace, Menlo, Consolas, monospace;
+    }
+
+    .cam-note {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin: 16px 0 0;
+      padding: 10px;
+      border: 1px dashed rgba(255, 255, 255, .35);
+      font-size: 12px;
+    }
+
+    .cam-note i { flex: none; width: 8px; height: 8px; margin-top: 5px; border-radius: 50%; background: #3ddc84; }
+
+    @media (max-width: 860px) {
+      .modal-panel.globe { --g: 100%; width: min(600px, 100%); max-height: 100%; }
+      .globe-layout { grid-template-columns: 1fr; }
+      .globe-guide { max-height: none; }
+    }
+
+    /* ---------- cursor + reveal ---------- */
+    .cursor {
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      display: grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      margin: -9px 0 0 -9px;
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      pointer-events: none;
+      transition: width .2s, height .2s, margin .2s, background .2s, opacity .2s;
+      opacity: 0;
+    }
+
+    .cursor.on { opacity: 1; }
+
+    .cursor.big {
+      width: 74px;
+      height: 74px;
+      margin: -37px 0 0 -37px;
+      background: var(--red);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1);
+    }
+
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 1000px) {
+      .card-1, .card-2, .card-3 { grid-column: 1 / -1; grid-row: auto; }
+      .card-1 .cover { aspect-ratio: 4 / 3; }
+      .card-4 { grid-template-columns: 1fr; }
+      .globe-peek { min-height: 280px; }
+    }
+
+    @media (max-width: 700px) {
+      .launch-page::after {
+        background: linear-gradient(180deg, rgba(255, 253, 251, .94) 0%, rgba(255, 253, 251, .8) 52%, rgba(255, 253, 251, .28) 100%);
+      }
+
+      .site-header,
+      .launch-content,
+      .launch-footer,
+      .wrap {
+        width: min(100% - 32px, 560px);
+      }
+
+      .site-header { padding-top: 18px; padding-left: 116px; }
+
+      .header-links .home-link:first-child { display: none; }
+
+      .launch-content { align-content: start; padding: 64px 0 36px; }
+
+      h1 { font-size: clamp(36px, 11vw, 64px); }
+
+      .launch-copy { margin-top: 22px; }
+
+      .signals { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 30px; }
+
+      .launch-footer { align-items: flex-start; flex-direction: column; padding-bottom: 18px; }
+
+      .section-head { flex-direction: column; align-items: flex-start; }
+
+      .widgets { padding: 80px 0 90px; }
+
+      .modal { padding: 0; }
+
+      .modal-panel,
+      .modal-panel.tall { width: 100%; height: 100%; max-height: 100%; border: 0; box-shadow: none; }
+
+      .modal-panel.globe { height: auto; width: 100%; }
+    }
+
+    @media (max-width: 640px) {
+      .home-logo { top: 12px; left: 12px; width: 56px; height: 56px; }
+      .site-header { padding-left: 64px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- pinned logo lives at the top level so no section's stacking layer can sit above it -->
+  <a class="home-logo" href="index.html" aria-label="Back to Mirchi Marketing Studio home" title="Home">
+    <img src="asset2/mirchi-round-logo.png" alt="">
+  </a>
+  <main>
+    <section class="launch-page" aria-labelledby="launch-title">
+      <canvas class="dotfield hero-dots" aria-hidden="true"></canvas>
+      <header class="site-header">
+        <span class="studio-mark">Data Assets</span>
+        <nav class="header-links" aria-label="Page">
+          <a class="home-link" href="#widgets">Widgets</a>
+          <a class="home-link" href="index.html">Home</a>
+        </nav>
+      </header>
+
+      <div class="launch-content">
+        <p class="eyebrow"><i class="signal" aria-hidden="true"></i>Incoming signal</p>
+        <h1 id="launch-title"><span class="word">Data</span> <span class="word">makes</span><br><span class="word">Design<span class="comma">,</span></span><span class="shine">Deshine.</span></h1>
+        <p class="launch-copy">A new library of practical data assets for sharper decisions, clearer marketing, and better outcomes.</p>
+        <div class="signals" aria-label="Widgets in this library">
+          <button class="signal-unit" type="button" data-open="palette"><span class="signal-num">01</span><span class="signal-name">Brand colours</span><span class="signal-state">Live</span></button>
+          <button class="signal-unit" type="button" data-open="archive"><span class="signal-num">02</span><span class="signal-name">Style archive</span><span class="signal-state">Live</span></button>
+          <button class="signal-unit" type="button" data-open="video"><span class="signal-num">03</span><span class="signal-name">Style data</span><span class="signal-state soon">Loading</span></button>
+          <button class="signal-unit" type="button" data-open="globe"><span class="signal-num">04</span><span class="signal-name">Playground</span><span class="signal-state play">Play</span></button>
+        </div>
+      </div>
+
+      <footer class="launch-footer">
+        <span>Our Data Assets</span>
+        <a class="scroll-cue" href="#widgets">Scroll to explore ↓</a>
+        <span class="launch-date"><i class="loading-dot" aria-hidden="true"></i>8 more modules loading<span class="dots" aria-hidden="true"></span></span>
+      </footer>
+    </section>
+
+    <section class="widgets" id="widgets" aria-labelledby="widgets-title">
+      <canvas class="dotfield" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2 id="widgets-title">The <em>widgets</em><br>are live.</h2>
+        </div>
+
+        <div class="grid">
+          <!-- Widget 01: brand colour palette -->
+          <button class="card card-1 reveal" type="button" data-open="palette" data-cursor="Open">
+            <div class="cover">
+              <span class="tag"><i></i>Widget 01 · Live</span>
+              <img src="asset2/brand-colours-cover.webp" alt="Brand Colours poster: halftone flowers in red, yellow, violet and green">
+              <span class="free-flag">Section 01 free · rest unlocks free</span>
+            </div>
+            <div class="card-body">
+              <span class="card-kicker">Brand colour palette selector</span>
+              <h3>Drop an image. Get a brand palette.</h3>
+              <p>Upload any image and watch k-means pull its colours out in our Mirchi data kitchen. Harmony, contrast, brand language and final variations sit behind a free unlock.</p>
+              <span class="card-cta"><b>↗</b>Open the palette lab</span>
+            </div>
+          </button>
+
+          <!-- Widget 02: archive -->
+          <button class="card card-2 reveal" type="button" data-open="archive" data-cursor="Flip">
+            <div class="cover">
+              <span class="tag"><i></i>Widget 02 · Archive</span>
+              <div class="zine" aria-hidden="true">
+                <div class="page p1"><small>1928</small>Art Deco</div>
+                <div class="page p2"><small>Ads first</small>Read me</div>
+                <div class="page p3"><small>1969</small>Space age</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <span class="card-kicker">Widget archive</span>
+              <h3>Refined taste comes from range.</h3>
+              <p>Taste gets sharper by taking in and studying a wide range of styles. Scroll through some of our favourites.</p>
+              <span class="card-cta"><b>↗</b>Scroll through</span>
+            </div>
+          </button>
+
+          <!-- Widget 03: upcoming -->
+          <button class="card card-3 reveal" type="button" data-open="video" data-cursor="Watch">
+            <div class="cover">
+              <span class="tag soon"><i></i>Widget 03 · Loading</span>
+              <video class="teaser-video" src="asset2/upcoming-widget.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+              <span class="play-badge" aria-hidden="true"><span>▶</span></span>
+            </div>
+            <div class="card-body">
+              <span class="card-kicker">Upcoming widget</span>
+              <h3>Let data speak for style. Literally.</h3>
+              <div class="loader" aria-hidden="true">
+                <div class="loader-bar"><i></i></div>
+                <div class="loader-meta"><span class="loader-msg">Reading your data…</span><span class="loader-pct">0%</span></div>
+              </div>
+              <span class="card-cta"><b>↗</b>Watch the sneak peek</span>
+            </div>
+          </button>
+
+          <!-- Playground -->
+          <div class="card card-4 reveal" role="group" aria-labelledby="play-title">
+            <div class="card-body">
+              <span class="card-kicker">04 · A little fun</span>
+              <h3 id="play-title">Who wants to <span class="wiggle">play</span> around?</h3>
+              <p>A spinning data globe you can grab and turn with your mouse. Or turn on your camera and steer it with your hand.</p>
+              <ul class="mini-guide" aria-label="How to play">
+                <li><b>🖱</b>Drag to spin</li>
+                <li><b>✋</b>Tap HAND, allow camera</li>
+                <li><b>✌</b>Two fingers rotate</li>
+                <li><b>🤏</b>Pinch to click / grab</li>
+              </ul>
+              <div class="play-zone">
+                <button class="runaway" type="button" data-open="globe">✋ Let me play</button>
+                <span class="play-score">dots disturbed: <b class="dots-count">0</b> · button chases: <b class="chase-count">0</b></span>
+              </div>
+            </div>
+            <button class="globe-peek" type="button" data-open="globe" data-cursor="Spin" aria-label="Open the data globe">
+              <span class="orb" aria-hidden="true"></span>
+              <span class="peek-label">Tap to spin the globe</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="wrap">
+        <h2>Get your colour palette.<br>Free session. No hidden fees.</h2>
+        <button class="btn" type="button" data-open="book">Book a free session →</button>
+        <!-- same email + socials as the "Why we started" card on index.html -->
+        <div class="why-contact-actions">
+          <a class="why-contact-row" href="mailto:mirchidesignstudio@gmail.com">
+            <span class="mail-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+                <path d="m4 7 8 6 8-6"></path>
+              </svg>
+            </span>
+            mirchidesignstudio@gmail.com
+          </a>
+          <div class="why-social-card">
+            <span class="why-social-label">Join us on socials</span>
+            <span class="why-social-links">
+              <a class="why-social-link" href="https://instagram.com/mirchimarketingstudio?exln=MTgyMmRzOTFjdHE2YQ%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Mirchi Marketing Studio on Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+                </svg>
+              </a>
+              <a class="why-social-link" href="https://www.linkedin.com/company/mirchi-marketing-studio/" target="_blank" rel="noopener noreferrer" aria-label="Mirchi Marketing Studio on LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="none">
+                  <path d="M6.94 8.86H3.98V20h2.96V8.86ZM5.46 7.34c.95 0 1.72-.78 1.72-1.72 0-.95-.77-1.72-1.72-1.72S3.74 4.67 3.74 5.62c0 .94.77 1.72 1.72 1.72ZM20.26 20v-6.1c0-2.99-1.6-4.38-3.73-4.38-1.72 0-2.49.94-2.92 1.6V8.86h-2.84V20h2.96v-5.51c0-1.45.27-2.86 2.08-2.86 1.78 0 1.8 1.67 1.8 2.95V20h2.65Z"></path>
+                </svg>
+              </a>
+              <a class="why-social-link" href="https://www.facebook.com/share/1GaaEH83WY/" target="_blank" rel="noopener noreferrer" aria-label="Mirchi Marketing Studio on Facebook">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="none">
+                  <path d="M13.8 21v-8h2.7l.4-3h-3.1V8.1c0-.87.25-1.46 1.5-1.46H17V3.95c-.3-.04-1.32-.13-2.5-.13-2.48 0-4.18 1.5-4.18 4.28V10H7.5v3h2.82v8h3.48Z"></path>
+                </svg>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- same rolling copyright ribbon as the home page; clicking it goes back home -->
+  <a class="footer" href="index.html" aria-label="Copyrights of Munshi &amp; Pramanik. Back to home">
+    <div class="footer-row" aria-hidden="true">
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+      <span>Copyrights of Munshi &amp; Pramanik</span>
+    </div>
+  </a>
+
+  <!-- ===== popups ===== -->
+  <div class="modal" id="modal-palette" hidden>
+    <div class="modal-panel tall" role="dialog" aria-modal="true" aria-label="Brand colour palette selector">
+      <div class="modal-bar"><span>Widget 01 · Brand colour palette</span><button class="modal-x" type="button" data-close aria-label="Close">✕</button></div>
+      <div class="modal-body">
+        <div class="unlock-banner">
+          <span><b>Section 01 is live.</b> Drop in any image. Sections 02–08 are a preview: unlock them free when you book a session with us. No hidden fees.</span>
+          <button class="btn red" type="button" data-open="book">Unlock free →</button>
+        </div>
+        <div class="palette-slot"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-video" hidden>
+    <div class="modal-panel video" role="dialog" aria-modal="true" aria-label="Upcoming widget preview">
+      <div class="modal-bar"><span>Widget 03 · Let data speak for style</span><button class="modal-x" type="button" data-close aria-label="Close">✕</button></div>
+      <video class="full-video" src="asset2/upcoming-widget.mp4" controls muted loop playsinline preload="none"></video>
+      <p class="video-note"><b>Upcoming widget.</b> Let data speak for style. Literally. A sneak peek of what's next in the library.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-globe" hidden>
+    <div class="modal-panel globe" role="dialog" aria-modal="true" aria-label="Data globe playground">
+      <div class="modal-bar"><span>04 · Playground</span><button class="modal-x" type="button" data-close aria-label="Close">✕</button></div>
+      <div class="modal-body globe-body">
+        <div class="globe-layout">
+        <div class="globe-stage">
+<!-- ===================== DATA GLOBE WIDGET — START ===================== -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,800&family=Silkscreen&family=Space+Mono:wght@700&display=swap">
+<style>
+.dgw{--fg:#e8e8ee;--a:255,46,166;--b:64,224,255;position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:18px;
+  background:radial-gradient(circle at 50% 45%,#16161b 0,#050506 70%);color:var(--fg);font-family:'Silkscreen',monospace;
+  user-select:none;-webkit-user-select:none;touch-action:none;isolation:isolate;container-type:inline-size;cursor:grab;box-sizing:border-box;
+  transition:background .4s}
+.dgw[data-theme=light]{--fg:#0c2a55;--a:12,40,95;--b:255,255,255;background:radial-gradient(circle at 50% 38%,#e2f5ff 0,#a6dcf6 45%,#72c5ec 100%)}
+.dgw *{box-sizing:border-box}
+.dgw canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.dgw .dgw-hand{z-index:3;image-rendering:pixelated;pointer-events:none}
+.dgw .dgw-dots{position:absolute;inset:0;z-index:1;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1.6px);background-size:8px 8px}
+.dgw[data-theme=light] .dgw-dots{background-image:radial-gradient(rgba(255,255,255,.4) 1px,transparent 1.6px)}
+.dgw .dgw-globe{z-index:2}
+.dgw-bar,.dgw-foot{position:absolute;left:0;right:0;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:clamp(8px,3cqi,16px);pointer-events:none}
+.dgw-bar{top:0}.dgw-foot{bottom:0}
+.dgw-logo{font-size:clamp(12px,3.6cqi,20px);letter-spacing:.1em}
+.dgw-hint{font-size:clamp(8px,2.2cqi,11px);opacity:.85}
+.dgw-btns{display:flex;gap:6px}
+.dgw-btn{pointer-events:auto;font:inherit;font-size:clamp(9px,2.4cqi,12px);letter-spacing:.04em;color:var(--fg);background:rgba(0,0,0,.4);
+  border:1px solid rgba(var(--b),.7);padding:clamp(6px,1.6cqi,9px) clamp(8px,2.4cqi,13px);border-radius:999px;cursor:pointer;
+  transition:background .12s,color .12s,transform .12s}
+.dgw[data-theme=light] .dgw-btn{background:rgba(255,255,255,.55);border-color:rgba(12,40,95,.45)}
+.dgw-btn:hover,.dgw-btn.is-hover{background:rgb(var(--b));color:#000}
+.dgw[data-theme=light] .dgw-btn:hover,.dgw[data-theme=light] .dgw-btn.is-hover{background:#0c2a55;color:#fff}
+.dgw-btn.pressed{transform:scale(.92)}
+.dgw-reticle{position:absolute;left:0;top:0;z-index:5;width:30px;height:30px;margin:-15px 0 0 -15px;border:2px solid rgb(var(--b));
+  border-radius:50%;pointer-events:none;opacity:0;transition:opacity .2s,background .1s}
+.dgw-reticle.show{opacity:1}
+.dgw-reticle.down{background:rgba(var(--b),.35)}
+.dgw-reticle.rot{border-style:dashed}
+.dgw-status{position:absolute;left:50%;top:clamp(42px,12cqi,64px);transform:translateX(-50%);z-index:4;font-size:clamp(9px,2.3cqi,11px);
+  background:rgb(var(--b));color:#000;padding:5px 10px;border-radius:999px;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
+.dgw[data-theme=light] .dgw-status{background:#0c2a55;color:#fff}
+.dgw-status.on{opacity:1}
+/* full-screen hand overlay (created once camera is on) */
+.dgw-screen-hand{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:2147483000;image-rendering:pixelated;display:none}
+</style>
+
+<!--
+  ▼ EDIT THE GLOBE HERE (all attributes are optional):
+    data-ribbon="DATA · "                 text repeated along the ribbons ("" removes them)
+    data-ribbons="0.29,0.71"              ribbon positions: 0 = top pole, 0.5 = equator, 1 = bottom pole
+    data-ribbon-bg="#ff2ea6"              ribbon colour
+    data-ribbon-color="#ffffff"           ribbon text colour
+    data-word="DATA"                      word used for the lettering pattern (when no image)
+    data-image="/assets/globe.jpg"        your image wrapped around the sphere (replaces the lettering)
+    data-image-dark="/assets/globe-dark.jpg"   only in dark mode
+    data-image-light="/assets/globe-light.jpg" only in light mode
+    data-image-fit="stretch"              stretch | cover | contain | repeat
+    data-hero="DATA"                      big centred panel text ("" hides it; hidden by default when using an image)
+    data-start="0.25,0.5"                 which spot of the image faces you on load (x across, y down, 0–1)
+  Example:
+    <div class="dgw" data-theme="light" data-image="/assets/globe.jpg" data-ribbon="OUR DATA · 2026 · "></div>
+-->
+<div class="dgw" data-theme="dark" data-ribbon="DATA · "></div>
+
+<script type="module">
+if (!window.__DATA_GLOBE__) { window.__DATA_GLOBE__ = true;
+
+const THREE_URL = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+const MP = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14';
+const once = f => { let p; return () => p || (p = f()); };
+const loadThree = once(() => import(THREE_URL));
+const loadFonts = once(() => Promise.all(['800 100px Fraunces', '700 20px "Space Mono"', '12px Silkscreen']
+  .map(f => document.fonts.load(f))).catch(() => {}));
+
+/* ---------- shared camera + hand tracker (one per page) ----------
+   The whole camera frame maps onto the whole browser window, so the hand is tracked
+   and drawn everywhere; widgets only react while the hand is over them. */
+const track = { state:'off', raw:null, pts:null, t:-1e9, err:'' };
+const screen = { el:null, ph:null, theme:'dark' };
+const SCREEN_MARGIN = .08;      // trims the camera edges so every screen edge is easy to reach
+// the hand model is downloaded once; the camera is opened on demand and fully released by disableHands()
+const loadLandmarker = once(async () => {
+  const { HandLandmarker, FilesetResolver } = await import(MP + '/vision_bundle.mjs');
+  const fs = await FilesetResolver.forVisionTasks(MP + '/wasm');
+  const opts = d => ({ baseOptions:{ modelAssetPath:'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task', delegate:d },
+                       runningMode:'VIDEO', numHands:1,
+                       minHandDetectionConfidence:.4, minHandPresenceConfidence:.4, minTrackingConfidence:.4 });
+  try { return await HandLandmarker.createFromOptions(fs, opts('GPU')); } catch { return await HandLandmarker.createFromOptions(fs, opts('CPU')); }
+});
+let enabling = null, camRun = 0;
+const enableHands = () => enabling || (enabling = (async () => {
+  const id = ++camRun;
+  track.state = 'loading';
+  let stream = null;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ audio:false,
+      video:{ width:{ideal:1280}, height:{ideal:720}, frameRate:{ideal:60, min:24}, facingMode:'user' } });
+    if (id !== camRun) { stream.getTracks().forEach(t => t.stop()); return; }   // closed while asking for the camera
+    const v = document.createElement('video'); v.playsInline = true; v.muted = true; v.srcObject = stream; await v.play();
+    track.stream = stream; track.video = v;
+    const lm = await loadLandmarker();
+    if (id !== camRun) return;                                                    // closed while the model loaded
+    let last = -1;
+    (function step(){
+      if (id !== camRun) return;                                                  // camera turned off: stop tracking
+      requestAnimationFrame(step);
+      if (v.readyState < 2 || v.currentTime === last) return;
+      last = v.currentTime;
+      const r = lm.detectForVideo(v, performance.now());
+      if (r.landmarks && r.landmarks.length) { track.raw = r.landmarks[0]; track.t = performance.now(); }
+    })();
+    if (!screen.el) startScreenHand();
+    track.state = 'on';
+  } catch (e) {
+    console.error(e); enabling = null;
+    if (stream) stream.getTracks().forEach(t => t.stop());
+    if (id !== camRun) return;
+    track.state = 'error';
+    track.err = e && e.name === 'NotAllowedError' ? 'CAMERA BLOCKED' : 'HAND TRACKING FAILED';
+  }
+})());
+function disableHands(){
+  camRun++; enabling = null;
+  if (track.stream) track.stream.getTracks().forEach(t => t.stop());
+  if (track.video) { track.video.pause(); track.video.srcObject = null; }
+  track.stream = track.video = track.raw = track.pts = null;
+  track.state = 'off';
+  if (screen.el) screen.el.style.display = 'none';
+  document.querySelectorAll('.dgw').forEach(el => el.dataGlobe && el.dataGlobe.camOff());
+}
+window.DataGlobeStopCamera = disableHands;   // releases the camera (light goes off)
+
+/* ---------- constants ---------- */
+const BAY = [0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5].map(v => (v + .5)/16);
+const BONES = [[0,1],[1,2],[2,3],[3,4],[0,5],[5,6],[6,7],[7,8],[5,9],[9,10],[10,11],[11,12],
+               [9,13],[13,14],[14,15],[15,16],[13,17],[0,17],[17,18],[18,19],[19,20]];
+const FINGERS = [[1,2],[2,3],[3,4],[5,6],[6,7],[7,8],[9,10],[10,11],[11,12],[13,14],[14,15],[15,16],[17,18],[18,19],[19,20]];
+const TPL = [[0,0],[-.18,-.08],[-.32,-.2],[-.42,-.32],[-.5,-.42],[-.12,-.42],[-.14,-.6],[-.15,-.72],[-.16,-.84],
+  [0,-.44],[0,-.64],[0,-.77],[0,-.9],[.11,-.41],[.13,-.59],[.14,-.71],[.15,-.82],[.21,-.36],[.25,-.5],[.27,-.6],[.29,-.69]]
+  .map(([x,y]) => ({x,y}));
+const TPL_ANCHOR = { x:(TPL[4].x + TPL[8].x)/2, y:(TPL[4].y + TPL[8].y)/2 };
+const THEMES = {
+  dark:  { paper:'#0a0a0c', ink:'rgb(64,224,255)', acc:'rgb(255,46,166)', glow:[1,.18,.65], glowOp:.26, A:[255,46,166], B:[64,224,255], split:1 },
+  light: { paper:'#f5f7f8', ink:'rgb(43,159,212)', acc:'rgb(12,40,95)',   glow:[1,1,1],     glowOp:.32, A:[255,255,255], B:[12,40,95],  split:0 },
+};
+const d2 = (a,b) => Math.hypot(a.x - b.x, a.y - b.y);
+const extended = (p, tip, pip) => d2(p[tip], p[0]) > d2(p[pip], p[0]) * 1.12;
+const isTwoFinger = p => extended(p,8,6) && extended(p,12,10) && !extended(p,16,14) && !extended(p,20,18);
+function mulberry32(a){ return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a);
+  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+/* ---------- dithered pixel hand renderer (used full-screen and inside widgets) ---------- */
+class PixelHand {
+  constructor(canvas){
+    this.c = canvas; this.ctx = canvas.getContext('2d');
+    this.shape = document.createElement('canvas'); this.sx = this.shape.getContext('2d', { willReadFrequently:true });
+  }
+  resize(W, H, P){
+    this.P = P; this.w = Math.max(1, Math.ceil(W/P)); this.h = Math.max(1, Math.ceil(H/P));
+    for (const c of [this.c, this.shape]) { c.width = this.w; c.height = this.h; }
+    this.img = this.ctx.createImageData(this.w, this.h);
+  }
+  clear(){ this.ctx.clearRect(0, 0, this.w, this.h); }
+  draw(pts, th){
+    const { w, h, sx, P } = this;
+    const p = pts.map(q => ({ x:q.x/P, y:q.y/P }));
+    const L = d2(p[0], p[9]) || 1;
+    sx.setTransform(1,0,0,1,0,0); sx.clearRect(0, 0, w, h);
+    sx.lineCap = 'round'; sx.lineJoin = 'round';
+    const stroke = (list, col, lw) => { sx.strokeStyle = col; sx.lineWidth = Math.max(1, lw); sx.beginPath();
+      for (const [a,b] of list) { sx.moveTo(p[a].x, p[a].y); sx.lineTo(p[b].x, p[b].y); } sx.stroke(); };
+    sx.fillStyle = 'rgb(105,105,105)'; sx.beginPath();
+    [0,1,2,5,9,13,17].forEach((i,n) => n ? sx.lineTo(p[i].x, p[i].y) : sx.moveTo(p[i].x, p[i].y)); sx.closePath(); sx.fill();
+    stroke(BONES, 'rgb(105,105,105)', L*.3);
+    stroke(BONES, 'rgb(170,170,170)', L*.16);
+    stroke(FINGERS, 'rgb(250,250,250)', L*.06);
+    sx.fillStyle = '#fff';
+    for (const i of [4,8,12,16,20]) { sx.beginPath(); sx.arc(p[i].x, p[i].y, Math.max(1, L*.09), 0, 7); sx.fill(); }
+
+    const s = sx.getImageData(0, 0, w, h).data, o = this.img.data, A = th.A, B = th.B, sh = th.split;
+    const val = (row, x) => { if (x < 0 || x >= w) return 0; const k = (row + x)*4; return s[k]*s[k+3]/65025; };
+    for (let y = 0; y < h; y++) {
+      const row = y*w;
+      for (let x = 0; x < w; x++) {
+        const k = (row + x)*4, gv = val(row, x), rv = val(row, x + sh), bv = val(row, x - sh);
+        const t = BAY[((y & 3) << 2) | (x & 3)]*.8 + .1, on = gv > t;
+        if (!on && rv <= t && bv <= t) { o[k+3] = 0; continue; }
+        let col = A;
+        if (on && ((y > 0 ? val(row - w, x) : 0) <= t || (y < h-1 ? val(row + w, x) : 0) <= t || val(row, x-1) <= t || val(row, x+1) <= t)) col = B;
+        const hi = gv > .9 && col === A ? .45 : 0;
+        o[k]   = rv > t ? col[0] + (255 - col[0])*hi : 0;
+        o[k+1] = on     ? col[1] + (255 - col[1])*hi : 0;
+        o[k+2] = bv > t ? col[2] + (255 - col[2])*hi : 0;
+        o[k+3] = 255;
+      }
+    }
+    this.ctx.putImageData(this.img, 0, 0);
+  }
+}
+
+// full-screen overlay: maps the camera frame to the viewport and smooths the landmarks
+function startScreenHand(){
+  const c = document.createElement('canvas'); c.className = 'dgw-screen-hand'; document.body.appendChild(c);
+  screen.el = c; screen.ph = new PixelHand(c);
+  const rs = () => screen.ph.resize(innerWidth, innerHeight, Math.max(4, Math.round(innerWidth/320)));
+  addEventListener('resize', rs); rs();
+  (function draw(){
+    requestAnimationFrame(draw);
+    const has = track.raw && performance.now() - track.t < 400;
+    c.style.display = has ? 'block' : 'none';
+    if (!has) { track.pts = null; return; }
+    const W = innerWidth, H = innerHeight, M = SCREEN_MARGIN;
+    const np = track.raw.map(l => ({ x:((1 - l.x) - M)/(1 - 2*M)*W, y:(l.y - M)/(1 - 2*M)*H }));
+    if (!track.pts) track.pts = np;
+    else for (let i = 0; i < 21; i++) {         // speed-adaptive smoothing: steady when still, snappy when moving
+      const p = track.pts[i], dx = np[i].x - p.x, dy = np[i].y - p.y;
+      const a = Math.min(.9, .28 + Math.hypot(dx, dy)/60);
+      p.x += dx*a; p.y += dy*a;
+    }
+    screen.ph.draw(track.pts, THEMES[screen.theme]);
+  })();
+}
+
+/* ---------- widget options (set as data-* attributes on <div class="dgw">) ----------
+   data-word          word used for the typographic pattern and centre panel   (default "DATA")
+   data-ribbon        text repeated along the ribbons; "" = no ribbons          (default "<word> · ")
+   data-ribbons       ribbon positions, 0 = top pole … 1 = bottom pole          (default "0.29,0.71")
+   data-ribbon-bg     ribbon background colour                                  (default: theme accent)
+   data-ribbon-color  ribbon text colour                                        (default: theme paper)
+   data-image         image from your site to wrap around the sphere, e.g. "/assets/globe.jpg"
+   data-image-dark    image used only in dark mode   (overrides data-image)
+   data-image-light   image used only in light mode  (overrides data-image)
+   data-image-fit     stretch | cover | contain | repeat                        (default "stretch")
+   data-hero          big centred panel text; "" = none     (default: the word, or none when an image is set)
+   data-start         "x,y" spot of the image/texture facing you on load, 0–1 (default "0.25,0.5")
+   Best image: a 2:1 "equirectangular" picture whose left and right edges match. */
+function readOptions(d){
+  const word = (d.word || 'DATA').trim() || 'DATA';
+  const list = (s, def) => { const v = (s || def).split(',').map(Number).filter(n => isFinite(n)); return v.length ? v : def.split(',').map(Number); };
+  const start = list(d.start, '0.25,0.5');
+  return {
+    word,
+    ribbon: d.ribbon !== undefined ? d.ribbon : `${word} · `,
+    ribbons: list(d.ribbons, '0.29,0.71').filter(n => n >= 0 && n <= 1),
+    ribbonBg: d.ribbonBg || '', ribbonColor: d.ribbonColor || '',
+    image: d.image || '', imageDark: d.imageDark || '', imageLight: d.imageLight || '',
+    fit: d.imageFit || 'stretch',
+    hero: d.hero,                                   // undefined = automatic
+    visual: 'visual' in d,                          // data-visual: decoration only, auto-spins, no buttons/hand/wheel
+    start: { x: Math.min(1, Math.max(0, start[0] ?? .25)), y: Math.min(1, Math.max(0, start[1] ?? .5)) },
+  };
+}
+
+const imgCache = new Map();
+function loadImage(url){
+  if (!imgCache.has(url)) imgCache.set(url, new Promise((res, rej) => {
+    const im = new Image();
+    try { if (new URL(url, location.href).origin !== location.origin) im.crossOrigin = 'anonymous'; } catch {}
+    im.onload = () => res(im); im.onerror = () => rej(new Error('Could not load image: ' + url));
+    im.src = url;
+  }));
+  return imgCache.get(url);
+}
+
+/* ---------- sphere texture ---------- */
+function paintGlobe(c, th, seed, o, img){
+  const x = c.getContext('2d'), TW = c.width, TH = c.height, R = mulberry32(seed);
+  const rnd = (a,b) => a + R()*(b - a);
+  const SERIF = s => `800 ${s}px Fraunces, Georgia, serif`, MONO = s => `700 ${s}px "Space Mono", monospace`;
+  const word = o.word, letters = word.replace(/\s+/g, '') || 'DATA';
+  x.setTransform(1,0,0,1,0,0); x.textAlign = 'left';
+  x.fillStyle = th.paper; x.fillRect(0, 0, TW, TH);
+  x.font = SERIF(100); const W100 = x.measureText(word).width || 1;
+
+  if (img) {                                                    // your image as the surface
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    if (o.fit === 'cover' || o.fit === 'contain') {
+      const s = (o.fit === 'cover' ? Math.max : Math.min)(TW/iw, TH/ih);
+      x.drawImage(img, (TW - iw*s)/2, (TH - ih*s)/2, iw*s, ih*s);
+    } else if (o.fit === 'repeat') {
+      const s = TH/ih, tw = iw*s;
+      for (let px = 0; px < TW; px += tw) x.drawImage(img, px, 0, tw, TH);
+    } else x.drawImage(img, 0, 0, TW, TH);
+    x.getImageData(0, 0, 1, 1);   // throws if a cross-site image (no CORS) tainted the canvas → caller falls back to text
+  } else {                                                      // typographic collage of the word
+    const cells = [];
+    (function split(X, Y, cw, ch, d){
+      if (d > 7 || cw < 90 || ch < 70 || (d > 2 && R() < .2)) { cells.push([X, Y, cw, ch]); return; }
+      const vert = cw/ch > 1.15 ? true : cw/ch < .85 ? false : R() < .5;
+      if (vert) { const s = cw*rnd(.28,.72)|0; split(X, Y, s, ch, d+1); split(X+s, Y, cw-s, ch, d+1); }
+      else      { const s = ch*rnd(.28,.72)|0; split(X, Y, cw, s, d+1); split(X, Y+s, cw, ch-s, d+1); }
+    })(0, 0, TW, TH, 0);
+    const smallRow = (word + ' ').repeat(12);
+    for (const [X, Y, cw, ch] of cells) {
+      x.save(); x.beginPath(); x.rect(X, Y, cw, ch); x.clip();
+      if (R() < .16 && cw > 180 && ch > 80) {                     // block of small rows
+        const inv = R() < .5, fs = Math.max(18, Math.min(48, ch/6))|0;
+        if (inv) { x.fillStyle = th.ink; x.fillRect(X, Y, cw, ch); }
+        x.font = MONO(fs); x.fillStyle = inv ? th.paper : th.ink; x.textBaseline = 'top';
+        for (let yy = Y + fs*.5; yy < Y + ch - fs*.8; yy += fs*1.3) x.fillText(smallRow, X + fs*.5, yy);
+      } else {
+        x.fillStyle = R() < .08 ? th.acc : th.ink; x.textBaseline = 'alphabetic';
+        const shear = R() < .3;
+        if (ch/cw > .6) {                                          // tall cell: one huge cropped letter
+          const g = letters[R()*letters.length|0], fs = ch*rnd(1.1, 1.9);
+          x.font = SERIF(fs);
+          const px = X + rnd(-.35, .1)*x.measureText(g).width, py = Y + ch + fs*rnd(-.05, .22);
+          if (shear) x.setTransform(1, 0, -.22, 1, .22*py, 0);
+          x.fillText(g, px, py);
+        } else {                                                   // wide cell: cropped rows of the word
+          const fs = 100*cw*rnd(.9, 1.6)/W100;
+          x.font = SERIF(fs);
+          const px = X - rnd(0, .25)*cw;
+          for (let yy = Y + ch + fs*rnd(-.05, .2), k = 0; yy > Y - fs*.1; yy -= fs*.76, k++) {
+            if (shear) x.setTransform(1, 0, -.22, 1, .22*yy, 0); else x.setTransform(1,0,0,1,0,0);
+            x.fillText(word, px - (k % 2)*fs*.6, yy);
+          }
+        }
+        x.setTransform(1,0,0,1,0,0);
+      }
+      x.restore();
+    }
+  }
+
+  // ribbons
+  if (o.ribbon) {
+    const hgt = TH*.024;
+    for (const pos of o.ribbons) {
+      const yc = TH*pos;
+      x.fillStyle = o.ribbonBg || th.acc; x.fillRect(0, yc - hgt/2, TW, hgt);
+      x.font = MONO(hgt*.56|0); x.fillStyle = o.ribbonColor || th.paper; x.textBaseline = 'middle';
+      const unit = x.measureText(o.ribbon).width || 1;
+      x.fillText(o.ribbon.repeat(Math.ceil(TW/unit) + 1), 6, yc);
+    }
+  }
+
+  // centre panel: sits on the start spot, so it faces you upright when the widget opens
+  const hero = o.hero !== undefined ? o.hero : (img ? '' : word);
+  if (hero) {
+    x.font = SERIF(100); const H100 = x.measureText(hero).width || 1;
+    const cx = TW*o.start.x, cy = TH*o.start.y, hw = TW*.21, hh = TH*.3, hx = cx - hw/2, hy = cy - hh/2;
+    x.fillStyle = th.paper; x.fillRect(hx, hy, hw, hh);
+    x.lineWidth = TH*.006; x.strokeStyle = th.ink; x.strokeRect(hx + x.lineWidth/2, hy + x.lineWidth/2, hw - x.lineWidth, hh - x.lineWidth);
+    const big = Math.min(100*hw*.84/H100, hh*.62);
+    x.font = SERIF(big); x.fillStyle = th.ink; x.textAlign = 'center'; x.textBaseline = 'middle';
+    x.fillText(hero, cx, cy + big*.03);
+    const sm = TH*.02|0;
+    x.font = MONO(sm); x.fillStyle = th.acc;
+    let row = hero; while (x.measureText(row + ' · ' + hero).width < hw*.86) row += ' · ' + hero;
+    for (let i = 0; i < 2; i++) { x.fillText(row, cx, hy + hh*.1 + i*sm*1.5); x.fillText(row, cx, hy + hh*.9 - i*sm*1.5); }
+    x.textAlign = 'left';
+  }
+}
+
+/* ---------- widget ---------- */
+const TEMPLATE = `
+  <canvas class="dgw-globe"></canvas>
+  <div class="dgw-dots"></div>
+  <canvas class="dgw-hand"></canvas>
+  <div class="dgw-bar">
+    <span class="dgw-logo">DATA</span>
+    <div class="dgw-btns">
+      <button class="dgw-btn" type="button" data-dgw="cam">✋ HAND</button>
+      <button class="dgw-btn" type="button" data-dgw="theme">☾ DARK</button>
+    </div>
+  </div>
+  <div class="dgw-foot">
+    <span class="dgw-hint">✌ ROTATE · 🤏 CLICK / GRAB</span>
+    <button class="dgw-btn" type="button" data-dgw="reset">RESET</button>
+  </div>
+  <div class="dgw-status"></div>
+  <div class="dgw-reticle"></div>`;
+
+class DataGlobe {
+  constructor(root){
+    this.root = root; this.opt = readOptions(root.dataset); root.dataGlobe = this;
+    root.innerHTML = TEMPLATE;
+    const q = s => root.querySelector(s);
+    this.gc = q('.dgw-globe'); this.hc = q('.dgw-hand'); this.ret = q('.dgw-reticle'); this.st = q('.dgw-status');
+    this.camBtn = q('[data-dgw=cam]'); this.themeBtn = q('[data-dgw=theme]');
+    this.ph = new PixelHand(this.hc); this.active = false;
+    let saved = null; try { saved = localStorage.getItem('dgw-theme'); } catch {}
+    if (this.opt.visual) saved = null;       // decorative globe keeps its own theme
+    this.theme = THEMES[saved] ? saved : (THEMES[root.dataset.theme] ? root.dataset.theme : 'dark');
+    root.dataset.theme = this.theme; this.themeLabel();
+    this.seed = (Math.random()*1e9)|0;
+    this.mouse = { x:0, y:0, inside:false, down:false };
+    this.cur = { x:0, y:0 }; this.smooth = null; this.press = 0; this.hover = null; this.drag = null;
+    this.pinch = { on:false, ratio:1, el:null, lx:0, ly:0 }; this.two = { on:false, n:0, lx:0, ly:0 };
+    this.visible = true; this.goHome = false;
+    this.resize(); new ResizeObserver(() => this.resize()).observe(root);
+    new IntersectionObserver(([e]) => this.visible = e.isIntersecting).observe(root);
+    this.bind(); this.initGL();
+    const loop = t => { requestAnimationFrame(loop); if (this.visible) this.frame(t); };
+    requestAnimationFrame(loop);
+  }
+  resize(){
+    const r = this.root.getBoundingClientRect();
+    this.S = Math.max(1, r.width);
+    this.ph.resize(this.S, Math.max(1, r.height), Math.max(3, Math.round(this.S/150)));
+    if (this.renderer) this.renderer.setSize(this.S, this.S, false);
+  }
+  bind(){
+    const R = this.root;
+    const rel = e => { const r = R.getBoundingClientRect(); return { x:e.clientX - r.left, y:e.clientY - r.top }; };
+    R.addEventListener('pointermove', e => {
+      Object.assign(this.mouse, rel(e)); this.mouse.inside = true;
+      if (this.drag) { this.rotate(this.mouse.x - this.drag.x, this.mouse.y - this.drag.y); this.drag = { x:this.mouse.x, y:this.mouse.y }; }
+    });
+    R.addEventListener('pointerleave', () => { if (!this.drag) this.mouse.inside = false; });
+    R.addEventListener('pointerdown', e => {
+      Object.assign(this.mouse, rel(e)); this.mouse.down = true; this.mouse.inside = true;
+      if (!e.target.closest('.dgw-btn')) { this.drag = rel(e); R.setPointerCapture(e.pointerId); R.style.cursor = 'grabbing'; }
+    });
+    const up = () => { this.mouse.down = false; this.drag = null; R.style.cursor = ''; };
+    R.addEventListener('pointerup', up); R.addEventListener('pointercancel', up);
+    if (this.opt.visual) R.addEventListener('click', () => { this.pauseUntil = performance.now() + 1000; this.vel.x = this.vel.y = 0; });
+    if (!this.opt.visual) R.addEventListener('wheel', e => { e.preventDefault();
+      if (e.shiftKey) this.rotate(-e.deltaY*.5, 0); else this.rotate(-e.deltaX*.5, -e.deltaY*.5); }, { passive:false });
+    R.addEventListener('click', e => { const b = e.target.closest('[data-dgw]'); if (b && R.contains(b)) this.action(b.dataset.dgw); });
+  }
+  action(a){
+    if (a === 'theme') {
+      this.theme = this.theme === 'dark' ? 'light' : 'dark'; this.root.dataset.theme = this.theme;
+      try { localStorage.setItem('dgw-theme', this.theme); } catch {}
+      this.themeLabel(); this.applyTheme();
+    } else if (a === 'reset') this.goHome = true;
+    else if (a === 'cam') {
+      if (track.state === 'on' || track.state === 'loading') { disableHands(); this.status('CAMERA OFF'); return; }
+      this.status('LOADING HAND TRACKING…', true); this.camBtn.textContent = '✋ …';
+      enableHands().then(() => {
+        if (track.state === 'on') { this.status('SHOW YOUR HAND ✋'); this.camBtn.textContent = '✋ ON'; }
+        else if (track.state === 'error') { this.status(track.err); this.camBtn.textContent = '✋ HAND'; }
+      });
+    }
+  }
+  camOff(){ this.camBtn.textContent = '✋ HAND'; this.endHand(); this.st.classList.remove('on'); }
+  themeLabel(){ this.themeBtn.textContent = this.theme === 'dark' ? '☾ DARK' : '☀ LIGHT'; }
+  status(msg, sticky){
+    this.st.textContent = msg; this.st.classList.add('on'); clearTimeout(this.stT);
+    if (!sticky) this.stT = setTimeout(() => this.st.classList.remove('on'), 2600);
+  }
+
+  async initGL(){
+    let T;
+    try { T = await loadThree(); } catch (e) { console.error(e); this.status('3D FAILED TO LOAD', true); return; }
+    await loadFonts();
+    const r = this.renderer = new T.WebGLRenderer({ canvas:this.gc, antialias:true, alpha:true });
+    r.setPixelRatio(Math.min(devicePixelRatio, 2)); r.setSize(this.S, this.S, false);
+    this.scene = new T.Scene();
+    this.cam = new T.PerspectiveCamera(30, 1, .1, 100); this.cam.position.z = 4.4;
+    this.tc = document.createElement('canvas'); this.tc.width = 4096; this.tc.height = 2048;
+    this.tex = new T.CanvasTexture(this.tc); this.tex.colorSpace = T.SRGBColorSpace; this.tex.anisotropy = r.capabilities.getMaxAnisotropy();
+    this.ball = new T.Mesh(new T.SphereGeometry(1, 128, 96), new T.MeshStandardMaterial({ map:this.tex, roughness:.9, metalness:0 }));
+    this.glow = new T.Mesh(new T.SphereGeometry(1.06, 64, 48),
+      new T.MeshBasicMaterial({ transparent:true, side:T.BackSide, blending:T.AdditiveBlending, depthWrite:false }));
+    const key = new T.DirectionalLight(0xffffff, 1.8); key.position.set(-1.5, 1.5, 3);
+    this.scene.add(this.ball, this.glow, new T.AmbientLight(0xffffff, 2), key);
+    this.T = T; this.HOME = new T.Quaternion();
+    this.q = new T.Quaternion(); this.AX = new T.Vector3(1,0,0); this.AY = new T.Vector3(0,1,0); this.vel = { x:0, y:0 };
+    this.setHome(); this.ball.quaternion.copy(this.HOME);
+    this.applyTheme();
+  }
+  // the texture spot opt.start (x across, y down, 0–1) faces the camera, upright
+  setHome(){
+    const T = this.T, { x, y } = this.opt.start;
+    const qy = new T.Quaternion().setFromAxisAngle(this.AY, Math.PI/2 - 2*Math.PI*x);
+    const qx = new T.Quaternion().setFromAxisAngle(this.AX, Math.PI/2 - Math.PI*y);
+    this.HOME.copy(qx).multiply(qy);
+  }
+  async applyTheme(){
+    if (!this.ball) return;
+    const th = THEMES[this.theme], o = this.opt, token = this.paintToken = (this.paintToken || 0) + 1;
+    const url = (this.theme === 'dark' ? o.imageDark : o.imageLight) || o.image;
+    let img = null;
+    if (url) {
+      try { img = await loadImage(url); }
+      catch (e) { console.warn('[data globe]', e.message); this.status('IMAGE NOT FOUND — USING TEXT'); }
+    }
+    if (token !== this.paintToken) return;                   // a newer repaint started meanwhile
+    try { paintGlobe(this.tc, th, this.seed, o, img); }
+    catch (e) {                                               // e.g. a cross-site image without CORS taints the canvas
+      console.warn('[data globe]', e); paintGlobe(this.tc, th, this.seed, o, null);
+    }
+    this.tex.needsUpdate = true;
+    this.glow.material.color.setRGB(...th.glow); this.glow.material.opacity = th.glowOp;
+  }
+  /* change options from your own code, e.g.
+     document.querySelector('.dgw').dataGlobe.configure({ image:'/assets/earth.jpg', ribbon:'HELLO · ' }) */
+  configure(changes = {}){
+    const map = { word:'word', ribbon:'ribbon', ribbons:'ribbons', ribbonBg:'ribbonBg', ribbonColor:'ribbonColor',
+                  image:'image', imageDark:'imageDark', imageLight:'imageLight', fit:'imageFit', hero:'hero', start:'start' };
+    for (const [k, v] of Object.entries(changes)) {
+      const attr = map[k]; if (!attr) continue;
+      if (v === null) delete this.root.dataset[attr];
+      else this.root.dataset[attr] = Array.isArray(v) ? v.join(',') : String(v);
+    }
+    this.opt = readOptions(this.root.dataset);
+    if (this.ball) { this.setHome(); if ('start' in changes) this.goHome = true; }
+    return this.applyTheme();
+  }
+  // rotate about the camera's axes so every direction works from any orientation
+  turn(rx, ry){
+    this.q.setFromAxisAngle(this.AY, ry); this.ball.quaternion.premultiply(this.q);
+    this.q.setFromAxisAngle(this.AX, rx); this.ball.quaternion.premultiply(this.q);
+  }
+  rotate(dx, dy){
+    if (!this.ball) return;
+    const k = 1/(this.S*.42);                                // ~1:1 with the sphere surface
+    this.goHome = false; this.turn(dy*k, dx*k);
+    this.vel.x = dy*k*.5; this.vel.y = dx*k*.5;
+  }
+  targetAt(x, y){
+    const r = this.root.getBoundingClientRect(), el = document.elementFromPoint(r.left + x, r.top + y);
+    return el && this.root.contains(el) ? el.closest('.dgw-btn') : null;
+  }
+  setHover(el){ if (el === this.hover) return; this.hover?.classList.remove('is-hover'); this.hover = el; el?.classList.add('is-hover'); }
+  cancelPinch(){ this.pinch.on = false; this.pinch.el?.classList.remove('pressed'); this.pinch.el = null; }
+
+  handGestures(p){
+    const two = isTwoFinger(p);
+    this.two.n = two ? Math.min(this.two.n + 1, 6) : Math.max(this.two.n - 1, 0);
+    if (!this.two.on && this.two.n >= 3) {
+      this.two.on = true; this.cancelPinch();
+      this.cur.x = (p[8].x + p[12].x)/2; this.cur.y = (p[8].y + p[12].y)/2;
+      this.two.lx = this.cur.x; this.two.ly = this.cur.y;
+    } else if (this.two.on && this.two.n === 0) this.two.on = false;
+
+    if (this.two.on) {                                       // ✌ two fingers: rotate freely
+      const ax = (p[8].x + p[12].x)/2, ay = (p[8].y + p[12].y)/2;
+      this.cur.x += (ax - this.cur.x)*.6; this.cur.y += (ay - this.cur.y)*.6;
+      const dx = this.cur.x - this.two.lx, dy = this.cur.y - this.two.ly;
+      this.two.lx = this.cur.x; this.two.ly = this.cur.y;
+      if (Math.hypot(dx, dy) > .6) this.rotate(dx*1.3, dy*1.3);
+      this.setHover(null); return;
+    }
+    const tx = (p[4].x + p[8].x)/2, ty = (p[4].y + p[8].y)/2;
+    this.cur.x += (tx - this.cur.x)*.6; this.cur.y += (ty - this.cur.y)*.6;
+    this.pinch.ratio = d2(p[4], p[8]) / (d2(p[0], p[9]) || 1);
+    const target = this.targetAt(this.cur.x, this.cur.y);
+    if (!this.pinch.on && this.pinch.ratio < .32) {          // 🤏 pinch down
+      this.pinch.on = true; this.pinch.el = target; target?.classList.add('pressed');
+      this.pinch.lx = this.cur.x; this.pinch.ly = this.cur.y;
+    } else if (this.pinch.on && this.pinch.ratio > .48) {    // release = click
+      const el = this.pinch.el; this.cancelPinch(); el?.click();
+    } else if (this.pinch.on && !this.pinch.el) {            // pinch on the globe = grab and turn
+      this.rotate((this.cur.x - this.pinch.lx)*1.2, (this.cur.y - this.pinch.ly)*1.2);
+      this.pinch.lx = this.cur.x; this.pinch.ly = this.cur.y;
+    }
+    this.setHover(this.pinch.on ? this.pinch.el : target);
+  }
+  template(ax, ay, time){
+    const sc = this.S*.3, ang = -.28 + Math.sin(time*.9)*.05, ca = Math.cos(ang), sa = Math.sin(ang);
+    return TPL.map((p, i) => {
+      let x = p.x, y = p.y;
+      if (i === 3 || i === 4) { const k = this.press*(i === 4 ? 1 : .6); x += (TPL[8].x + .02 - x)*k; y += (TPL[8].y + .05 - y)*k; }
+      x += Math.sin(time*2.1 + i)*.006 - TPL_ANCHOR.x; y += Math.cos(time*1.7 + i*1.3)*.006 - TPL_ANCHOR.y;
+      return { x: ax + (x*ca - y*sa)*sc, y: ay + (x*sa + y*ca)*sc };
+    });
+  }
+
+  frame(now){
+    const time = now/1000, S = this.S;
+    if (this.opt.visual) {                    // decorative globe: slow spin, drag nudges it, a click holds it for 1s
+      if (this.ball) {
+        if (now >= (this.pauseUntil || 0)) { this.turn(this.vel.x, this.vel.y + (this.drag ? 0 : .0035)); this.vel.x *= .92; this.vel.y *= .92; }
+        this.renderer.render(this.scene, this.cam);
+      }
+      return;
+    }
+    const camHand = !!track.pts;              // the hand is drawn full-screen by the overlay
+    let inside = false;
+    if (camHand) {
+      const r = this.root.getBoundingClientRect();
+      const p = track.pts.map(q => ({ x:q.x - r.left, y:q.y - r.top }));
+      const pad = this.active ? S*.06 : 0;    // small grace margin so a gesture isn't cut at the border
+      inside = p[8].x > -pad && p[8].y > -pad && p[8].x < S + pad && p[8].y < r.height + pad;
+      if (inside) {
+        if (!this.active) { this.active = true; this.cur.x = p[8].x; this.cur.y = p[8].y; }
+        screen.theme = this.theme;
+        this.handGestures(p);
+      } else if (this.active) this.endHand();
+      this.ph.clear();
+    } else {
+      if (this.active) this.endHand();
+      const idle = !this.mouse.inside;
+      this.cur.x = idle ? S*.8 + Math.sin(time*.8)*S*.012 : this.mouse.x;
+      this.cur.y = idle ? S*.86 + Math.cos(time)*S*.012 : this.mouse.y;
+      this.press += ((this.mouse.down ? 1 : 0) - this.press)*.35;
+      this.ph.draw(this.template(this.cur.x, this.cur.y, time), THEMES[this.theme]);
+    }
+    const ret = this.ret;
+    ret.classList.toggle('show', camHand ? inside : this.mouse.inside);
+    ret.classList.toggle('down', this.pinch.on || this.mouse.down);
+    ret.classList.toggle('rot', this.two.on || (this.pinch.on && !this.pinch.el) || !!this.drag);
+    ret.style.transform = `translate(${this.cur.x}px,${this.cur.y}px)`;
+
+    if (this.ball) {
+      if (this.goHome) {
+        this.ball.quaternion.slerp(this.HOME, .12); this.vel.x = this.vel.y = 0;
+        if (this.ball.quaternion.angleTo(this.HOME) < .002) { this.ball.quaternion.copy(this.HOME); this.goHome = false; }
+      } else { this.turn(this.vel.x, this.vel.y); this.vel.x *= .92; this.vel.y *= .92; }
+      this.renderer.render(this.scene, this.cam);
+    }
+  }
+  endHand(){
+    this.active = false; this.two.on = false; this.two.n = 0;
+    if (this.pinch.on) this.cancelPinch();
+    this.setHover(null);
+  }
+}
+
+const boot = () => document.querySelectorAll('.dgw:not([data-dgw-ready])').forEach(el => { el.dataset.dgwReady = '1'; new DataGlobe(el); });
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+window.DataGlobeInit = boot;   // call again after adding more .dgw elements dynamically
+}
+</script>
+<!-- ===================== DATA GLOBE WIDGET — END ===================== -->
+        </div>
+        <aside class="globe-guide" aria-label="How to play with the globe">
+          <h3>How to play</h3>
+          <h4><span>01</span> With your mouse or finger</h4>
+          <ol>
+            <li><b>Drag</b> the globe to spin it any way you like. Let go and it keeps rolling.</li>
+            <li><b>Scroll</b> over it to roll it. Hold <kbd>Shift</kbd> and scroll to turn it sideways.</li>
+            <li><b>RESET</b> brings it back to the front. <b>☾ DARK</b> / <b>☀ LIGHT</b> switches the look.</li>
+          </ol>
+          <h4><span>02</span> With your hand (camera)</h4>
+          <ol>
+            <li>Tap <b>✋ HAND</b> and allow the camera. Your video never leaves your device: the tracking runs in your browser.</li>
+            <li><b>✌ Two fingers up</b> (index + middle) and move them to rotate the globe.</li>
+            <li><b>🤏 Pinch</b> over a button to click it. Pinch and hold on the globe to grab it and turn.</li>
+            <li>Keep your hand about an arm's length from the camera, in good light.</li>
+          </ol>
+          <p class="cam-note"><i aria-hidden="true"></i>The camera turns off when you tap <b>✋ ON</b> again or close this window.</p>
+        </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- booking form: same look as the "Contact for collaboration" form on index.html -->
+  <div class="modal" id="modal-book" hidden>
+    <section class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="book-title">
+      <button class="cm-close" type="button" data-close aria-label="Close booking form">×</button>
+      <div class="book-form-wrap">
+        <div class="cm-head">
+          <h2 id="book-title">Book a free session.</h2>
+          <p>Tell us a little about you. We'll confirm a slot and bring your colour palette. No hidden fees.</p>
+        </div>
+        <form class="book-form cm-grid" novalidate>
+          <div class="cm-field">
+            <label for="bk-name">Name</label>
+            <input id="bk-name" name="name" autocomplete="name" required placeholder="Your full name">
+          </div>
+          <div class="cm-field">
+            <label for="bk-email">Email ID</label>
+            <input id="bk-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+          </div>
+
+          <p class="cm-section-title">What is your purpose of connecting with us?</p>
+          <div class="cm-choice-grid">
+            <label class="cm-choice">
+              <input type="checkbox" name="purposePick" value="Brand colour palette">
+              <strong>Brand colour palette</strong>
+              <span>Unlock the full palette lab: harmony, contrast, brand language and final variations.</span>
+            </label>
+            <label class="cm-choice">
+              <input type="checkbox" name="purposePick" value="Full brand identity">
+              <strong>Full brand identity</strong>
+              <span>Logo, colour and type systems, guidelines and the visual kit around them.</span>
+            </label>
+            <label class="cm-choice">
+              <input type="checkbox" name="purposePick" value="Marketing &amp; data">
+              <strong>Marketing &amp; data</strong>
+              <span>Use data assets for sharper decisions, campaigns and clearer marketing.</span>
+            </label>
+            <label class="cm-choice">
+              <input type="checkbox" name="purposePick" value="Website / design">
+              <strong>Website / design</strong>
+              <span>A site, landing page, deck or collateral built on your new palette.</span>
+            </label>
+          </div>
+          <div class="cm-field cm-full">
+            <label for="bk-purpose">Write your need</label>
+            <textarea id="bk-purpose" name="purpose" placeholder="A line or two about your brand and what you'd like from the session."></textarea>
+          </div>
+
+          <p class="cm-section-title">Book session</p>
+          <div class="cm-field">
+            <label for="bk-date">Preferred date</label>
+            <input id="bk-date" name="date" type="date" required>
+          </div>
+          <div class="cm-field">
+            <label for="bk-time">Preferred time</label>
+            <select id="bk-time" name="time" required>
+              <option value="">Select a slot</option>
+              <option>10:00 AM – 11:00 AM</option>
+              <option>11:00 AM – 12:00 PM</option>
+              <option>12:00 PM – 1:00 PM</option>
+              <option>2:00 PM – 3:00 PM</option>
+              <option>3:00 PM – 4:00 PM</option>
+              <option>4:00 PM – 5:00 PM</option>
+              <option>5:00 PM – 6:00 PM</option>
+            </select>
+          </div>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display: none;">
+          <p class="form-error cm-full" role="alert" hidden></p>
+          <div class="cm-actions">
+            <button class="cm-button" type="submit">Book session</button>
+            <p class="cm-note">Submitting sends your booking request to mirchidesignstudio@gmail.com.</p>
+          </div>
+        </form>
+      </div>
+      <div class="book-done" hidden role="status">
+        <span class="tick" aria-hidden="true">✓</span>
+        <h3>Submitted successfully</h3>
+        <p>Thanks! We'll email you to confirm your session. Taking you back to the page…</p>
+        <div class="return-bar"><i></i></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="cursor" aria-hidden="true"></div>
+
+  <script src="brand-palette.js"></script>
+  <script src="poster-archive-widget.js" data-launcher="false" defer></script>
+  <script src="analytics/mirchi-analytics.js" defer></script>
+  <script>
+    /* Booking requests are emailed here (sent through FormSubmit, no server needed). */
+    const BOOK_EMAIL = "mirchidesignstudio@gmail.com";
+
+    const homeLogo = document.querySelector(".home-logo");
+    const onScroll = () => homeLogo.classList.toggle("is-scrolled", scrollY > 40);
+    addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    const fine = matchMedia("(pointer: fine)").matches;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- popups: click outside or Esc closes ---------- */
+    let openModal = null, lastTrigger = null;
+
+    function showModal(id) {
+      const m = document.getElementById("modal-" + id);
+      if (!m) return;
+      if (openModal) hideModal();
+      lastTrigger = document.activeElement;
+      m.hidden = false;
+      document.body.classList.add("modal-open");
+      requestAnimationFrame(() => m.classList.add("in"));
+      openModal = m;
+      setTimeout(fitTitles, 260);   // after the panel's open animation
+      m.querySelector(".modal-x, [data-close]").focus();
+      if (id === "palette") mountPalette();
+      if (id === "book") resetBooking();
+      if (id === "video") { const v = m.querySelector("video"); v.currentTime = 0; v.play().catch(() => {}); }
+    }
+
+    function hideModal() {
+      const m = openModal;
+      if (!m) return;
+      openModal = null;
+      m.classList.remove("in");
+      m.querySelectorAll("video").forEach(v => v.pause());
+      if (m.id === "modal-globe" && window.DataGlobeStopCamera) DataGlobeStopCamera(); // release the camera on close
+      document.body.classList.remove("modal-open");
+      setTimeout(() => { if (openModal !== m) m.hidden = true; }, 200);
+      lastTrigger && lastTrigger.focus && lastTrigger.focus();
+    }
+
+    document.querySelectorAll(".modal").forEach(m => {
+      m.addEventListener("click", e => { if (e.target === m) hideModal(); });
+      m.querySelector("[data-close]").addEventListener("click", hideModal);
+    });
+    addEventListener("keydown", e => { if (e.key === "Escape" && openModal) hideModal(); });
+    addEventListener("pagehide", () => window.DataGlobeStopCamera && DataGlobeStopCamera());
+
+    /* the pinned logo sits above everything, so nudge a popup title right if it would sit under the logo */
+    function clearOfLogo(el) {
+      if (!el) return;
+      el.style.marginLeft = "";
+      const L = homeLogo.getBoundingClientRect(), r = el.getBoundingClientRect();
+      const s = homeLogo.classList.contains("is-scrolled") ? 0 : 10;   // room for the logo growing on scroll
+      if (r.top < L.bottom + s && r.bottom > L.top && r.left < L.right + s + 12) {
+        el.style.marginLeft = Math.ceil(L.right + s + 12 - r.left) + "px";
+      }
+    }
+    function archiveTitle() {
+      const host = document.querySelector("[data-poster-archive-host]");
+      return host && host.shadowRoot && host.shadowRoot.querySelector(".bar .ttl");
+    }
+    function fitTitles() {
+      if (openModal) clearOfLogo(openModal.querySelector(".modal-bar > span, .cm-head"));
+      clearOfLogo(archiveTitle());
+    }
+    addEventListener("resize", fitTitles);
+
+    function openArchive() {
+      if (!window.PosterArchive) return;
+      PosterArchive.open({ cat: "all", type: "ad", view: "feed" });
+      setTimeout(() => clearOfLogo(archiveTitle()), 250);   // after its open animation
+    }
+
+    document.addEventListener("click", e => {
+      const t = e.target.closest("[data-open]");
+      if (!t) return;
+      const id = t.dataset.open;
+      if (id === "archive") openArchive(); else showModal(id);
+    });
+
+    /* ---------- brand palette: section 01 works, 02–08 locked previews ---------- */
+    const LOCK_CSS = `
+      section.lk{position:relative;max-height:620px;overflow:hidden}
+      section.lk>*:not(.lock){user-select:none}
+      section.lk .formula,section.lk .viz-f,section.lk code,section.lk pre,section.lk .mxsum,section.lk .fxbase,
+      section.lk .hint,section.lk .opt-meta,section.lk .vr-meta,section.lk .vr-write,section.lk .chip span,
+      section.lk .fx-tile span,section.lk .mx small{filter:blur(4.5px)}
+      section.lk canvas{filter:blur(.6px)}
+      .lock{position:absolute;inset:0;z-index:6;display:flex;align-items:flex-end;justify-content:center;padding:28px 16px;
+        background:linear-gradient(180deg,rgba(255,255,255,0) 28%,rgba(255,255,255,.72) 60%,#fff 90%)}
+      .lock-card{width:100%;max-width:440px;background:#fff;border:2px solid #1b1011;box-shadow:6px 6px 0 #ec1b24;padding:16px 18px;
+        text-align:center;font-family:Arial,Helvetica,sans-serif;color:#1b1011}
+      .lock-k{display:inline-block;background:#1b1011;color:#fff;padding:4px 10px;font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+      .lock-card strong{display:block;margin:10px 0 6px;color:#ec1b24;font:900 28px/1 Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif;text-transform:uppercase}
+      .lock-card p{margin:0 0 12px;font-size:13px;line-height:1.5;font-weight:700;color:#5a3b3d}
+      .lock-card a{display:inline-block;background:#ec1b24;color:#fff;border:2px solid #1b1011;text-decoration:none;padding:10px 16px;
+        font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;box-shadow:3px 3px 0 #1b1011}
+      .lock-card a:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #1b1011}
+      .free{display:inline-block;margin-left:10px;padding:2px 8px;background:#18b25c;color:#fff;font-size:10px;letter-spacing:.1em}
+    `;
+
+    let paletteTool = null;
+    function mountPalette() {
+      if (paletteTool) return;
+      paletteTool = document.createElement("brand-palette");
+      paletteTool.setAttribute("theme", "light");
+      document.querySelector(".palette-slot").appendChild(paletteTool); // renders the default demo
+      const R = paletteTool.shadowRoot;
+      const style = document.createElement("style");
+      style.textContent = LOCK_CSS;
+      R.appendChild(style);
+      R.querySelectorAll(".grid > section").forEach((sec, i) => {
+        const h = sec.querySelector("h4");
+        if (i === 0) { h.insertAdjacentHTML("beforeend", '<span class="free">LIVE · TRY IT</span>'); return; }
+        sec.classList.add("lk");
+        [...sec.children].forEach(c => { c.inert = true; });
+        sec.insertAdjacentHTML("beforeend",
+          `<div class="lock"><div class="lock-card"><span class="lock-k">🔒 ${h.textContent.replace(/[<>&]/g, "")}</span>` +
+          `<strong>Unlock for free</strong><p>Book a free session with us and get your colour palette. No hidden fees.</p>` +
+          `<a href="#book" data-book>Book a free session →</a></div></div>`);
+      });
+      R.addEventListener("click", e => {
+        if (e.target.closest("[data-book]")) { e.preventDefault(); showModal("book"); }
+      });
+      // From now on only section 01 reacts to new images; the locked sections keep their default screens.
+      paletteTool.refresh = function () {
+        if (!this.raw) return;
+        this.build();
+        this.drawQuant();
+        this.st.km.set(this.kmSig);
+      };
+    }
+
+    /* ---------- upcoming widget: teaser video + fake loader ---------- */
+    const teaser = document.querySelector(".teaser-video");
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !reduced) teaser.play().catch(() => {}); else teaser.pause();
+    }, { threshold: .3 }).observe(teaser);
+
+    const bar = document.querySelector(".loader-bar i"), pct = document.querySelector(".loader-pct"), msg = document.querySelector(".loader-msg");
+    // messages play in order as the bar fills; at 100% the data speaks, holds, then the loop restarts
+    const msgs = ["Reading your data…", "Knowing your style…", "Calibrating taste…", "Running the Analytics and Algorithms…", "Asking the fonts nicely…", "Teaching data to dress well…", "Almost stylish…"];
+    const FINAL = "Your data now SPEAKS !!!";
+    let load = 0, hold = 0;
+    msg.textContent = msgs[0];
+    setInterval(() => {
+      if (hold) { if (--hold === 0) { load = 0; msg.classList.remove("speaks"); msg.textContent = msgs[0]; bar.style.width = "0%"; pct.textContent = "0%"; } return; }
+      load = Math.min(100, load + 3 + Math.random() * 6);
+      bar.style.width = load + "%";
+      pct.textContent = Math.round(load) + "%";
+      if (load >= 100) { msg.textContent = FINAL; msg.classList.add("speaks"); hold = 5; return; }
+      msg.textContent = msgs[Math.min(msgs.length - 1, Math.floor(load / 100 * msgs.length))];
+    }, 700);
+
+    /* ---------- card tilt + glare ---------- */
+    if (fine && !reduced) {
+      document.querySelectorAll(".card:not(.card-4)").forEach(card => {
+        card.addEventListener("pointermove", e => {
+          const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+          card.style.setProperty("--ry", (x - .5) * 7 + "deg");
+          card.style.setProperty("--rx", (.5 - y) * 7 + "deg");
+          card.style.setProperty("--gx", x * 100 + "%");
+          card.style.setProperty("--gy", y * 100 + "%");
+        });
+        card.addEventListener("pointerleave", () => { card.style.setProperty("--rx", "0deg"); card.style.setProperty("--ry", "0deg"); });
+      });
+    }
+
+    /* ---------- cursor label ---------- */
+    const cur = document.querySelector(".cursor");
+    if (fine) {
+      addEventListener("pointermove", e => {
+        cur.classList.add("on");
+        cur.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
+        const t = e.target.closest && e.target.closest("[data-cursor]");
+        cur.classList.toggle("big", !!t && !openModal);
+        cur.textContent = t && !openModal ? t.dataset.cursor : "";
+      });
+      document.addEventListener("pointerleave", () => cur.classList.remove("on"));
+    }
+
+    /* ---------- runaway "let me play" button ---------- */
+    const run = document.querySelector(".runaway"), zone = document.querySelector(".play-zone");
+    const lines = ["Too slow 😜", "Nope, over here", "Almost…", "Okay okay, click me ✋"];
+    let chases = 0;
+    run.addEventListener("pointerenter", e => {
+      if (e.pointerType !== "mouse" || chases >= 3) return;
+      const zr = zone.getBoundingClientRect(), br = run.getBoundingClientRect();
+      run.style.left = Math.random() * Math.max(0, zr.width - br.width) + "px";
+      run.style.top = Math.random() * Math.max(0, zr.height - br.height - 30) + "px";
+      run.textContent = lines[chases];
+      chases++;
+      document.querySelector(".chase-count").textContent = chases;
+      if (chases === 3) { run.textContent = lines[3]; run.classList.add("caught"); }
+    });
+
+    /* ---------- reveal on scroll ---------- */
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }), { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    /* ---------- interactive halftone dot field (hero + widgets) ---------- */
+    let disturbed = 0;
+    const dotsCounter = document.querySelector(".dots-count");
+    function dotField(cv) {
+      const cx = cv.getContext("2d"), host = cv.parentElement;
+      const COLS = ["#ec1b24", "#ffd400", "#c21bff", "#5fae62", "#1b1011"];
+      const G = 24, R0 = 1.3;
+      let W = 0, H = 0, dpr = 1, dots = [], mouse = { x: -999, y: -999 }, ripples = [], visible = false, raf = 0;
+
+      function size() {
+        const r = host.getBoundingClientRect();
+        dpr = Math.min(2, devicePixelRatio || 1);
+        W = r.width; H = r.height;
+        cv.width = W * dpr; cv.height = H * dpr;
+        cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        dots = [];
+        for (let y = G / 2; y < H; y += G) for (let x = G / 2; x < W; x += G) {
+          dots.push({ x, y, r: R0, c: COLS[(Math.random() * COLS.length) | 0], hit: false });
+        }
+        kick();
+      }
+
+      function frame() {
+        raf = 0;
+        cx.clearRect(0, 0, W, H);
+        let busy = false;
+        ripples = ripples.filter(rp => (rp.r += 9) < Math.max(W, H));
+        for (const d of dots) {
+          const dist = Math.hypot(d.x - mouse.x, d.y - mouse.y);
+          let target = R0 + Math.max(0, 1 - dist / 150) * 8;
+          for (const rp of ripples) {
+            const band = Math.abs(Math.hypot(d.x - rp.x, d.y - rp.y) - rp.r);
+            if (band < 40) target = Math.max(target, R0 + (1 - band / 40) * 7 * (1 - rp.r / Math.max(W, H)));
+          }
+          d.r += (target - d.r) * .18;
+          if (Math.abs(target - d.r) > .05) busy = true;
+          if (d.r > 4 && !d.hit) { d.hit = true; disturbed++; }
+          cx.beginPath();
+          cx.arc(d.x, d.y, Math.max(.4, d.r), 0, 6.283);
+          cx.fillStyle = d.r > 2 ? d.c : "rgba(27,16,17,.18)";
+          cx.fill();
+        }
+        dotsCounter.textContent = disturbed;
+        if ((busy || ripples.length) && visible) kick();
+      }
+      function kick() { if (!raf && !reduced) raf = requestAnimationFrame(frame); else if (reduced) frame(); }
+
+      host.addEventListener("pointermove", e => {
+        const r = host.getBoundingClientRect();
+        mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; kick();
+      });
+      host.addEventListener("pointerleave", () => { mouse.x = mouse.y = -999; kick(); });
+      host.addEventListener("click", e => {
+        if (e.target.closest("button, a, input, textarea, select")) return;
+        const r = host.getBoundingClientRect();
+        ripples.push({ x: e.clientX - r.left, y: e.clientY - r.top, r: 0 });
+        kick();
+      });
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) kick(); }).observe(host);
+      new ResizeObserver(size).observe(host);
+    }
+    document.querySelectorAll(".dotfield").forEach(dotField);
+
+    /* ---------- booking form: emailed via FormSubmit ---------- */
+    const bookModal = document.getElementById("modal-book");
+    const form = bookModal.querySelector(".book-form"), formWrap = bookModal.querySelector(".book-form-wrap"), done = bookModal.querySelector(".book-done");
+    const errEl = form.querySelector(".form-error"), submitBtn = form.querySelector("[type=submit]");
+    const dateIn = form.querySelector("#bk-date"), purposeIn = form.querySelector("#bk-purpose");
+    let returnTimer = 0;
+
+    const pad = n => String(n).padStart(2, "0");
+    const today = new Date();
+    dateIn.min = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+    function resetBooking() {
+      clearTimeout(returnTimer);
+      formWrap.hidden = false; done.hidden = true; errEl.hidden = true;
+      done.querySelector(".return-bar").classList.remove("go");
+      submitBtn.disabled = false; submitBtn.textContent = "Book session";
+      setTimeout(() => form.querySelector("#bk-name").focus(), 60);
+    }
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      errEl.hidden = true;
+      const picked = [...form.querySelectorAll('[name="purposePick"]:checked')].map(c => c.value);
+      const bad = [...form.querySelectorAll("[required]")].find(f => !f.value.trim() || !f.checkValidity());
+      if (bad) {
+        errEl.textContent = bad.type === "email" && bad.value ? "Please enter a valid email." : "Please fill in every field.";
+        errEl.hidden = false; bad.focus(); return;
+      }
+      if (!picked.length && !purposeIn.value.trim()) {
+        errEl.textContent = "Tell us your purpose: pick an option or write your need.";
+        errEl.hidden = false; purposeIn.focus(); return;
+      }
+      if (form._honey.value) return; // bot
+      const d = Object.fromEntries(new FormData(form));
+      submitBtn.disabled = true; submitBtn.textContent = "Sending…";
+      try {
+        const res = await fetch("https://formsubmit.co/ajax/" + BOOK_EMAIL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            _subject: `Free session request: ${d.name}`,
+            _template: "table",
+            _replyto: d.email,
+            Name: d.name,
+            Email: d.email,
+            Purpose: picked.join(", ") || "Not picked",
+            Need: d.purpose || "",
+            "Preferred date": d.date,
+            "Preferred time": d.time,
+            Page: location.href
+          })
+        });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        // record the lead for the daily / monthly analytics email (only after it was sent)
+        if (window.MirchiAnalytics) MirchiAnalytics.lead({
+          form: "Free session booking", name: d.name, email: d.email,
+          details: [picked.length ? "purpose: " + picked.join(", ") : "", d.purpose ? "need: " + d.purpose : "",
+            "slot: " + d.date + " " + d.time].filter(Boolean).join(" · ")
+        });
+        form.reset();
+        formWrap.hidden = true; done.hidden = false;
+        requestAnimationFrame(() => done.querySelector(".return-bar").classList.add("go"));
+        returnTimer = setTimeout(() => { if (openModal === bookModal) hideModal(); }, 3200);
+      } catch (err) {
+        errEl.innerHTML = `Couldn't send right now. Please try again, or email us at <a href="mailto:${BOOK_EMAIL}">${BOOK_EMAIL}</a>.`;
+        errEl.hidden = false;
+        submitBtn.disabled = false; submitBtn.textContent = "Book session";
+      }
+    });
+  </script>
+</body>
+</html>
